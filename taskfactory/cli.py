@@ -19,11 +19,13 @@ def main() -> None:
     val.add_argument("task_dir", type=Path)
     val.add_argument("--repo", type=Path, required=True, help="Local git repository containing the pinned commit")
     val.add_argument("--out", type=Path, required=True)
+    val.add_argument("--deps-dir", type=Path, default=None, help="prepared dependency dir (e.g. node_modules) linked into each state")
     mut = sub.add_parser("mutate", help="Run hand-written wrong/alternative implementations against task tests")
     mut.add_argument("task_dir", type=Path)
     mut.add_argument("--repo", type=Path, required=True)
     mut.add_argument("--mutants", type=Path, required=True)
     mut.add_argument("--out", type=Path, required=True)
+    mut.add_argument("--deps-dir", type=Path, default=None)
     var = sub.add_parser("variation", help="Behavioural-signature overlap report for task directories")
     var.add_argument("task_dirs", type=Path, nargs="+")
     var.add_argument("--out", type=Path, required=True)
@@ -32,6 +34,7 @@ def main() -> None:
     rec.add_argument("--repo", type=Path, required=True)
     rec.add_argument("--recorded", type=Path, required=True, help="earlier validation_report.json")
     rec.add_argument("--out", type=Path, required=True)
+    rec.add_argument("--deps-dir", type=Path, default=None)
     man = sub.add_parser("manifest", help="Write MANIFEST.sha256 for a task directory")
     man.add_argument("task_dir", type=Path)
     dis = sub.add_parser("discover", help="Find evidence-anchored feature candidates in a Python repository")
@@ -49,7 +52,7 @@ def main() -> None:
         print(payload)
     elif args.command == "validate":
         from .orchestrate import validate_task
-        result = validate_task(args.task_dir, args.repo, args.out)
+        result = validate_task(args.task_dir, args.repo, args.out, args.deps_dir)
         status = result["report"]["status"]
         print(f"{result['task_id']}: {status}")
         for c in result["report"]["checks"]:
@@ -65,7 +68,7 @@ def main() -> None:
         print(f"{len(write_manifest(args.task_dir))} files hashed")
     elif args.command == "reconstruct":
         from .reconstruct import reconstruct
-        res = reconstruct(args.task_dir, args.repo, args.recorded, args.out)
+        res = reconstruct(args.task_dir, args.repo, args.recorded, args.out, args.deps_dir)
         print(json.dumps(res, indent=2))
         raise SystemExit(0 if res["status"] == "PASS" else 1)
     elif args.command == "discover":
@@ -74,7 +77,7 @@ def main() -> None:
         print(f"{rep['total_candidates']} candidates, {len(rep['selected'])} selected: {rep['counts_by_kind']}")
     elif args.command == "mutate":
         from .mutation import run_mutants
-        rep = run_mutants(args.task_dir, args.repo, args.mutants, args.out)
+        rep = run_mutants(args.task_dir, args.repo, args.mutants, args.out, args.deps_dir)
         print(json.dumps(rep["summary"]))
         for r in rep["results"]:
             print(f"  {r['outcome']:<28} {r['id']}")

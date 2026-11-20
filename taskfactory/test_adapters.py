@@ -1,11 +1,14 @@
 from __future__ import annotations
 
+import re
+
 from dataclasses import replace
 from pathlib import Path
 # JUnit reports are size-capped below and expat rejects entity-expansion payloads (see tests).
 from xml.etree import ElementTree  # nosec B405
 
 MAX_REPORT_BYTES = 50 * 1024 * 1024
+_FILE_NAME = re.compile(r"\.(?:[cm]?[jt]sx?)$")
 
 from .models import CommandResult
 
@@ -43,6 +46,13 @@ def classify_junit_xml(path: str | Path) -> tuple[str, dict[str, object]]:
                     "type": node.attrib.get("type", ""),
                     "detail": (node.text or "")[:2000],
                 })
+
+    # Some runners (Node's test runner) report a test FILE that fails to load (import/syntax error) as an
+    # ordinary failed testcase named after the file. That is a load error, not evidence of missing behaviour.
+    file_level = [f for f in failures if _FILE_NAME.search(f["test"].split("::")[-1]) and f["message"].strip() == "test failed"]
+    for f in file_level:
+        failures.remove(f)
+        errors.append({**f, "type": "file_level_failure"})
 
     total = len(cases)
     executed = total - len(skipped)

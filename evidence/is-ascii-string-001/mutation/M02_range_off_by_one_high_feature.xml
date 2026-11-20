@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="AC1 ascii strings are true" time="0.001877" classname="test" failure="&amp;quot;&amp;quot;false !== true">
+		<failure type="testCodeFailure" message="&amp;quot;&amp;quot;false !== true">
+[Error [ERR_TEST_FAILURE]: ""
+
+false !== true
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: ""
+  
+  false !== true
+  
+      at TestContext.&lt;anonymous> (/tmp/mut_60rwnzwy/ws/test/task_feature/ascii.test.ts:12:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.start (node:internal/test_runner/test:944:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<testcase name="AC2 non-ascii characters make it false" time="0.000217" classname="test"/>
+	<testcase name="AC3 non-strings are false" time="0.000111" classname="test"/>
+	<testcase name="AC4 assert passes for ascii and throws TypeError otherwise" time="0.000833" classname="test"/>
+	<testcase name="AC4 default message format matches other assertions" time="0.000119" classname="test"/>
+	<testcase name="AC5 custom message is used verbatim" time="0.000092" classname="test"/>
+	<testcase name="AC6 combinators work and describe the type" time="0.000467" classname="test"/>
+	<testcase name="AC7 named exports behave like members" time="0.000120" classname="test"/>
+	<!-- tests 8 -->
+	<!-- suites 0 -->
+	<!-- pass 7 -->
+	<!-- fail 1 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 272.258074 -->
+</testsuites>

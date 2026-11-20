@@ -7,3 +7,6 @@
 - Discovery: taskfactory/discovery.py, `discover` CLI, tests/test_discovery.py, evidence/discovery-itsdangerous/. Published to GitHub (44bcdc4), CI green.
 - Windows hardening: LF forced in clones, .gitattributes, docs/WINDOWS.md, CRLF regression test.
 - Task 003 needs_resign (validated), 3-task variation, docs.
+
+## Unreleased
+- node-test runner, `--deps-dir`, file-level load failure classification, task is-ascii-string-001, tests/test_node_runner.py.

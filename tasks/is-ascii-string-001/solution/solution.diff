@@ -1,0 +1,68 @@
+diff --git a/source/index.ts b/source/index.ts
+index 6c2f428..d62fe96 100644
+--- a/source/index.ts
++++ b/source/index.ts
+@@ -123,6 +123,7 @@ function isPrimitiveTypeName(name: unknown): name is PrimitiveTypeName {
+ export type TypeName = ObjectTypeName | PrimitiveTypeName;
+ 
+ const assertionTypeDescriptions = [
++	'ASCII string',
+ 	'bound Function',
+ 	'positive number',
+ 	'negative number',
+@@ -288,6 +289,7 @@ const is = Object.assign(
+ 		arrayBuffer: isArrayBuffer,
+ 		arrayLike: isArrayLike,
+ 		arrayOf: isArrayOf,
++		asciiString: isAsciiString,
+ 		asyncFunction: isAsyncFunction,
+ 		asyncGenerator: isAsyncGenerator,
+ 		asyncGeneratorFunction: isAsyncGeneratorFunction,
+@@ -980,6 +982,10 @@ export function isWeakSet(value: unknown): value is WeakSet<object> {
+ 	return getObjectType(value) === 'WeakSet';
+ }
+ 
++export function isAsciiString(value: unknown): value is string {
++	return isString(value) && /^[\p{ASCII}]*$/v.test(value);
++}
++
+ export function isWhitespaceString(value: unknown): value is Whitespace {
+ 	return isString(value) && /^\s+$/v.test(value);
+ }
+@@ -1104,6 +1110,7 @@ type Assert = {
+ 	plainObject: <Value = unknown>(value: unknown, message?: string) => asserts value is Record<PropertyKey, Value>;
+ 	typedArray: (value: unknown, message?: string) => asserts value is TypedArray;
+ 	arrayLike: <T = unknown>(value: unknown, message?: string) => asserts value is ArrayLike<T>;
++	asciiString: (value: unknown, message?: string) => asserts value is string;
+ 	tupleLike: <T extends Array<TypeGuard<unknown>>>(value: unknown, guards: [...T], message?: string) => asserts value is ResolveTypesOfTypeGuardsTuple<T>;
+ 	htmlElement: (value: unknown, message?: string) => asserts value is HTMLElement;
+ 	observable: (value: unknown, message?: string) => asserts value is ObservableLike;
+@@ -1206,6 +1213,7 @@ export const assert: Assert = {
+ 	array: assertArray,
+ 	arrayBuffer: assertArrayBuffer,
+ 	arrayLike: assertArrayLike,
++	asciiString: assertAsciiString,
+ 	asyncFunction: assertAsyncFunction,
+ 	asyncGenerator: assertAsyncGenerator,
+ 	asyncGeneratorFunction: assertAsyncGeneratorFunction,
+@@ -1302,6 +1310,7 @@ const methodTypeMap = {
+ 	isArray: 'Array',
+ 	isArrayBuffer: 'ArrayBuffer',
+ 	isArrayLike: 'array-like',
++	isAsciiString: 'ASCII string',
+ 	isAsyncFunction: 'AsyncFunction',
+ 	isAsyncGenerator: 'AsyncGenerator',
+ 	isAsyncGeneratorFunction: 'AsyncGeneratorFunction',
+@@ -2003,6 +2012,12 @@ export function assertWeakSet<T extends object = object>(value: unknown, message
+ 	}
+ }
+ 
++export function assertAsciiString(value: unknown, message?: string): asserts value is string {
++	if (!isAsciiString(value)) {
++		throw new TypeError(message ?? typeErrorMessage('ASCII string', value));
++	}
++}
++
+ export function assertWhitespaceString(value: unknown, message?: string): asserts value is string {
+ 	if (!isWhitespaceString(value)) {
+ 		throw new TypeError(message ?? typeErrorMessage('whitespace string', value));

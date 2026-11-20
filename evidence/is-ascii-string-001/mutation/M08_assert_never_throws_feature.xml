@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="AC1 ascii strings are true" time="0.000972" classname="test"/>
+	<testcase name="AC2 non-ascii characters make it false" time="0.000170" classname="test"/>
+	<testcase name="AC3 non-strings are false" time="0.000100" classname="test"/>
+	<testcase name="AC4 assert passes for ascii and throws TypeError otherwise" time="0.001258" classname="test" failure="Missing expected exception (TypeError).">
+		<failure type="testCodeFailure" message="Missing expected exception (TypeError).">
+[Error [ERR_TEST_FAILURE]: Missing expected exception (TypeError).] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: Missing expected exception (TypeError).
+      at TestContext.&lt;anonymous> (/tmp/mut_0g5kyqzg/ws/test/task_feature/ascii.test.ts:35:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'TypeError', message: /ASCII string/ },
+    operator: 'throws',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<testcase name="AC4 default message format matches other assertions" time="0.000238" classname="test" failure="Missing expected exception.">
+		<failure type="testCodeFailure" message="Missing expected exception.">
+[Error [ERR_TEST_FAILURE]: Missing expected exception.] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.&lt;anonymous> (/tmp/mut_0g5kyqzg/ws/test/task_feature/ascii.test.ts:44:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { message: 'Expected value which is `ASCII string`, received value of type `string`.' },
+    operator: 'throws',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<testcase name="AC5 custom message is used verbatim" time="0.000135" classname="test" failure="Missing expected exception (TypeError).">
+		<failure type="testCodeFailure" message="Missing expected exception (TypeError).">
+[Error [ERR_TEST_FAILURE]: Missing expected exception (TypeError).] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: Missing expected exception (TypeError).
+      at TestContext.&lt;anonymous> (/tmp/mut_0g5kyqzg/ws/test/task_feature/ascii.test.ts:50:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'TypeError', message: 'custom msg' },
+    operator: 'throws',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<testcase name="AC6 combinators work and describe the type" time="0.000842" classname="test"/>
+	<testcase name="AC7 named exports behave like members" time="0.000178" classname="test" failure="Missing expected exception (TypeError).">
+		<failure type="testCodeFailure" message="Missing expected exception (TypeError).">
+[Error [ERR_TEST_FAILURE]: Missing expected exception (TypeError).] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: Missing expected exception (TypeError).
+      at TestContext.&lt;anonymous> (/tmp/mut_0g5kyqzg/ws/test/task_feature/ascii.test.ts:75:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<!-- tests 8 -->
+	<!-- suites 0 -->
+	<!-- pass 4 -->
+	<!-- fail 4 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 244.277509 -->
+</testsuites>

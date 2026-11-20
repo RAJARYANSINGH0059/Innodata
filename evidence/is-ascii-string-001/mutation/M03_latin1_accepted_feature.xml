@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="AC1 ascii strings are true" time="0.001127" classname="test"/>
+	<testcase name="AC2 non-ascii characters make it false" time="0.001080" classname="test" failure="&amp;quot;é&amp;quot;true !== false">
+		<failure type="testCodeFailure" message="&amp;quot;é&amp;quot;true !== false">
+[Error [ERR_TEST_FAILURE]: "é"
+
+true !== false
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: "é"
+  
+  true !== false
+  
+      at TestContext.&lt;anonymous> (/tmp/mut_nj30ab0d/ws/test/task_feature/ascii.test.ts:18:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<testcase name="AC3 non-strings are false" time="0.000175" classname="test"/>
+	<testcase name="AC4 assert passes for ascii and throws TypeError otherwise" time="0.000353" classname="test" failure="Missing expected exception (TypeError).">
+		<failure type="testCodeFailure" message="Missing expected exception (TypeError).">
+[Error [ERR_TEST_FAILURE]: Missing expected exception (TypeError).] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: Missing expected exception (TypeError).
+      at TestContext.&lt;anonymous> (/tmp/mut_nj30ab0d/ws/test/task_feature/ascii.test.ts:35:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'TypeError', message: /ASCII string/ },
+    operator: 'throws',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<testcase name="AC4 default message format matches other assertions" time="0.000141" classname="test" failure="Missing expected exception.">
+		<failure type="testCodeFailure" message="Missing expected exception.">
+[Error [ERR_TEST_FAILURE]: Missing expected exception.] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.&lt;anonymous> (/tmp/mut_nj30ab0d/ws/test/task_feature/ascii.test.ts:44:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { message: 'Expected value which is `ASCII string`, received value of type `string`.' },
+    operator: 'throws',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<testcase name="AC5 custom message is used verbatim" time="0.000123" classname="test" failure="Missing expected exception (TypeError).">
+		<failure type="testCodeFailure" message="Missing expected exception (TypeError).">
+[Error [ERR_TEST_FAILURE]: Missing expected exception (TypeError).] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: Missing expected exception (TypeError).
+      at TestContext.&lt;anonymous> (/tmp/mut_nj30ab0d/ws/test/task_feature/ascii.test.ts:50:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: { name: 'TypeError', message: 'custom msg' },
+    operator: 'throws',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<testcase name="AC6 combinators work and describe the type" time="0.000283" classname="test" failure="Expected values to be strictly equal:true !== false">
+		<failure type="testCodeFailure" message="Expected values to be strictly equal:true !== false">
+[Error [ERR_TEST_FAILURE]: Expected values to be strictly equal:
+
+true !== false
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.&lt;anonymous> (/tmp/mut_nj30ab0d/ws/test/task_feature/ascii.test.ts:57:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<testcase name="AC7 named exports behave like members" time="0.000198" classname="test" failure="Expected values to be strictly equal:true !== false">
+		<failure type="testCodeFailure" message="Expected values to be strictly equal:true !== false">
+[Error [ERR_TEST_FAILURE]: Expected values to be strictly equal:
+
+true !== false
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.&lt;anonymous> (/tmp/mut_nj30ab0d/ws/test/task_feature/ascii.test.ts:72:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<!-- tests 8 -->
+	<!-- suites 0 -->
+	<!-- pass 2 -->
+	<!-- fail 6 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 269.640696 -->
+</testsuites>

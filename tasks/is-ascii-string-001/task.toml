@@ -1,0 +1,32 @@
+[task]
+id = "is-ascii-string-001"
+kind = "feature"
+title = "is.asciiString / assert.asciiString: validate that a value is a string containing only ASCII characters"
+
+[repo]
+url = "https://github.com/sindresorhus/is"
+commit = "e9c026c611c1160eaad50da00be4e676b626018f"
+license = "MIT"
+
+[discovery]
+candidate = "Hand-selected (taskfactory discover is Python-only): a new string predicate that must be wired consistently through four registries (is, assert, assertion descriptions, methodTypeMap)."
+
+[solution]
+patch = "solution/solution.diff"
+
+[tests]
+feature = "tests/feature"
+regression = "tests/regression"
+inject_dir = "test"
+
+[run]
+runner = "node-test"
+node_flags = ["--experimental-transform-types"]
+deps_link = "node_modules"
+baseline_targets = ["test/test.ts"]
+timeout = 300
+repeats = 3
+
+[variation]
+dimensions = ["typescript", "type-guard-predicate", "multi-registry-wiring", "unicode-semantics"]
+summary = "New TS type-guard predicate whose error messages and combinators (any/all) depend on registry wiring."

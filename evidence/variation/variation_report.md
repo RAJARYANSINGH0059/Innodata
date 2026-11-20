@@ -2,12 +2,12 @@
 
 weighted Jaccard over files/symbols/entrypoints/criteria/test tokens (weights {'files': 0.2, 'symbols': 0.2, 'entrypoints': 0.2, 'criteria_tokens': 0.2, 'test_tokens': 0.2}); DISTINCT<0.25, REVIEW<0.5, else TOO_SIMILAR. Heuristic only: embeddings not used; every verdict needs manual adjudication.
 
-## itsdangerous-leeway-001
-- files: src/itsdangerous/timed.py
-- symbols: TimedSerializer, TimestampSigner, validate
-- feature tests: 12
-- declared dimensions: time-based-validation, business-rule-tolerance, api-parameter-extension, input-validation
-- summary: Clock-skew tolerance in timestamp verification: new keyword threaded through signer, validate and serializer; arithmetic rule on timestamps.
+## is-ascii-string-001
+- files: source/index.ts
+- symbols: 
+- feature tests: 0
+- declared dimensions: typescript, type-guard-predicate, multi-registry-wiring, unicode-semantics
+- summary: New TS type-guard predicate whose error messages and combinators (any/all) depend on registry wiring.
 
 ## itsdangerous-decompress-limit-002
 - files: src/itsdangerous/url_safe.py
@@ -15,6 +15,13 @@ weighted Jaccard over files/symbols/entrypoints/criteria/test tokens (weights {'
 - feature tests: 7
 - declared dimensions: resource-limits-security, streaming-decoding, error-handling, configuration-attribute
 - summary: Bounded zlib decompression in URL-safe payload decoding: stateful streaming, memory bound, failure semantics on unsafe loads.
+
+## itsdangerous-leeway-001
+- files: src/itsdangerous/timed.py
+- symbols: TimedSerializer, TimestampSigner, validate
+- feature tests: 12
+- declared dimensions: time-based-validation, business-rule-tolerance, api-parameter-extension, input-validation
+- summary: Clock-skew tolerance in timestamp verification: new keyword threaded through signer, validate and serializer; arithmetic rule on timestamps.
 
 ## itsdangerous-needs-resign-003
 - files: src/itsdangerous/serializer.py
@@ -27,6 +34,9 @@ weighted Jaccard over files/symbols/entrypoints/criteria/test tokens (weights {'
 
 | A | B | composite | files | symbols | entrypoints | criteria | tests | verdict |
 |---|---|---|---|---|---|---|---|---|
-| itsdangerous-leeway-001 | itsdangerous-decompress-limit-002 | 0.061 | 0.0 | 0.0 | 0.08 | 0.086 | 0.14 | DISTINCT |
-| itsdangerous-leeway-001 | itsdangerous-needs-resign-003 | 0.068 | 0.0 | 0.0 | 0.16 | 0.091 | 0.088 | DISTINCT |
+| is-ascii-string-001 | itsdangerous-decompress-limit-002 | 0.005 | 0.0 | 0.0 | 0.0 | 0.027 | 0.0 | DISTINCT |
+| is-ascii-string-001 | itsdangerous-leeway-001 | 0.008 | 0.0 | 0.0 | 0.0 | 0.041 | 0.0 | DISTINCT |
+| is-ascii-string-001 | itsdangerous-needs-resign-003 | 0.007 | 0.0 | 0.0 | 0.0 | 0.037 | 0.0 | DISTINCT |
+| itsdangerous-decompress-limit-002 | itsdangerous-leeway-001 | 0.061 | 0.0 | 0.0 | 0.08 | 0.086 | 0.14 | DISTINCT |
 | itsdangerous-decompress-limit-002 | itsdangerous-needs-resign-003 | 0.049 | 0.0 | 0.0 | 0.1 | 0.067 | 0.078 | DISTINCT |
+| itsdangerous-leeway-001 | itsdangerous-needs-resign-003 | 0.068 | 0.0 | 0.0 | 0.16 | 0.091 | 0.088 | DISTINCT |

@@ -6,3 +6,7 @@ Blockers for you: upload PPT template + organiser handover (repo list/schema/mat
 M3 DONE (2 validated tasks, variation, reconstruction). Do M4 (second repo/stack) or M5 (CI + publish guide) next; M5 is cheaper and needed for submission (public GitHub repo, demo video, PPT template).
 
 M5 DONE. Highest-value next: automated discovery (taskfactory discover) so the pipeline *proposes* feature candidates from AST/symbols, then M4 second repo. User: decide licence, publish via GITHUB_PUBLISH_GUIDE, send PPT template.
+
+## After M4
+- Add node job to CI/demo (needs `npm install` of `is` deps; no lockfile).
+- Remaining: licence decision, PPT, demo video, Windows run, independent test author, sandbox, bug-fix type.

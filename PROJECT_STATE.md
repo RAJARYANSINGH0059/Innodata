@@ -46,3 +46,6 @@ Key deltas: team size 1–4; bug-fix mentioned by speaker (unwritten); 3 organis
 - PUBLISHED: https://github.com/RAJARYANSINGH0059/Innodata (public) main@d7ea0bd; CI run 44672232036 all green (test 3.11/3.12/3.13 + demo).
 - Still on user: licence decision (public repo currently has none); PPT template; demo video; Windows run.
 - Next: M4 portability (second repo/stack) OR automate discovery/generation (biggest gap vs 'factory' claim) — recommend generation/discovery first since judges weigh a *factory*.
+
+## M4 (2nd stack) — done
+- Runner generalised (pytest | node-test, deps linking). Task `is-ascii-string-001` on sindresorhus/is@e9c026c validated (V-037..V-041). Honest limits L-10..L-13.

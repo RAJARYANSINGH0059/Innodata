@@ -1,0 +1,195 @@
+{
+  "results": [
+    {
+      "description": "rejects NUL",
+      "failed_tests": [
+        "AC1 ascii strings are true"
+      ],
+      "id": "M01_range_off_by_one_low",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "rejects DEL (U+007F)",
+      "failed_tests": [
+        "AC1 ascii strings are true"
+      ],
+      "id": "M02_range_off_by_one_high",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "accepts Latin-1",
+      "failed_tests": [
+        "AC2 non-ascii characters make it false",
+        "AC4 assert passes for ascii and throws TypeError otherwise",
+        "AC4 default message format matches other assertions",
+        "AC5 custom message is used verbatim",
+        "AC6 combinators work and describe the type",
+        "AC7 named exports behave like members"
+      ],
+      "id": "M03_latin1_accepted",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "empty string rejected",
+      "failed_tests": [
+        "AC1 ascii strings are true",
+        "AC4 assert passes for ascii and throws TypeError otherwise"
+      ],
+      "id": "M04_empty_rejected",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "only first char checked",
+      "failed_tests": [
+        "AC1 ascii strings are true",
+        "AC2 non-ascii characters make it false",
+        "AC4 assert passes for ascii and throws TypeError otherwise"
+      ],
+      "id": "M05_prefix_only",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "any ASCII char anywhere accepted",
+      "failed_tests": [
+        "AC1 ascii strings are true",
+        "AC2 non-ascii characters make it false",
+        "AC4 assert passes for ascii and throws TypeError otherwise"
+      ],
+      "id": "M06_any_ascii_char",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "coerces non-strings",
+      "failed_tests": [
+        "AC3 non-strings are false",
+        "AC4 assert passes for ascii and throws TypeError otherwise",
+        "AC6 combinators work and describe the type"
+      ],
+      "id": "M07_non_string_coerced",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "assertion never throws",
+      "failed_tests": [
+        "AC4 assert passes for ascii and throws TypeError otherwise",
+        "AC4 default message format matches other assertions",
+        "AC5 custom message is used verbatim",
+        "AC7 named exports behave like members"
+      ],
+      "id": "M08_assert_never_throws",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "custom message ignored",
+      "failed_tests": [
+        "AC5 custom message is used verbatim"
+      ],
+      "id": "M09_assert_ignores_message",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "wrong description in assert",
+      "failed_tests": [
+        "AC4 assert passes for ascii and throws TypeError otherwise",
+        "AC4 default message format matches other assertions"
+      ],
+      "id": "M10_assert_wrong_description",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "combinator message loses type name",
+      "failed_tests": [
+        "AC6 combinators work and describe the type"
+      ],
+      "id": "M11_methodTypeMap_missing",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "assert.asciiString missing",
+      "failed_tests": [
+        "AC4 assert passes for ascii and throws TypeError otherwise",
+        "AC4 default message format matches other assertions",
+        "AC5 custom message is used verbatim",
+        "AC7 named exports behave like members"
+      ],
+      "id": "M12_assert_object_unwired",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "is.asciiString missing",
+      "failed_tests": [
+        "AC1 ascii strings are true",
+        "AC2 non-ascii characters make it false",
+        "AC3 non-strings are false",
+        "AC6 combinators work and describe the type",
+        "AC7 named exports behave like members"
+      ],
+      "id": "M13_is_object_unwired",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "assert only checks string",
+      "failed_tests": [
+        "AC4 assert passes for ascii and throws TypeError otherwise",
+        "AC4 default message format matches other assertions",
+        "AC5 custom message is used verbatim",
+        "AC7 named exports behave like members"
+      ],
+      "id": "M14_assert_wrong_predicate",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "u flag instead of v: identical for this class",
+      "failed_tests": [],
+      "id": "E01_equivalent_flag_u",
+      "kind": "equivalent",
+      "outcome": "EQUIVALENT"
+    },
+    {
+      "description": "only affects TS type-checking (runtime unused array)",
+      "failed_tests": [],
+      "id": "E02_description_array_unregistered",
+      "kind": "equivalent",
+      "outcome": "EQUIVALENT"
+    },
+    {
+      "description": "explicit range",
+      "failed_tests": [],
+      "id": "A01_alt_class_syntax",
+      "kind": "alt_valid",
+      "outcome": "ACCEPTED"
+    },
+    {
+      "description": "loop implementation",
+      "failed_tests": [],
+      "id": "A02_alt_charcode_loop",
+      "kind": "alt_valid",
+      "outcome": "ACCEPTED"
+    }
+  ],
+  "summary": {
+    "ACCEPTED": 2,
+    "EQUIVALENT": 2,
+    "INVALID": 0,
+    "KILLED": 14,
+    "MISLABELLED_EQUIVALENT": 0,
+    "REJECTED_VALID_ALTERNATIVE": 0,
+    "SURVIVED": 0,
+    "TIMEOUT": 0
+  },
+  "task_id": "is-ascii-string-001"
+}

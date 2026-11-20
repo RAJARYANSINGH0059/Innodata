@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import hashlib
-import os
 import json
+import os
+import shutil
 import sys
 import tempfile
 import tomllib
@@ -39,6 +40,9 @@ class TaskSpec:
     timeout: int = 300
     repeats: int = 1
     root: Path = Path(".")
+    runner: str = "pytest"          # "pytest" | "node-test"
+    node_flags: list[str] = field(default_factory=list)
+    deps_link: str = ""             # e.g. "node_modules": directory linked into every state workspace
 
 
 def load_task(task_dir: str | Path) -> TaskSpec:
@@ -53,6 +57,8 @@ def load_task(task_dir: str | Path) -> TaskSpec:
         baseline_targets=run.get("baseline_targets", ["tests"]),
         pythonpath=run.get("pythonpath", ["."]), import_probe=run.get("import_probe", ""),
         timeout=int(run.get("timeout", 300)), repeats=int(run.get("repeats", 1)), root=root,
+        runner=run.get("runner", "pytest"), node_flags=list(run.get("node_flags", [])),
+        deps_link=run.get("deps_link", ""),
     )
 
 
@@ -68,17 +74,37 @@ def _failing(evidence: dict[str, Any]) -> dict[str, str]:
     return out
 
 
-def _run_pytest(spec: TaskSpec, ws: Path, out: Path, label: str, target: str) -> tuple[CommandResult, dict[str, Any]]:
+def link_deps(spec: TaskSpec, ws: Path, deps_dir: str | Path | None) -> None:
+    """Make a prepared dependency directory (e.g. node_modules) visible in a state workspace."""
+    if not spec.deps_link:
+        return
+    if deps_dir is None or not Path(deps_dir).is_dir():
+        raise PatchError(f"task needs a prepared dependency directory for '{spec.deps_link}' (pass deps_dir)")
+    link = ws / spec.deps_link
+    try:
+        os.symlink(Path(deps_dir).resolve(), link, target_is_directory=True)
+    except OSError:  # e.g. Windows without symlink privilege
+        shutil.copytree(deps_dir, link, symlinks=False)
+
+
+def _run_tests(spec: TaskSpec, ws: Path, out: Path, label: str, target: str) -> tuple[CommandResult, dict[str, Any]]:
     junit = out / f"{label}.xml"
-    env = {
-        "PYTHONPATH": os.pathsep.join(str((ws / p).resolve()) for p in spec.pythonpath),
-        "PYTHONDONTWRITEBYTECODE": "1",
-    }
-    cmd = CommandSpec(
-        name=label, timeout_seconds=spec.timeout, env=env,
-        argv=[sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider",
-              f"--junitxml={junit}", target],
-    )
+    if spec.runner == "node-test":
+        node = shutil.which("node")
+        if not node:
+            raise PatchError("node executable not found")
+        env = {}
+        argv = [node, *spec.node_flags, "--test", "--test-reporter=junit",
+                f"--test-reporter-destination={junit}", target]
+    elif spec.runner == "pytest":
+        env = {
+            "PYTHONPATH": os.pathsep.join(str((ws / p).resolve()) for p in spec.pythonpath),
+            "PYTHONDONTWRITEBYTECODE": "1",
+        }
+        argv = [sys.executable, "-m", "pytest", "-q", "-p", "no:cacheprovider", f"--junitxml={junit}", target]
+    else:
+        raise PatchError(f"unknown runner: {spec.runner}")
+    cmd = CommandSpec(name=label, timeout_seconds=spec.timeout, env=env, argv=argv)
     res, ev = annotate_command_result(run_command(cmd, ws), junit)
     (out / f"{label}.log").write_text(res.stdout + "\n--- stderr ---\n" + res.stderr, encoding="utf-8")
     return res, ev
@@ -99,7 +125,12 @@ def _import_origin(spec: TaskSpec, ws: Path) -> GateCheck | None:
                      f"origin={origin or res.stderr.strip()[:200]}")
 
 
-def _build_state(spec: TaskSpec, repo: Path, tmp: Path, out: Path, state: str):
+def _target(spec: TaskSpec, folder: str) -> str:
+    base = f"{spec.inject_dir}/{folder}"
+    return f"{base}/*" if spec.runner == "node-test" else base
+
+
+def _build_state(spec: TaskSpec, repo: Path, tmp: Path, out: Path, state: str, deps_dir: Path | None = None):
     ws = tmp / state
     head = make_workspace(repo, spec.commit, ws)
     notes: list[str] = []
@@ -111,23 +142,25 @@ def _build_state(spec: TaskSpec, repo: Path, tmp: Path, out: Path, state: str):
     install_files(ws, spec.feature_tests, f"{spec.inject_dir}/task_feature")
     if spec.regression_tests:
         install_files(ws, spec.regression_tests, f"{spec.inject_dir}/task_regression")
+    link_deps(spec, ws, deps_dir)
 
     runs = []
     for rep in range(spec.repeats):
         base, base_ev, task, task_ev = [], [], [], []
         targets = list(spec.baseline_targets)
         if spec.regression_tests:
-            targets.append(f"{spec.inject_dir}/task_regression")
+            targets.append(_target(spec, "task_regression"))
         for i, tgt in enumerate(targets):
-            r, e = _run_pytest(spec, ws, out, f"{state}_baseline{i}_r{rep}", tgt)
+            r, e = _run_tests(spec, ws, out, f"{state}_baseline{i}_r{rep}", tgt)
             base.append(r); base_ev.append(e)
-        r, e = _run_pytest(spec, ws, out, f"{state}_feature_r{rep}", f"{spec.inject_dir}/task_feature")
+        r, e = _run_tests(spec, ws, out, f"{state}_feature_r{rep}", _target(spec, "task_feature"))
         task.append(r); task_ev.append(e)
         runs.append((base, base_ev, task, task_ev))
     return ws, head, digest, notes, runs
 
 
-def validate_task(task_dir: str | Path, repo: str | Path, out_dir: str | Path) -> dict[str, Any]:
+def validate_task(task_dir: str | Path, repo: str | Path, out_dir: str | Path,
+                  deps_dir: str | Path | None = None) -> dict[str, Any]:
     spec = load_task(task_dir)
     repo, out = Path(repo).resolve(), Path(out_dir).resolve()
     out.mkdir(parents=True, exist_ok=True)
@@ -142,7 +175,7 @@ def validate_task(task_dir: str | Path, repo: str | Path, out_dir: str | Path) -
         tmp = Path(td)
         for state in ("original", "reference", "removed"):
             try:
-                ws, head, digest, _notes, runs = _build_state(spec, repo, tmp, out, state)
+                ws, head, digest, _notes, runs = _build_state(spec, repo, tmp, out, state, Path(deps_dir) if deps_dir else None)
             except PatchError as exc:
                 extra.append(GateCheck(f"{state}_workspace", CheckStatus.FAILED, "workspace builds", str(exc)))
                 rep = ThreeStateReport(spec.kind, CheckStatus.FAILED, extra, f"{state} state could not be built.")

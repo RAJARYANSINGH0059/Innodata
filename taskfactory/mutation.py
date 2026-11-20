@@ -4,11 +4,12 @@ import json
 import tempfile
 from pathlib import Path
 
-from .orchestrate import _run_pytest, load_task
+from .orchestrate import _run_tests, _target, link_deps, load_task
 from .patching import apply_patch, install_files, make_workspace
 
 
-def run_mutants(task_dir: str | Path, repo: str | Path, mutants_file: str | Path, out_dir: str | Path) -> dict:
+def run_mutants(task_dir: str | Path, repo: str | Path, mutants_file: str | Path, out_dir: str | Path,
+                deps_dir: str | Path | None = None) -> dict:
     """Apply each hand-written variant on top of the reference solution and run the task tests.
 
     kind="wrong"     -> variant is incorrect; tests MUST fail (killed). Survivors are oracle gaps.
@@ -35,10 +36,11 @@ def run_mutants(task_dir: str | Path, repo: str | Path, mutants_file: str | Path
             install_files(ws, spec.feature_tests, f"{spec.inject_dir}/task_feature")
             if spec.regression_tests:
                 install_files(ws, spec.regression_tests, f"{spec.inject_dir}/task_regression")
-            feat, fev = _run_pytest(spec, ws, out, f"{m['id']}_feature", f"{spec.inject_dir}/task_feature")
+            link_deps(spec, ws, deps_dir)
+            feat, fev = _run_tests(spec, ws, out, f"{m['id']}_feature", _target(spec, "task_feature"))
             if spec.regression_tests:
-                reg, _ = _run_pytest(spec, ws, out, f"{m['id']}_regression", f"{spec.inject_dir}/task_regression")
-                suite, _ = _run_pytest(spec, ws, out, f"{m['id']}_suite", spec.baseline_targets[0])
+                reg, _ = _run_tests(spec, ws, out, f"{m['id']}_regression", _target(spec, "task_regression"))
+                suite, _ = _run_tests(spec, ws, out, f"{m['id']}_suite", spec.baseline_targets[0])
                 caught = not (feat.passed and reg.passed and suite.passed)
             else:
                 caught = not feat.passed

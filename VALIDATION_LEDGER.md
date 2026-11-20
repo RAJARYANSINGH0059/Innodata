@@ -61,3 +61,12 @@
 | V-035 | Discovery → task link | task.toml `[discovery] candidate=C004`; candidate produced by `taskfactory discover` on the pinned commit | idea sourced from an anchored candidate; requirement/tests/patch still authored by assistant in-session | INSPECTED_ONLY |
 - L-9 Task 003 feature tests fail in A/C with `AttributeError` (new method absent) — a symbol-level failure reason like 001; 002 is the only task whose A-state failures are behavioural assertions. One AC5 test bug (latin-1 re-encoding) was caught by me on re-reading BEFORE running, so it is not evidence of the gate catching it.
 | V-036 | Full demo, 3 tasks | python scripts/demo.py from fresh upstream clone (Linux, py3.13) | OVERALL PASS, 4m13s; 50 factory tests pass | PASSED |
+| V-037 | M4 baseline, 2nd stack | `sindresorhus/is` @ e9c026c (TypeScript, node:test), Node v22.23.5, deps jsdom 29.1.1 / rxjs 7.8.2 / tempy 3.2.0 / expect-type 1.4.0 / zen-observable 0.10.0 (no lockfile upstream) | 118 tests pass, 0 fail | PASSED |
+| V-038 | Node adapter unit/e2e tests | tests/test_node_runner.py (synthetic repo, JUnit shapes incl. file-load failure) | 7 pass; full factory suite 57 pass | PASSED |
+| V-039 | Task `is-ascii-string-001` three-state | `taskfactory validate --deps-dir` | A: 8/8 feature tests fail (`is.asciiString is not a function`); B: 0 fail, baseline 118+regression pass; C tree == A tree; 3 repeats stable | PASSED |
+| V-040 | Task 004 mutation | `taskfactory mutate` | 14 killed / 0 survived; 2 equivalent; 2 valid alternatives accepted | PASSED |
+| V-041 | Task 004 reconstruct + 4-task variation | `taskfactory reconstruct`, `variation` | reconstruct PASS; all pairs DISTINCT (is vs itsdangerous composite <=0.008) | PASSED (lexical metric; cross-repo distinctness is trivially high) |
+- L-10 Task 004: E02 (omit `'ASCII string'` from the `assertionTypeDescriptions` array) is labelled equivalent because Node strips types and no `tsc` run is part of validation; it is NOT equivalent for TypeScript type-checking. Type-level correctness of the reference patch is not validated.
+- L-11 Discovery (`taskfactory discover`) is Python-only; the `is` task was hand-selected, recorded as such in task.toml.
+- L-12 `is` has no lockfile; `node_modules` was installed once and linked into workspaces. Reconstruction on another machine needs a compatible `npm install` and may differ.
+- L-13 Task 004 State-A failures are all symbol-level (`is.asciiString is not a function`), like tasks 001/003.

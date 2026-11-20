@@ -44,7 +44,8 @@ def verify_manifest(task_dir: str | Path) -> list[str]:
     return problems
 
 
-def reconstruct(task_dir: str | Path, repo: str | Path, recorded_report: str | Path, out_dir: str | Path) -> dict[str, Any]:
+def reconstruct(task_dir: str | Path, repo: str | Path, recorded_report: str | Path, out_dir: str | Path,
+                deps_dir: str | Path | None = None) -> dict[str, Any]:
     """Copy the task to a fresh directory, verify its manifest, re-run validation from a fresh clone and compare
     the outcome, tree digests and patch hash to previously recorded evidence."""
     from .orchestrate import validate_task
@@ -59,7 +60,7 @@ def reconstruct(task_dir: str | Path, repo: str | Path, recorded_report: str | P
     with tempfile.TemporaryDirectory(prefix="recon_") as td:
         fresh = Path(td) / "task"
         shutil.copytree(task_dir, fresh)
-        redo = validate_task(fresh, repo, out_dir)
+        redo = validate_task(fresh, repo, out_dir, deps_dir)
     same = {
         "status": redo["report"]["status"] == recorded["report"]["status"] == "PASS",
         "commit": redo["commit"] == recorded["commit"],

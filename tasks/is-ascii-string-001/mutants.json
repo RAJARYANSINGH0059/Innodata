@@ -1,0 +1,20 @@
+[
+ {"id":"M01_range_off_by_one_low","kind":"wrong","file":"source/index.ts","old":"/^[\\p{ASCII}]*$/v","new":"/^[\\x01-\\x7F]*$/v","description":"rejects NUL"},
+ {"id":"M02_range_off_by_one_high","kind":"wrong","file":"source/index.ts","old":"/^[\\p{ASCII}]*$/v","new":"/^[\\x00-\\x7E]*$/v","description":"rejects DEL (U+007F)"},
+ {"id":"M03_latin1_accepted","kind":"wrong","file":"source/index.ts","old":"/^[\\p{ASCII}]*$/v","new":"/^[\\x00-\\xFF]*$/v","description":"accepts Latin-1"},
+ {"id":"M04_empty_rejected","kind":"wrong","file":"source/index.ts","old":"/^[\\p{ASCII}]*$/v","new":"/^[\\p{ASCII}]+$/v","description":"empty string rejected"},
+ {"id":"M05_prefix_only","kind":"wrong","file":"source/index.ts","old":"/^[\\p{ASCII}]*$/v","new":"/^[\\p{ASCII}]/v","description":"only first char checked"},
+ {"id":"M06_any_ascii_char","kind":"wrong","file":"source/index.ts","old":"/^[\\p{ASCII}]*$/v","new":"/[\\p{ASCII}]/v","description":"any ASCII char anywhere accepted"},
+ {"id":"M07_non_string_coerced","kind":"wrong","file":"source/index.ts","old":"return isString(value) && /^[\\p{ASCII}]*$/v.test(value);","new":"return /^[\\p{ASCII}]*$/v.test(String(value));","description":"coerces non-strings"},
+ {"id":"M08_assert_never_throws","kind":"wrong","file":"source/index.ts","old":"if (!isAsciiString(value)) {","new":"if (false) {","description":"assertion never throws"},
+ {"id":"M09_assert_ignores_message","kind":"wrong","file":"source/index.ts","old":"throw new TypeError(message ?? typeErrorMessage('ASCII string', value));","new":"throw new TypeError(typeErrorMessage('ASCII string', value));","description":"custom message ignored"},
+ {"id":"M10_assert_wrong_description","kind":"wrong","file":"source/index.ts","old":"typeErrorMessage('ASCII string', value)","new":"typeErrorMessage('string', value)","description":"wrong description in assert"},
+ {"id":"M11_methodTypeMap_missing","kind":"wrong","file":"source/index.ts","old":"\tisAsciiString: 'ASCII string',\n","new":"","description":"combinator message loses type name"},
+ {"id":"M12_assert_object_unwired","kind":"wrong","file":"source/index.ts","old":"\tasciiString: assertAsciiString,\n","new":"","description":"assert.asciiString missing"},
+ {"id":"M13_is_object_unwired","kind":"wrong","file":"source/index.ts","old":"\t\tasciiString: isAsciiString,\n","new":"","description":"is.asciiString missing"},
+ {"id":"M14_assert_wrong_predicate","kind":"wrong","file":"source/index.ts","old":"if (!isAsciiString(value)) {","new":"if (!isString(value)) {","description":"assert only checks string"},
+ {"id":"E01_equivalent_flag_u","kind":"equivalent","file":"source/index.ts","old":"/^[\\p{ASCII}]*$/v","new":"/^[\\p{ASCII}]*$/u","description":"u flag instead of v: identical for this class"},
+ {"id":"E02_description_array_unregistered","kind":"equivalent","file":"source/index.ts","old":"const assertionTypeDescriptions = [\n\t'ASCII string',\n","new":"const assertionTypeDescriptions = [\n","description":"only affects TS type-checking (runtime unused array)"},
+ {"id":"A01_alt_class_syntax","kind":"alt_valid","file":"source/index.ts","old":"/^[\\p{ASCII}]*$/v","new":"/^[\\x00-\\x7F]*$/v","description":"explicit range"},
+ {"id":"A02_alt_charcode_loop","kind":"alt_valid","file":"source/index.ts","old":"return isString(value) && /^[\\p{ASCII}]*$/v.test(value);","new":"return isString(value) && [...value].every(character => character.codePointAt(0)! < 128);","description":"loop implementation"}
+]
