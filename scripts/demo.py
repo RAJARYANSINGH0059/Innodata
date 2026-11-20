@@ -68,8 +68,8 @@ def main() -> int:
             subprocess.run(["git", "-C", str(repo), "checkout", "-q", "--detach", commit], check=True)
             if not (repo / "node_modules").exists():
                 print(f"npm install in {repo.name} (no upstream lockfile; versions may differ from the recorded run) ...")
-                r = subprocess.run(["npm", "install", "--no-audit", "--no-fund", "--ignore-scripts"], cwd=repo,
-                                   text=True, capture_output=True, shell=(os.name == "nt"))
+                r = subprocess.run([shutil.which("npm") or "npm", "install", "--no-audit", "--no-fund", "--ignore-scripts"], cwd=repo,
+                                   text=True, capture_output=True)
                 if r.returncode:
                     print(r.stderr[-2000:])
                     return 2
