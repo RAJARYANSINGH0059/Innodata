@@ -3,7 +3,8 @@
 
     python scripts/demo.py [--workdir DIR] [--out DIR]
 
-Needs: Python >=3.11, git, network access to github.com, and `pip install pytest freezegun`.
+Needs: Python >=3.11, git, network access to github.com, `pip install pytest freezegun`;
+node >=22.7 + npm for the TypeScript task (reported NOT_RUN if absent).
 Exit code 0 only if every task passes validation, mutation, reconstruction and the variation gate.
 """
 from __future__ import annotations
@@ -11,13 +12,13 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-UPSTREAM = "https://github.com/pallets/itsdangerous"
 
 
 def cli(*args: str) -> subprocess.CompletedProcess[str]:
@@ -38,26 +39,45 @@ def main() -> int:
         print("Missing test dependencies. Run: pip install pytest freezegun")
         return 2
 
-    repo = a.workdir / "itsdangerous"
     a.workdir.mkdir(parents=True, exist_ok=True)
-    if not repo.exists():
-        print(f"cloning {UPSTREAM} ...")
-        r = subprocess.run(["git", "-c", "core.autocrlf=false", "clone", "-q", UPSTREAM, str(repo)], text=True, capture_output=True)
-        if r.returncode:
-            print(r.stderr)
-            return 2
     tasks = sorted(p.parent for p in (ROOT / "tasks").glob("*/task.toml"))
-    rows, ok = [], True
+    rows, ok, ran, repos = [], True, [], {}
     for t in tasks:
         meta = tomllib.loads((t / "task.toml").read_text(encoding="utf-8"))
-        commit = meta["repo"]["commit"]
+        commit, url = meta["repo"]["commit"], meta["repo"]["url"]
+        runner = meta.get("run", {}).get("runner", "pytest")
+        if runner == "node-test" and not (shutil.which("node") and shutil.which("npm")):
+            rows.append({"task": t.name, "three_state": "NOT_RUN", "mutants": "node/npm missing",
+                         "alt_valid": "-", "reconstruct": "NOT_RUN"})
+            continue
+        if url not in repos:
+            repo = a.workdir / url.rstrip("/").rsplit("/", 1)[-1]
+            if not repo.exists():
+                print(f"cloning {url} ...")
+                r = subprocess.run(["git", "-c", "core.autocrlf=false", "clone", "-q", url, str(repo)], text=True, capture_output=True)
+                if r.returncode:
+                    print(r.stderr)
+                    return 2
+            repos[url] = repo
+        repo = repos[url]
         if subprocess.run(["git", "-C", str(repo), "cat-file", "-e", f"{commit}^{{commit}}"]).returncode:
             print(f"pinned commit {commit} not in clone")
             return 2
+        deps: list[str] = []
+        if runner == "node-test":
+            subprocess.run(["git", "-C", str(repo), "checkout", "-q", "--detach", commit], check=True)
+            if not (repo / "node_modules").exists():
+                print(f"npm install in {repo.name} (no upstream lockfile; versions may differ from the recorded run) ...")
+                r = subprocess.run(["npm", "install", "--no-audit", "--no-fund", "--ignore-scripts"], cwd=repo,
+                                   text=True, capture_output=True, shell=(os.name == "nt"))
+                if r.returncode:
+                    print(r.stderr[-2000:])
+                    return 2
+            deps = ["--deps-dir", str(repo / "node_modules")]
         out = a.out / t.name
-        v = cli("validate", t, "--repo", repo, "--out", out)
-        m = cli("mutate", t, "--repo", repo, "--mutants", t / "mutants.json", "--out", out / "mutation")
-        rc = cli("reconstruct", t, "--repo", repo, "--recorded", out / "validation_report.json", "--out", out / "reconstruction")
+        v = cli("validate", t, "--repo", repo, "--out", out, *deps)
+        m = cli("mutate", t, "--repo", repo, "--mutants", t / "mutants.json", "--out", out / "mutation", *deps)
+        rc = cli("reconstruct", t, "--repo", repo, "--recorded", out / "validation_report.json", "--out", out / "reconstruction", *deps)
         mut = json.loads((out / "mutation" / "mutation_report.json").read_text())["summary"]
         row = {"task": t.name, "three_state": "PASS" if v.returncode == 0 else "FAIL",
                "mutants": f"{mut['KILLED']} killed / {mut['SURVIVED']} survived / {mut['EQUIVALENT']} equiv",
@@ -65,7 +85,8 @@ def main() -> int:
                "reconstruct": "PASS" if rc.returncode == 0 else "FAIL"}
         ok &= v.returncode == 0 and m.returncode == 0 and rc.returncode == 0
         rows.append(row)
-    var = cli("variation", *tasks, "--out", a.out / "variation")
+        ran.append(t)
+    var = cli("variation", *ran, "--out", a.out / "variation")
     ok &= var.returncode == 0 and "TOO_SIMILAR" not in var.stdout
     print(f"\n{'task':<36}{'3-state':<9}{'mutants':<40}{'alt-valid':<26}reconstruct")
     for r in rows:

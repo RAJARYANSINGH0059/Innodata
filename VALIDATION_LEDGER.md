@@ -70,3 +70,5 @@
 - L-11 Discovery (`taskfactory discover`) is Python-only; the `is` task was hand-selected, recorded as such in task.toml.
 - L-12 `is` has no lockfile; `node_modules` was installed once and linked into workspaces. Reconstruction on another machine needs a compatible `npm install` and may differ.
 - L-13 Task 004 State-A failures are all symbol-level (`is.asciiString is not a function`), like tasks 001/003.
+| V-042 | Full demo, 4 tasks, 2 repos | `python scripts/demo.py` with fresh clone of `is` + fresh `npm install` (no lockfile) | OVERALL PASS (Linux, Node 22) | PASSED |
+- D-015 (fixed) CI demo job failed after task 004 was added: demo script was single-repo/Python-only. Generalised to per-task repo URL, npm install for node-test tasks, NOT_RUN if node absent; CI adds pinned setup-node.
