@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="16" skipped="0" tests="16" time="0.230" timestamp="2026-11-20T02:56:05.108778+00:00" hostname="vm"><testcase classname="tests.task_feature.test_leeway" name="test_future_within_leeway_accepted[-1]" time="0.026"><failure message="TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'">age = -1
+
+    @pytest.mark.parametrize("age", [-1, -3, -5])  # AC1 incl. boundary
+    def test_future_within_leeway_accepted(age):
+        s, tok = signed_with_age(age)
+&gt;       assert verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5)) == b"payload"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_leeway.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   assert verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5)) == b"payload"
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:26: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_future_within_leeway_accepted[-3]" time="0.007"><failure message="TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'">age = -3
+
+    @pytest.mark.parametrize("age", [-1, -3, -5])  # AC1 incl. boundary
+    def test_future_within_leeway_accepted(age):
+        s, tok = signed_with_age(age)
+&gt;       assert verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5)) == b"payload"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_leeway.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   assert verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5)) == b"payload"
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:26: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_future_within_leeway_accepted[-5]" time="0.006"><failure message="TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'">age = -5
+
+    @pytest.mark.parametrize("age", [-1, -3, -5])  # AC1 incl. boundary
+    def test_future_within_leeway_accepted(age):
+        s, tok = signed_with_age(age)
+&gt;       assert verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5)) == b"payload"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_leeway.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   assert verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5)) == b"payload"
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:26: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_future_beyond_leeway_rejected[-6]" time="0.006"><failure message="TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'">age = -6
+
+    @pytest.mark.parametrize("age", [-6, -20])  # AC2
+    def test_future_beyond_leeway_rejected(age):
+        s, tok = signed_with_age(age)
+        with pytest.raises(SignatureExpired):
+&gt;           verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5))
+
+tests/task_feature/test_leeway.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:33: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_future_beyond_leeway_rejected[-20]" time="0.007"><failure message="TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'">age = -20
+
+    @pytest.mark.parametrize("age", [-6, -20])  # AC2
+    def test_future_beyond_leeway_rejected(age):
+        s, tok = signed_with_age(age)
+        with pytest.raises(SignatureExpired):
+&gt;           verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5))
+
+tests/task_feature/test_leeway.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:33: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_leeway_does_not_extend_max_age" time="0.007"><failure message="TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'">def test_leeway_does_not_extend_max_age():  # AC3
+        s, tok = signed_with_age(11)
+        with pytest.raises(SignatureExpired):
+&gt;           verify_at_30(lambda: s.unsign(tok, max_age=10, leeway=100))
+
+tests/task_feature/test_leeway.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   verify_at_30(lambda: s.unsign(tok, max_age=10, leeway=100))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:39: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_explicit_zero_leeway_rejects_future" time="0.006"><failure message="TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'">def test_explicit_zero_leeway_rejects_future():  # AC4
+        s, tok = signed_with_age(-1)
+        with pytest.raises(SignatureExpired):
+&gt;           verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=0))
+
+tests/task_feature/test_leeway.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=0))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:47: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_negative_leeway_value_error[-1]" time="0.006"><failure message="TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'">bad = -1
+
+    @pytest.mark.parametrize("bad", [-1, -10])  # AC5
+    def test_negative_leeway_value_error(bad):
+        s, tok = signed_with_age(0)
+        with pytest.raises(ValueError):
+&gt;           verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=bad))
+
+tests/task_feature/test_leeway.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=bad))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:54: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_negative_leeway_value_error[-10]" time="0.007"><failure message="TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'">bad = -10
+
+    @pytest.mark.parametrize("bad", [-1, -10])  # AC5
+    def test_negative_leeway_value_error(bad):
+        s, tok = signed_with_age(0)
+        with pytest.raises(ValueError):
+&gt;           verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=bad))
+
+tests/task_feature/test_leeway.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=bad))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:54: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_validate_mirrors_unsign" time="0.006"><failure message="TypeError: TimestampSigner.validate() got an unexpected keyword argument 'leeway'">def test_validate_mirrors_unsign():  # AC6
+        s, tok = signed_with_age(-4)
+&gt;       assert verify_at_30(lambda: s.validate(tok, max_age=60, leeway=5)) is True
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_leeway.py:59: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   assert verify_at_30(lambda: s.validate(tok, max_age=60, leeway=5)) is True
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.validate() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:59: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_serializer_loads_forwards_leeway" time="0.007"><failure message="TypeError: TimedSerializer.loads() got an unexpected keyword argument 'leeway'">def test_serializer_loads_forwards_leeway():  # AC7
+        ser = TimedSerializer("secret")
+        with freeze_time(SIGN_AT.format(34)):
+            tok = ser.dumps({"a": 1})
+&gt;       assert verify_at_30(lambda: ser.loads(tok, max_age=60, leeway=5)) == {"a": 1}
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_leeway.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   assert verify_at_30(lambda: ser.loads(tok, max_age=60, leeway=5)) == {"a": 1}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimedSerializer.loads() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:68: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_tampered_signature_still_rejected_with_leeway" time="0.006"><failure message="TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'">def test_tampered_signature_still_rejected_with_leeway():  # AC8
+        s, tok = signed_with_age(-2)
+        bad = tok[:-1] + (b"A" if tok[-1:] != b"A" else b"B")
+        with pytest.raises(BadSignature):
+&gt;           verify_at_30(lambda: s.unsign(bad, max_age=60, leeway=5))
+
+tests/task_feature/test_leeway.py:79: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   verify_at_30(lambda: s.unsign(bad, max_age=60, leeway=5))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:79: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_leeway_without_max_age_is_harmless" time="0.006"><failure message="TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'">def test_leeway_without_max_age_is_harmless():  # AC9
+        s, tok = signed_with_age(-25)  # far beyond leeway, but no max_age
+&gt;       assert verify_at_30(lambda: s.unsign(tok, leeway=5)) == b"payload"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_leeway.py:84: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   assert verify_at_30(lambda: s.unsign(tok, leeway=5)) == b"payload"
+                                ^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:84: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_rejection_carries_date_signed" time="0.006"><failure message="TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'">def test_rejection_carries_date_signed():  # AC10
+        s, tok = signed_with_age(-9)
+        with pytest.raises(SignatureExpired) as ei:
+&gt;           verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5))
+
+tests/task_feature/test_leeway.py:90: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:90: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_return_timestamp_with_leeway" time="0.006"><failure message="TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'">def test_return_timestamp_with_leeway():  # AC1 + return_timestamp
+        s, tok = signed_with_age(-2)
+&gt;       value, ts = verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5, return_timestamp=True))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_leeway.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   value, ts = verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5, return_timestamp=True))
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:97: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_negative_leeway_rejected_even_without_max_age" time="0.007"><failure message="TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'">def test_negative_leeway_rejected_even_without_max_age():  # AC5: unconditional ValueError
+        s, tok = signed_with_age(0)
+        with pytest.raises(ValueError):
+&gt;           verify_at_30(lambda: s.unsign(tok, leeway=-1))
+
+tests/task_feature/test_leeway.py:104: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+&gt;   verify_at_30(lambda: s.unsign(tok, leeway=-1))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^
+E   TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'
+
+tests/task_feature/test_leeway.py:104: TypeError</failure></testcase></testsuite></testsuites>

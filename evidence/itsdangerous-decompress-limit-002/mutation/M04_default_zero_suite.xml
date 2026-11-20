@@ -1,0 +1,1056 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="25" skipped="0" tests="297" time="0.935" timestamp="2026-11-20T02:56:38.184684+00:00" hostname="vm"><testcase classname="tests.test_itsdangerous.test_encoding" name="test_want_bytes[ma\xf1ana]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_encoding" name="test_want_bytes[tomorrow]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_encoding" name="test_base64[\u7121\u9650]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_encoding" name="test_base64[infinite]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_encoding" name="test_base64_bad" time="0.000" /><testcase classname="tests.test_itsdangerous.test_encoding" name="test_int_bytes[0-]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_encoding" name="test_int_bytes[192-\xc0]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_encoding" name="test_int_bytes[18446744073709551615-\xff\xff\xff\xff\xff\xff\xff\xff]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_serializer[Serializer-None]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_serializer[Serializer-True]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_serializer[Serializer-str]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_serializer[Serializer-text]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_serializer[Serializer-value4]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_serializer[Serializer-value5]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_serializer[serializer_factory1-None]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_serializer[serializer_factory1-True]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_serializer[serializer_factory1-str]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_serializer[serializer_factory1-text]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_serializer[serializer_factory1-value4]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_serializer[serializer_factory1-value5]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_changed_value[Serializer-&lt;lambda&gt;0]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_changed_value[Serializer-&lt;lambda&gt;1]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_changed_value[Serializer-&lt;lambda&gt;2]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_changed_value[Serializer-&lt;lambda&gt;3]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_changed_value[serializer_factory1-&lt;lambda&gt;0]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_changed_value[serializer_factory1-&lt;lambda&gt;1]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_changed_value[serializer_factory1-&lt;lambda&gt;2]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_changed_value[serializer_factory1-&lt;lambda&gt;3]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_bad_signature_exception[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_bad_signature_exception[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_bad_payload_exception[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_bad_payload_exception[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_loads_unsafe[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_loads_unsafe[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_file[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_file[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_alt_salt[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_alt_salt[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_signer_cls[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_signer_cls[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_signer_kwargs[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_signer_kwargs[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_serializer_kwargs[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_serializer_kwargs[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_fallback_signers[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_fallback_signers[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_iter_unsigners[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer.TestSerializer" name="test_iter_unsigners[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_serializer" name="test_digests" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_signer" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_no_separator" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_broken_signature" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_changed_value" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_invalid_separator" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_key_derivation[concat]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_key_derivation[django-concat]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_key_derivation[hmac]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_key_derivation[none]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_invalid_key_derivation" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_digest_method" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_algorithm[None]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_algorithm[algorithm1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_algorithm[algorithm2]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_algorithm[algorithm3]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer.TestSigner" name="test_secret_keys" time="0.000" /><testcase classname="tests.test_itsdangerous.test_signer" name="test_abstract_algorithm" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_serializer[Serializer-None]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_serializer[Serializer-True]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_serializer[Serializer-str]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_serializer[Serializer-text]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_serializer[Serializer-value4]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_serializer[Serializer-value5]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_serializer[serializer_factory1-None]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_serializer[serializer_factory1-True]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_serializer[serializer_factory1-str]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_serializer[serializer_factory1-text]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_serializer[serializer_factory1-value4]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_serializer[serializer_factory1-value5]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_changed_value[Serializer-&lt;lambda&gt;0]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_changed_value[Serializer-&lt;lambda&gt;1]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_changed_value[Serializer-&lt;lambda&gt;2]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_changed_value[Serializer-&lt;lambda&gt;3]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_changed_value[serializer_factory1-&lt;lambda&gt;0]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_changed_value[serializer_factory1-&lt;lambda&gt;1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_changed_value[serializer_factory1-&lt;lambda&gt;2]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_changed_value[serializer_factory1-&lt;lambda&gt;3]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_bad_signature_exception[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_bad_signature_exception[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_bad_payload_exception[Serializer]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_bad_payload_exception[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_loads_unsafe[Serializer]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_loads_unsafe[serializer_factory1]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_file[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_file[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_alt_salt[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_alt_salt[serializer_factory1]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_signer_cls[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_signer_cls[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_signer_kwargs[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_signer_kwargs[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_serializer_kwargs[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_serializer_kwargs[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_fallback_signers[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_fallback_signers[serializer_factory1]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_iter_unsigners[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSerializer" name="test_iter_unsigners[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_signer" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_no_separator" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_broken_signature" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_changed_value" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_invalid_separator" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_key_derivation[concat]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_key_derivation[django-concat]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_key_derivation[hmac]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_key_derivation[none]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_invalid_key_derivation" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_digest_method" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_algorithm[None]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_algorithm[algorithm1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_algorithm[algorithm2]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_algorithm[algorithm3]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestSigner" name="test_secret_keys" time="0.000" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_signer" time="0.025" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_no_separator" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_broken_signature" time="0.005" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_changed_value" time="0.005" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_invalid_separator" time="0.005" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_key_derivation[concat]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_key_derivation[django-concat]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_key_derivation[hmac]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_key_derivation[none]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_invalid_key_derivation" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_digest_method" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_algorithm[None]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_algorithm[algorithm1]" time="0.003" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_algorithm[algorithm2]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_algorithm[algorithm3]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_secret_keys" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_max_age" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_return_timestamp" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_timestamp_missing" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_malformed_timestamp" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_malformed_future_timestamp" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_future_age" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimestampSigner" name="test_sig_error_date_signed" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_serializer[None]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_serializer[True]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_serializer[str]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_serializer[text]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_serializer[value4]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_serializer[value5]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_changed_value[&lt;lambda&gt;0]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_changed_value[&lt;lambda&gt;1]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_changed_value[&lt;lambda&gt;2]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_changed_value[&lt;lambda&gt;3]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_bad_signature_exception" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_bad_payload_exception" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_loads_unsafe" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_file" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_alt_salt" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_signer_cls" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_signer_kwargs" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_serializer_kwargs" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_fallback_signers" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_iter_unsigners" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_max_age" time="0.004" /><testcase classname="tests.test_itsdangerous.test_timed.TestTimedSerializer" name="test_return_payload" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_serializer[Serializer-None]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_serializer[Serializer-True]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_serializer[Serializer-str]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_serializer[Serializer-text]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_serializer[Serializer-value4]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_serializer[Serializer-value5]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_serializer[serializer_factory1-None]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_serializer[serializer_factory1-True]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_serializer[serializer_factory1-str]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_serializer[serializer_factory1-text]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_serializer[serializer_factory1-value4]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_serializer[serializer_factory1-value5]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_changed_value[Serializer-&lt;lambda&gt;0]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_changed_value[Serializer-&lt;lambda&gt;1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_changed_value[Serializer-&lt;lambda&gt;2]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_changed_value[Serializer-&lt;lambda&gt;3]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_changed_value[serializer_factory1-&lt;lambda&gt;0]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_changed_value[serializer_factory1-&lt;lambda&gt;1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_changed_value[serializer_factory1-&lt;lambda&gt;2]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_changed_value[serializer_factory1-&lt;lambda&gt;3]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_bad_signature_exception[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_bad_signature_exception[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_bad_payload_exception[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_bad_payload_exception[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_loads_unsafe[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_loads_unsafe[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_file[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_file[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_alt_salt[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_alt_salt[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_signer_cls[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_signer_cls[serializer_factory1]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_signer_kwargs[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_signer_kwargs[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_serializer_kwargs[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_serializer_kwargs[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_fallback_signers[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_fallback_signers[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_iter_unsigners[Serializer]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestSerializer" name="test_iter_unsigners[serializer_factory1]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_serializer[None]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_serializer[True]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_serializer[str]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_serializer[text]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_serializer[value4]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_serializer[value5]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_changed_value[&lt;lambda&gt;0]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_changed_value[&lt;lambda&gt;1]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_changed_value[&lt;lambda&gt;2]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_changed_value[&lt;lambda&gt;3]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_bad_signature_exception" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_bad_payload_exception" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_loads_unsafe" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_file" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_alt_salt" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_signer_cls" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_signer_kwargs" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_serializer_kwargs" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_fallback_signers" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_iter_unsigners" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_max_age" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestTimedSerializer" name="test_return_payload" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_serializer[None]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_serializer[True]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_serializer[str]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_serializer[text]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_serializer[value4]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_serializer[value5]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_changed_value[value0-&lt;lambda&gt;0]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_changed_value[value0-&lt;lambda&gt;1]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_changed_value[value0-&lt;lambda&gt;2]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_changed_value[value0-&lt;lambda&gt;3]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_changed_value[zlib-&lt;lambda&gt;0]" time="0.001"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeSerializer object at 0x7ff272936210&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff2727926c0&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+transform = &lt;function TestSerializer.&lt;lambda&gt; at 0x7ff272927100&gt;
+
+    @pytest.mark.parametrize(
+        "transform",
+        (
+            lambda s: s.upper(),
+            lambda s: s + coerce_str(s, "a"),
+            lambda s: coerce_str(s, "a") + s[1:],
+            lambda s: s.replace(coerce_str(s, "."), coerce_str(s, "")),
+        ),
+    )
+    def test_changed_value(self, serializer: Serializer, value: Any, transform):
+        signed = serializer.dumps(value)
+&gt;       assert serializer.loads(signed) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:339: in loads
+    return self.load_payload(signer.unsign(s))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff2727926c0&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_changed_value[zlib-&lt;lambda&gt;1]" time="0.001"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeSerializer object at 0x7ff272894670&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff272792990&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+transform = &lt;function TestSerializer.&lt;lambda&gt; at 0x7ff2729271a0&gt;
+
+    @pytest.mark.parametrize(
+        "transform",
+        (
+            lambda s: s.upper(),
+            lambda s: s + coerce_str(s, "a"),
+            lambda s: coerce_str(s, "a") + s[1:],
+            lambda s: s.replace(coerce_str(s, "."), coerce_str(s, "")),
+        ),
+    )
+    def test_changed_value(self, serializer: Serializer, value: Any, transform):
+        signed = serializer.dumps(value)
+&gt;       assert serializer.loads(signed) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:339: in loads
+    return self.load_payload(signer.unsign(s))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff272792990&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_changed_value[zlib-&lt;lambda&gt;2]" time="0.001"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeSerializer object at 0x7ff272894830&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff272730bb0&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+transform = &lt;function TestSerializer.&lt;lambda&gt; at 0x7ff272927240&gt;
+
+    @pytest.mark.parametrize(
+        "transform",
+        (
+            lambda s: s.upper(),
+            lambda s: s + coerce_str(s, "a"),
+            lambda s: coerce_str(s, "a") + s[1:],
+            lambda s: s.replace(coerce_str(s, "."), coerce_str(s, "")),
+        ),
+    )
+    def test_changed_value(self, serializer: Serializer, value: Any, transform):
+        signed = serializer.dumps(value)
+&gt;       assert serializer.loads(signed) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:339: in loads
+    return self.load_payload(signer.unsign(s))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff272730bb0&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_changed_value[zlib-&lt;lambda&gt;3]" time="0.001"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeSerializer object at 0x7ff272ab1f30&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff27260af90&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+transform = &lt;function TestSerializer.&lt;lambda&gt; at 0x7ff2729272e0&gt;
+
+    @pytest.mark.parametrize(
+        "transform",
+        (
+            lambda s: s.upper(),
+            lambda s: s + coerce_str(s, "a"),
+            lambda s: coerce_str(s, "a") + s[1:],
+            lambda s: s.replace(coerce_str(s, "."), coerce_str(s, "")),
+        ),
+    )
+    def test_changed_value(self, serializer: Serializer, value: Any, transform):
+        signed = serializer.dumps(value)
+&gt;       assert serializer.loads(signed) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:339: in loads
+    return self.load_payload(signer.unsign(s))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff27260af90&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_bad_signature_exception[value0]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_bad_signature_exception[zlib]" time="0.001"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeSerializer object at 0x7ff27282e690&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff27282ec90&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_bad_signature_exception(self, serializer: Serializer, value: Any):
+        bad_signed = serializer.dumps(value)[:-1]
+    
+        with pytest.raises(BadSignature) as exc_info:
+            serializer.loads(bad_signed)
+    
+        payload = cast(bytes, exc_info.value.payload)
+&gt;       assert serializer.load_payload(payload) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff27282ec90&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_bad_payload_exception[value0]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_bad_payload_exception[zlib]" time="0.001"><failure message="AssertionError: assert None is not None&#10; +  where None = BadPayload('Decompressed payload is larger than 0 bytes').original_error&#10; +    where BadPayload('Decompressed payload is larger than 0 bytes') = &lt;ExceptionInfo BadPayload('Decompressed payload is larger than 0 bytes') tblen=4&gt;.value">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeSerializer object at 0x7ff272870f70&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff27265f1d0&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_bad_payload_exception(self, serializer: Serializer, value: Any):
+        original = serializer.dumps(value)
+        payload = original.rsplit(coerce_str(original, "."), 1)[0]  # type: ignore
+        bad = serializer.make_signer().sign(payload[:-1])
+    
+        with pytest.raises(BadPayload) as exc_info:
+            serializer.loads(bad)
+    
+&gt;       assert exc_info.value.original_error is not None
+E       AssertionError: assert None is not None
+E        +  where None = BadPayload('Decompressed payload is larger than 0 bytes').original_error
+E        +    where BadPayload('Decompressed payload is larger than 0 bytes') = &lt;ExceptionInfo BadPayload('Decompressed payload is larger than 0 bytes') tblen=4&gt;.value
+
+tests/test_itsdangerous/test_serializer.py:88: AssertionError</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_loads_unsafe[value0]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_loads_unsafe[zlib]" time="0.000"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeSerializer object at 0x7ff272860190&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff2726d9090&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_loads_unsafe(self, serializer: Serializer, value: Any):
+        signed = serializer.dumps(value)
+&gt;       assert serializer.loads_unsafe(signed) == (True, value)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:92: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:365: in loads_unsafe
+    return self._loads_unsafe_impl(s, salt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/serializer.py:381: in _loads_unsafe_impl
+    return True, self.loads(s, salt=salt, **load_kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/serializer.py:339: in loads
+    return self.load_payload(signer.unsign(s))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff2726d9090&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_file[value0]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_file[zlib]" time="0.001"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeSerializer object at 0x7ff27289acd0&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff2728b3890&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_file(self, serializer: Serializer, value: Any):
+        f = cast(
+            IO, BytesIO() if isinstance(serializer.dumps(value), bytes) else StringIO()
+        )
+        serializer.dump(value, f)
+        f.seek(0)
+&gt;       assert serializer.load(f) == value
+               ^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:118: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:347: in load
+    return self.loads(f.read(), salt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/serializer.py:339: in loads
+    return self.load_payload(signer.unsign(s))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff2728b3890&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_alt_salt[value0]" time="0.000" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_alt_salt[zlib]" time="0.001"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeSerializer object at 0x7ff27289cf30&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff2728b2450&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_alt_salt(self, serializer: Serializer, value: Any):
+        signed = serializer.dumps(value, salt="other")
+    
+        with pytest.raises(BadSignature):
+            serializer.loads(signed)
+    
+&gt;       assert serializer.loads(signed, salt="other") == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:339: in loads
+    return self.load_payload(signer.unsign(s))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff2728b2450&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_signer_cls[value0]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_signer_cls[zlib]" time="0.000"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeSerializer object at 0x7ff272880350&gt;
+serializer_factory = functools.partial(&lt;class 'itsdangerous.url_safe.URLSafeSerializer'&gt;, secret_key='secret-key')
+serializer = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff2728b3410&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_signer_cls(self, serializer_factory, serializer: Serializer, value: Any):
+        class Other(serializer.signer):  # type: ignore
+            default_key_derivation = "hmac"
+    
+        other = serializer_factory(signer=Other)
+&gt;       assert other.loads(other.dumps(value)) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:135: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:339: in loads
+    return self.load_payload(signer.unsign(s))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff2728b3530&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_signer_kwargs[value0]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_signer_kwargs[zlib]" time="0.001"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeSerializer object at 0x7ff272847d90&gt;
+serializer_factory = functools.partial(&lt;class 'itsdangerous.url_safe.URLSafeSerializer'&gt;, secret_key='secret-key')
+serializer = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff2728b2690&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_signer_kwargs(
+        self, serializer_factory, serializer: Serializer, value: Any
+    ):
+        other = serializer_factory(signer_kwargs={"key_derivation": "hmac"})
+&gt;       assert other.loads(other.dumps(value)) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:142: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:339: in loads
+    return self.load_payload(signer.unsign(s))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff2728b3920&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_serializer_kwargs" time="0.001" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_fallback_signers[value0]" time="0.001" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_fallback_signers[zlib]" time="0.002"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeSerializer object at 0x7ff272847f70&gt;
+serializer_factory = functools.partial(&lt;class 'itsdangerous.url_safe.URLSafeSerializer'&gt;, secret_key='secret-key')
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_fallback_signers(self, serializer_factory, value: Any):
+        serializer = serializer_factory(signer_kwargs={"digest_method": hashlib.sha256})
+        signed = serializer.dumps(value)
+    
+        fallback_serializer = serializer_factory(
+            signer_kwargs={"digest_method": hashlib.sha1},
+            fallback_signers=[{"digest_method": hashlib.sha256}],
+        )
+    
+&gt;       assert fallback_serializer.loads(signed) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:339: in loads
+    return self.load_payload(signer.unsign(s))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7ff2728b3650&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeSerializer" name="test_iter_unsigners" time="0.001" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_serializer[None]" time="0.006" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_serializer[True]" time="0.005" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_serializer[str]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_serializer[text]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_serializer[value4]" time="0.005" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_serializer[value5]" time="0.005" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_changed_value[value0-&lt;lambda&gt;0]" time="0.005" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_changed_value[value0-&lt;lambda&gt;1]" time="0.005" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_changed_value[value0-&lt;lambda&gt;2]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_changed_value[value0-&lt;lambda&gt;3]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_changed_value[zlib-&lt;lambda&gt;0]" time="0.014"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer object at 0x7ff27282e750&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff272532990&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+transform = &lt;function TestSerializer.&lt;lambda&gt; at 0x7ff272927100&gt;
+
+    @pytest.mark.parametrize(
+        "transform",
+        (
+            lambda s: s.upper(),
+            lambda s: s + coerce_str(s, "a"),
+            lambda s: coerce_str(s, "a") + s[1:],
+            lambda s: s.replace(coerce_str(s, "."), coerce_str(s, "")),
+        ),
+    )
+    def test_changed_value(self, serializer: Serializer, value: Any, transform):
+        signed = serializer.dumps(value)
+&gt;       assert serializer.loads(signed) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/timed.py:207: in loads
+    payload = self.load_payload(base64d)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff272532990&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_changed_value[zlib-&lt;lambda&gt;1]" time="0.013"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer object at 0x7ff27282e810&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff272530320&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+transform = &lt;function TestSerializer.&lt;lambda&gt; at 0x7ff2729271a0&gt;
+
+    @pytest.mark.parametrize(
+        "transform",
+        (
+            lambda s: s.upper(),
+            lambda s: s + coerce_str(s, "a"),
+            lambda s: coerce_str(s, "a") + s[1:],
+            lambda s: s.replace(coerce_str(s, "."), coerce_str(s, "")),
+        ),
+    )
+    def test_changed_value(self, serializer: Serializer, value: Any, transform):
+        signed = serializer.dumps(value)
+&gt;       assert serializer.loads(signed) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/timed.py:207: in loads
+    payload = self.load_payload(base64d)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff272530320&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_changed_value[zlib-&lt;lambda&gt;2]" time="0.014"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer object at 0x7ff2728715a0&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff27260af90&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+transform = &lt;function TestSerializer.&lt;lambda&gt; at 0x7ff272927240&gt;
+
+    @pytest.mark.parametrize(
+        "transform",
+        (
+            lambda s: s.upper(),
+            lambda s: s + coerce_str(s, "a"),
+            lambda s: coerce_str(s, "a") + s[1:],
+            lambda s: s.replace(coerce_str(s, "."), coerce_str(s, "")),
+        ),
+    )
+    def test_changed_value(self, serializer: Serializer, value: Any, transform):
+        signed = serializer.dumps(value)
+&gt;       assert serializer.loads(signed) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/timed.py:207: in loads
+    payload = self.load_payload(base64d)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff27260af90&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_changed_value[zlib-&lt;lambda&gt;3]" time="0.013"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer object at 0x7ff272871650&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff272608830&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+transform = &lt;function TestSerializer.&lt;lambda&gt; at 0x7ff2729272e0&gt;
+
+    @pytest.mark.parametrize(
+        "transform",
+        (
+            lambda s: s.upper(),
+            lambda s: s + coerce_str(s, "a"),
+            lambda s: coerce_str(s, "a") + s[1:],
+            lambda s: s.replace(coerce_str(s, "."), coerce_str(s, "")),
+        ),
+    )
+    def test_changed_value(self, serializer: Serializer, value: Any, transform):
+        signed = serializer.dumps(value)
+&gt;       assert serializer.loads(signed) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/timed.py:207: in loads
+    payload = self.load_payload(base64d)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff272608830&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_bad_signature_exception[value0]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_bad_signature_exception[zlib]" time="0.009"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer object at 0x7ff2728365d0&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2725f16d0&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_bad_signature_exception(self, serializer: Serializer, value: Any):
+        bad_signed = serializer.dumps(value)[:-1]
+    
+        with pytest.raises(BadSignature) as exc_info:
+            serializer.loads(bad_signed)
+    
+        payload = cast(bytes, exc_info.value.payload)
+&gt;       assert serializer.load_payload(payload) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2725f16d0&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_bad_payload_exception[value0]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_bad_payload_exception[zlib]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_loads_unsafe[value0]" time="0.005" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_loads_unsafe[zlib]" time="0.020"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer object at 0x7ff27289d010&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2725d1590&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_loads_unsafe(self, serializer: Serializer, value: Any):
+        signed = serializer.dumps(value)
+&gt;       assert serializer.loads_unsafe(signed) == (True, value)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:92: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/timed.py:228: in loads_unsafe
+    return self._loads_unsafe_impl(s, salt, load_kwargs={"max_age": max_age})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/serializer.py:381: in _loads_unsafe_impl
+    return True, self.loads(s, salt=salt, **load_kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/timed.py:207: in loads
+    payload = self.load_payload(base64d)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2725d1590&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_file[value0]" time="0.005" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_file[zlib]" time="0.018"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer object at 0x7ff272880410&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2728b3410&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_file(self, serializer: Serializer, value: Any):
+        f = cast(
+            IO, BytesIO() if isinstance(serializer.dumps(value), bytes) else StringIO()
+        )
+        serializer.dump(value, f)
+        f.seek(0)
+&gt;       assert serializer.load(f) == value
+               ^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:118: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:347: in load
+    return self.loads(f.read(), salt)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/timed.py:207: in loads
+    payload = self.load_payload(base64d)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2728b3410&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_alt_salt[value0]" time="0.005" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_alt_salt[zlib]" time="0.011"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer object at 0x7ff2728a8460&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2728b3530&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_alt_salt(self, serializer: Serializer, value: Any):
+        signed = serializer.dumps(value, salt="other")
+    
+        with pytest.raises(BadSignature):
+            serializer.loads(signed)
+    
+&gt;       assert serializer.loads(signed, salt="other") == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:128: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/timed.py:207: in loads
+    payload = self.load_payload(base64d)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2728b3530&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_signer_cls[value0]" time="0.005" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_signer_cls[zlib]" time="0.014"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer object at 0x7ff2728a85a0&gt;
+serializer_factory = functools.partial(&lt;class 'itsdangerous.url_safe.URLSafeTimedSerializer'&gt;, secret_key='secret-key')
+serializer = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2728b3c80&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_signer_cls(self, serializer_factory, serializer: Serializer, value: Any):
+        class Other(serializer.signer):  # type: ignore
+            default_key_derivation = "hmac"
+    
+        other = serializer_factory(signer=Other)
+&gt;       assert other.loads(other.dumps(value)) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:135: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/timed.py:207: in loads
+    payload = self.load_payload(base64d)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2728b27b0&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_signer_kwargs[value0]" time="0.005" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_signer_kwargs[zlib]" time="0.013"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer object at 0x7ff2728a8780&gt;
+serializer_factory = functools.partial(&lt;class 'itsdangerous.url_safe.URLSafeTimedSerializer'&gt;, secret_key='secret-key')
+serializer = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2728b2690&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_signer_kwargs(
+        self, serializer_factory, serializer: Serializer, value: Any
+    ):
+        other = serializer_factory(signer_kwargs={"key_derivation": "hmac"})
+&gt;       assert other.loads(other.dumps(value)) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:142: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/timed.py:207: in loads
+    payload = self.load_payload(base64d)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2728b3650&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_serializer_kwargs" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_fallback_signers[value0]" time="0.004" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_fallback_signers[zlib]" time="0.013"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer object at 0x7ff2728a8960&gt;
+serializer_factory = functools.partial(&lt;class 'itsdangerous.url_safe.URLSafeTimedSerializer'&gt;, secret_key='secret-key')
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+    def test_fallback_signers(self, serializer_factory, value: Any):
+        serializer = serializer_factory(signer_kwargs={"digest_method": hashlib.sha256})
+        signed = serializer.dumps(value)
+    
+        fallback_serializer = serializer_factory(
+            signer_kwargs={"digest_method": hashlib.sha1},
+            fallback_signers=[{"digest_method": hashlib.sha256}],
+        )
+    
+&gt;       assert fallback_serializer.loads(signed) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_serializer.py:164: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/timed.py:207: in loads
+    payload = self.load_payload(base64d)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2728b36e0&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_iter_unsigners" time="0.005" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_max_age[value0]" time="0.005" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_max_age[zlib]" time="0.012"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer object at 0x7ff27293bd90&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2728b3530&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+ts = datetime.datetime(2011, 6, 24, 0, 9, 5, tzinfo=datetime.timezone.utc)
+freeze = &lt;freezegun.api.FrozenDateTimeFactory object at 0x7ff272535400&gt;
+
+    def test_max_age(self, serializer, value, ts, freeze):
+        signed = serializer.dumps(value)
+        freeze.tick()
+&gt;       assert serializer.loads(signed, max_age=10) == value
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_timed.py:104: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/timed.py:207: in loads
+    payload = self.load_payload(base64d)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2728b3530&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_return_payload[value0]" time="0.005" /><testcase classname="tests.test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer" name="test_return_payload[zlib]" time="0.011"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">self = &lt;test_itsdangerous.test_url_safe.TestURLSafeTimedSerializer object at 0x7ff27294b950&gt;
+serializer = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2728b3a40&gt;
+value = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+ts = datetime.datetime(2011, 6, 24, 0, 9, 5, tzinfo=datetime.timezone.utc)
+
+    def test_return_payload(self, serializer, value, ts):
+        signed = serializer.dumps(value)
+&gt;       assert serializer.loads(signed, return_timestamp=True) == (value, ts)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_itsdangerous/test_timed.py:115: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/timed.py:207: in loads
+    payload = self.load_payload(base64d)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeTimedSerializer object at 0x7ff2728b3a40&gt;
+data = b'x\x9cSJ\x1c\x05\xa3`\x14\x0c{\xa0\x04\x00\xfa\x16{&lt;'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase></testsuite></testsuites>

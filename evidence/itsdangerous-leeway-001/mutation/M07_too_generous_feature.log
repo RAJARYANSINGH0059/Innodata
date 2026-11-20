@@ -1,0 +1,55 @@
+...F..F..FF.....                                                         [100%]
+=================================== FAILURES ===================================
+____________________ test_future_beyond_leeway_rejected[-6] ____________________
+
+age = -6
+
+    @pytest.mark.parametrize("age", [-6, -20])  # AC2
+    def test_future_beyond_leeway_rejected(age):
+        s, tok = signed_with_age(age)
+>       with pytest.raises(SignatureExpired):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SignatureExpired
+
+tests/task_feature/test_leeway.py:32: Failed
+___________________ test_explicit_zero_leeway_rejects_future ___________________
+
+    def test_explicit_zero_leeway_rejects_future():  # AC4
+        s, tok = signed_with_age(-1)
+>       with pytest.raises(SignatureExpired):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SignatureExpired
+
+tests/task_feature/test_leeway.py:46: Failed
+_________________________ test_validate_mirrors_unsign _________________________
+
+    def test_validate_mirrors_unsign():  # AC6
+        s, tok = signed_with_age(-4)
+        assert verify_at_30(lambda: s.validate(tok, max_age=60, leeway=5)) is True
+>       assert verify_at_30(lambda: s.validate(tok, max_age=60, leeway=3)) is False
+E       assert True is False
+E        +  where True = verify_at_30(<function test_validate_mirrors_unsign.<locals>.<lambda> at 0x7f13da013ba0>)
+
+tests/task_feature/test_leeway.py:60: AssertionError
+____________________ test_serializer_loads_forwards_leeway _____________________
+
+    def test_serializer_loads_forwards_leeway():  # AC7
+        ser = TimedSerializer("secret")
+        with freeze_time(SIGN_AT.format(34)):
+            tok = ser.dumps({"a": 1})
+        assert verify_at_30(lambda: ser.loads(tok, max_age=60, leeway=5)) == {"a": 1}
+        value, ts = verify_at_30(lambda: ser.loads(tok, max_age=60, leeway=5, return_timestamp=True))
+        assert value == {"a": 1} and ts.second == 34
+>       with pytest.raises(SignatureExpired):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SignatureExpired
+
+tests/task_feature/test_leeway.py:71: Failed
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_leeway.py::test_future_beyond_leeway_rejected[-6]
+FAILED tests/task_feature/test_leeway.py::test_explicit_zero_leeway_rejects_future
+FAILED tests/task_feature/test_leeway.py::test_validate_mirrors_unsign - asse...
+FAILED tests/task_feature/test_leeway.py::test_serializer_loads_forwards_leeway
+4 failed, 12 passed in 0.21s
+
+--- stderr ---

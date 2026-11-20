@@ -1,0 +1,5 @@
+# REPRODUCIBILITY
+**One command** (needs Python ≥3.11, git, internet): `python -m pip install -e ".[dev]" && python scripts/demo.py`
+Clones `pallets/itsdangerous`, checks out pinned commit `672971d66a2ef9f85151e53283113f33d642dabd` in fresh clones per state, and for each task runs: three-state validation (3 repeats/state), 14–15 hand-written variants, clean-room reconstruction against recorded hashes, and the variation report. Last observed: 1m56s, OVERALL PASS (Linux, Python 3.13.x, pytest 9.1.1, freezegun installed from PyPI).
+What is pinned: upstream commit, task files (MANIFEST.sha256 per task), patch hash, per-state source tree digests. What is NOT pinned: pytest/freezegun versions (only lower bounds), Python patch version. Evidence in `evidence/` was produced on Linux; Windows and macOS are untested.
+Determinism: tests use freezegun (no wall clock); no randomness is used by the factory itself. No LLM is called by the factory; tasks in this repo were authored interactively with an AI assistant (see PROJECT_STATE.md), so authoring is NOT reproducible — validation is.

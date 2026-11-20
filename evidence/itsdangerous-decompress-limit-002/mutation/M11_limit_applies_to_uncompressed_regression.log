@@ -1,0 +1,40 @@
+...F.                                                                    [100%]
+=================================== FAILURES ===================================
+_____________________ test_uncompressed_payload_unaffected _____________________
+
+    def test_uncompressed_payload_unaffected():  # AC5 (preservation)
+        s = URLSafeSerializer(KEY)
+        s.max_decompressed_size = 1
+        tok = s.dumps({"a": 1})
+        assert not tok.startswith(".") and "." in tok
+>       assert s.loads(tok) == {"a": 1}
+               ^^^^^^^^^^^^
+
+tests/task_regression/test_payload_behaviour.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:339: in loads
+    return self.load_payload(signer.unsign(s))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <itsdangerous.url_safe.URLSafeSerializer object at 0x7f8c67b61810>
+payload = b'eyJhIjoxfQ', serializer = None, args = (), kwargs = {}
+
+    def load_payload(
+        self,
+        payload: bytes,
+        *args: t.Any,
+        serializer: t.Any | None = None,
+        **kwargs: t.Any,
+    ) -> t.Any:
+        decompress = False
+        if self.max_decompressed_size is not None and len(payload) > self.max_decompressed_size and not payload.startswith(b'.'):
+>           raise BadPayload('too large')
+E           itsdangerous.exc.BadPayload: too large
+
+src/itsdangerous/url_safe.py:37: BadPayload
+=========================== short test summary info ============================
+FAILED tests/task_regression/test_payload_behaviour.py::test_uncompressed_payload_unaffected
+1 failed, 4 passed in 0.04s
+
+--- stderr ---

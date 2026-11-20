@@ -1,0 +1,152 @@
+{
+  "results": [
+    {
+      "description": "size == N wrongly rejected",
+      "failed_tests": [
+        "test_exact_size_boundary"
+      ],
+      "id": "M01_boundary_gte",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "decompresses everything before checking",
+      "failed_tests": [
+        "test_rejection_does_not_materialise_full_output"
+      ],
+      "id": "M02_full_materialisation",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "accepts N+1 bytes | classified equivalent AFTER observation: redundant with post-flush check (defence in depth)",
+      "failed_tests": [],
+      "id": "M03_off_by_one_accepts_N_plus_1",
+      "kind": "equivalent",
+      "outcome": "EQUIVALENT"
+    },
+    {
+      "description": "default is not unlimited",
+      "failed_tests": [
+        "test_default_is_none_and_unlimited"
+      ],
+      "id": "M04_default_zero",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "limit 0 treated as unlimited",
+      "failed_tests": [
+        "test_zero_limit_rejects_any_compressed_payload"
+      ],
+      "id": "M05_falsy_limit_means_unlimited",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "attribute ignored",
+      "failed_tests": [
+        "test_exact_size_boundary",
+        "test_loads_unsafe_oversized_invalid_signature",
+        "test_oversized_compressed_payload_rejected[URLSafeSerializer]",
+        "test_oversized_compressed_payload_rejected[URLSafeTimedSerializer]",
+        "test_rejection_does_not_materialise_full_output",
+        "test_subclass_and_instance_configuration",
+        "test_zero_limit_rejects_any_compressed_payload"
+      ],
+      "id": "M06_limit_ignored",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "instance override ignored",
+      "failed_tests": [
+        "test_exact_size_boundary",
+        "test_loads_unsafe_oversized_invalid_signature",
+        "test_oversized_compressed_payload_rejected[URLSafeSerializer]",
+        "test_oversized_compressed_payload_rejected[URLSafeTimedSerializer]",
+        "test_rejection_does_not_materialise_full_output",
+        "test_subclass_and_instance_configuration",
+        "test_zero_limit_rejects_any_compressed_payload"
+      ],
+      "id": "M07_limit_class_shared_mutation",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "tail check removed (suspected equivalent) | classified equivalent AFTER observation: redundant: output is capped at limit+1 so len(out)>limit already fires",
+      "failed_tests": [],
+      "id": "M08_tail_check_removed",
+      "kind": "equivalent",
+      "outcome": "EQUIVALENT"
+    },
+    {
+      "description": "post-flush check removed (suspected equivalent) | classified equivalent AFTER observation: redundant with pre-flush check",
+      "failed_tests": [],
+      "id": "M09_post_flush_check_removed",
+      "kind": "equivalent",
+      "outcome": "EQUIVALENT"
+    },
+    {
+      "description": "truncates silently | classified equivalent AFTER observation: truncated JSON is invalid, so BadPayload still raised (weak mutant)",
+      "failed_tests": [],
+      "id": "M10_returns_truncated_instead_of_error",
+      "kind": "equivalent",
+      "outcome": "EQUIVALENT"
+    },
+    {
+      "description": "limit wrongly applied to uncompressed payloads",
+      "failed_tests": [],
+      "id": "M11_limit_applies_to_uncompressed",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "corrupt data not rejected | classified equivalent AFTER observation: fallback parses raw zlib bytes as JSON, still BadPayload (weak mutant)",
+      "failed_tests": [],
+      "id": "M12_bare_zlib_error_swallowed",
+      "kind": "equivalent",
+      "outcome": "EQUIVALENT"
+    },
+    {
+      "description": "chunked decompression loop",
+      "failed_tests": [],
+      "id": "A01_alt_chunked_streaming",
+      "kind": "alt_valid",
+      "outcome": "ACCEPTED"
+    },
+    {
+      "description": "error type wrapped to BadPayload by caller; message unspecified",
+      "failed_tests": [],
+      "id": "A02_alt_value_error_wrapped",
+      "kind": "alt_valid",
+      "outcome": "ACCEPTED"
+    },
+    {
+      "description": "removes BOTH redundant checks; limit enforced nowhere",
+      "failed_tests": [
+        "test_exact_size_boundary",
+        "test_loads_unsafe_oversized_invalid_signature",
+        "test_oversized_compressed_payload_rejected[URLSafeSerializer]",
+        "test_oversized_compressed_payload_rejected[URLSafeTimedSerializer]",
+        "test_rejection_does_not_materialise_full_output",
+        "test_subclass_and_instance_configuration",
+        "test_zero_limit_rejects_any_compressed_payload"
+      ],
+      "id": "M13_both_size_checks_removed",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    }
+  ],
+  "summary": {
+    "ACCEPTED": 2,
+    "EQUIVALENT": 5,
+    "INVALID": 0,
+    "KILLED": 8,
+    "MISLABELLED_EQUIVALENT": 0,
+    "REJECTED_VALID_ALTERNATIVE": 0,
+    "SURVIVED": 0,
+    "TIMEOUT": 0
+  },
+  "task_id": "itsdangerous-decompress-limit-002"
+}

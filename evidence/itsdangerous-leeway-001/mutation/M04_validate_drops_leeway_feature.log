@@ -1,0 +1,28 @@
+.........F.....F                                                         [100%]
+=================================== FAILURES ===================================
+_________________________ test_validate_mirrors_unsign _________________________
+
+    def test_validate_mirrors_unsign():  # AC6
+        s, tok = signed_with_age(-4)
+>       assert verify_at_30(lambda: s.validate(tok, max_age=60, leeway=5)) is True
+E       assert False is True
+E        +  where False = verify_at_30(<function test_validate_mirrors_unsign.<locals>.<lambda> at 0x7fef5d4c3600>)
+
+tests/task_feature/test_leeway.py:59: AssertionError
+______________ test_negative_leeway_rejected_even_without_max_age ______________
+
+    def test_negative_leeway_rejected_even_without_max_age():  # AC5: unconditional ValueError
+        s, tok = signed_with_age(0)
+        with pytest.raises(ValueError):
+            verify_at_30(lambda: s.unsign(tok, leeway=-1))
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/task_feature/test_leeway.py:105: Failed
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_leeway.py::test_validate_mirrors_unsign - asse...
+FAILED tests/task_feature/test_leeway.py::test_negative_leeway_rejected_even_without_max_age
+2 failed, 14 passed in 0.19s
+
+--- stderr ---

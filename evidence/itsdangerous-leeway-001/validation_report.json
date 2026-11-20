@@ -1,0 +1,255 @@
+{
+  "artifact_sha256": {
+    "patch": "e6867e99b03b29cf7916ba0219c4528fb65d7ff5c5c05248c48b936f8bf68d00"
+  },
+  "commit": "672971d66a2ef9f85151e53283113f33d642dabd",
+  "failing_feature_tests": {
+    "original": {
+      "tests.task_feature.test_leeway::test_explicit_zero_leeway_rejects_future": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_future_beyond_leeway_rejected[-20]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_future_beyond_leeway_rejected[-6]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_future_within_leeway_accepted[-1]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_future_within_leeway_accepted[-3]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_future_within_leeway_accepted[-5]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_leeway_does_not_extend_max_age": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_leeway_without_max_age_is_harmless": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_negative_leeway_rejected_even_without_max_age": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_negative_leeway_value_error[-10]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_negative_leeway_value_error[-1]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_rejection_carries_date_signed": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_return_timestamp_with_leeway": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_serializer_loads_forwards_leeway": "TypeError: TimedSerializer.loads() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_tampered_signature_still_rejected_with_leeway": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_validate_mirrors_unsign": "TypeError: TimestampSigner.validate() got an unexpected keyword argument 'leeway'"
+    },
+    "reference": {},
+    "removed": {
+      "tests.task_feature.test_leeway::test_explicit_zero_leeway_rejects_future": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_future_beyond_leeway_rejected[-20]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_future_beyond_leeway_rejected[-6]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_future_within_leeway_accepted[-1]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_future_within_leeway_accepted[-3]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_future_within_leeway_accepted[-5]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_leeway_does_not_extend_max_age": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_leeway_without_max_age_is_harmless": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_negative_leeway_rejected_even_without_max_age": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_negative_leeway_value_error[-10]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_negative_leeway_value_error[-1]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_rejection_carries_date_signed": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_return_timestamp_with_leeway": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_serializer_loads_forwards_leeway": "TypeError: TimedSerializer.loads() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_tampered_signature_still_rejected_with_leeway": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+      "tests.task_feature.test_leeway::test_validate_mirrors_unsign": "TypeError: TimestampSigner.validate() got an unexpected keyword argument 'leeway'"
+    }
+  },
+  "python": "3.13.18",
+  "repeatability": {
+    "original": {
+      "repeats": 3,
+      "stable": true
+    },
+    "reference": {
+      "repeats": 3,
+      "stable": true
+    },
+    "removed": {
+      "repeats": 3,
+      "stable": true
+    }
+  },
+  "report": {
+    "checks": [
+      {
+        "actual": "('original', 'reference', 'removed')",
+        "check_id": "three_state_order",
+        "evidence": {},
+        "expected": "('original', 'reference', 'removed')",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "vectors=[((0, 'tests_pass'), (0, 'tests_pass')), ((0, 'tests_pass'), (0, 'tests_pass')), ((0, 'tests_pass'), (0, 'tests_pass'))]; all_green=True",
+        "check_id": "baseline_regression_stability",
+        "evidence": {
+          "baseline_vectors": [
+            [
+              [
+                0,
+                "tests_pass"
+              ],
+              [
+                0,
+                "tests_pass"
+              ]
+            ],
+            [
+              [
+                0,
+                "tests_pass"
+              ],
+              [
+                0,
+                "tests_pass"
+              ]
+            ],
+            [
+              [
+                0,
+                "tests_pass"
+              ],
+              [
+                0,
+                "tests_pass"
+              ]
+            ]
+          ]
+        },
+        "expected": "Baseline test exit-code vector is unchanged across all three states; ideally all pass.",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "task_test_outcomes=((1, 'test_assertion_failure'),)",
+        "check_id": "original_detects_missing_behaviour",
+        "evidence": {},
+        "expected": "At least one task-specific test is classified as an assertion/behaviour failure on the original repository.",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "task_test_outcomes=((1, 'test_assertion_failure'),)",
+        "check_id": "removed_patch_reveals_missing_behaviour",
+        "evidence": {},
+        "expected": "At least one task-specific test is classified as an assertion/behaviour failure after patch removal.",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "task_test_outcomes=((0, 'tests_pass'),)",
+        "check_id": "reference_implements_requirement",
+        "evidence": {},
+        "expected": "All task-specific tests pass with the reference implementation.",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "origin=/tmp/tf_mmz89aol/original/src/itsdangerous/__init__.py",
+        "check_id": "original_import_origin",
+        "evidence": {},
+        "expected": "`itsdangerous` imports from the state workspace",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "vectors=[[(0, 'tests_pass'), (0, 'tests_pass'), (1, 'test_assertion_failure')], [(0, 'tests_pass'), (0, 'tests_pass'), (1, 'test_assertion_failure')], [(0, 'tests_pass'), (0, 'tests_pass'), (1, 'test_assertion_failure')]]",
+        "check_id": "original_repeat_stability",
+        "evidence": {},
+        "expected": "3 identical runs",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "origin=/tmp/tf_mmz89aol/reference/src/itsdangerous/__init__.py",
+        "check_id": "reference_import_origin",
+        "evidence": {},
+        "expected": "`itsdangerous` imports from the state workspace",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "vectors=[[(0, 'tests_pass'), (0, 'tests_pass'), (0, 'tests_pass')], [(0, 'tests_pass'), (0, 'tests_pass'), (0, 'tests_pass')], [(0, 'tests_pass'), (0, 'tests_pass'), (0, 'tests_pass')]]",
+        "check_id": "reference_repeat_stability",
+        "evidence": {},
+        "expected": "3 identical runs",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "origin=/tmp/tf_mmz89aol/removed/src/itsdangerous/__init__.py",
+        "check_id": "removed_import_origin",
+        "evidence": {},
+        "expected": "`itsdangerous` imports from the state workspace",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "vectors=[[(0, 'tests_pass'), (0, 'tests_pass'), (1, 'test_assertion_failure')], [(0, 'tests_pass'), (0, 'tests_pass'), (1, 'test_assertion_failure')], [(0, 'tests_pass'), (0, 'tests_pass'), (1, 'test_assertion_failure')]]",
+        "check_id": "removed_repeat_stability",
+        "evidence": {},
+        "expected": "3 identical runs",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "original=c79639120240b4c3 removed=c79639120240b4c3",
+        "check_id": "removed_tree_equals_original_tree",
+        "evidence": {},
+        "expected": "reverting the reference patch restores the exact original source tree",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "reference=468a0b1714fca2b7",
+        "check_id": "reference_tree_differs",
+        "evidence": {},
+        "expected": "reference patch changes the source tree",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "A=['tests.task_feature.test_leeway::test_explicit_zero_leeway_rejects_future', 'tests.task_feature.test_leeway::test_future_beyond_leeway_rejected[-20]', 'tests.task_feature.test_leeway::test_future_beyond_leeway_rejected[-6]'].. (16) C=(16)",
+        "check_id": "failing_tests_consistent_A_vs_C",
+        "evidence": {
+          "A": {
+            "tests.task_feature.test_leeway::test_explicit_zero_leeway_rejects_future": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_future_beyond_leeway_rejected[-20]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_future_beyond_leeway_rejected[-6]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_future_within_leeway_accepted[-1]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_future_within_leeway_accepted[-3]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_future_within_leeway_accepted[-5]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_leeway_does_not_extend_max_age": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_leeway_without_max_age_is_harmless": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_negative_leeway_rejected_even_without_max_age": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_negative_leeway_value_error[-10]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_negative_leeway_value_error[-1]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_rejection_carries_date_signed": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_return_timestamp_with_leeway": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_serializer_loads_forwards_leeway": "TypeError: TimedSerializer.loads() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_tampered_signature_still_rejected_with_leeway": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_validate_mirrors_unsign": "TypeError: TimestampSigner.validate() got an unexpected keyword argument 'leeway'"
+          },
+          "C": {
+            "tests.task_feature.test_leeway::test_explicit_zero_leeway_rejects_future": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_future_beyond_leeway_rejected[-20]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_future_beyond_leeway_rejected[-6]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_future_within_leeway_accepted[-1]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_future_within_leeway_accepted[-3]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_future_within_leeway_accepted[-5]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_leeway_does_not_extend_max_age": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_leeway_without_max_age_is_harmless": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_negative_leeway_rejected_even_without_max_age": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_negative_leeway_value_error[-10]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_negative_leeway_value_error[-1]": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_rejection_carries_date_signed": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_return_timestamp_with_leeway": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_serializer_loads_forwards_leeway": "TypeError: TimedSerializer.loads() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_tampered_signature_still_rejected_with_leeway": "TypeError: TimestampSigner.unsign() got an unexpected keyword argument 'leeway'",
+            "tests.task_feature.test_leeway::test_validate_mirrors_unsign": "TypeError: TimestampSigner.validate() got an unexpected keyword argument 'leeway'"
+          }
+        },
+        "expected": "same feature tests fail, for the same reason, in State A and State C",
+        "limitation": null,
+        "status": "PASS"
+      }
+    ],
+    "status": "PASS",
+    "summary": "Three-state pattern holds and the baseline remains green in all states.",
+    "task_kind": "feature"
+  },
+  "state_tree_digests": {
+    "original": "c79639120240b4c32836c810854eb75f27d1914a93b7e74fb622dfa24e2283dc",
+    "reference": "468a0b1714fca2b774ce6b4f77bf6f977f9ceb8af12cc3c1342c18fa0d015b22",
+    "removed": "c79639120240b4c32836c810854eb75f27d1914a93b7e74fb622dfa24e2283dc"
+  },
+  "task_id": "itsdangerous-leeway-001"
+}

@@ -1,0 +1,42 @@
+.......FF......F                                                         [100%]
+=================================== FAILURES ===================================
+_____________________ test_negative_leeway_value_error[-1] _____________________
+
+bad = -1
+
+    @pytest.mark.parametrize("bad", [-1, -10])  # AC5
+    def test_negative_leeway_value_error(bad):
+        s, tok = signed_with_age(0)
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/task_feature/test_leeway.py:53: Failed
+____________________ test_negative_leeway_value_error[-10] _____________________
+
+bad = -10
+
+    @pytest.mark.parametrize("bad", [-1, -10])  # AC5
+    def test_negative_leeway_value_error(bad):
+        s, tok = signed_with_age(0)
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/task_feature/test_leeway.py:53: Failed
+______________ test_negative_leeway_rejected_even_without_max_age ______________
+
+    def test_negative_leeway_rejected_even_without_max_age():  # AC5: unconditional ValueError
+        s, tok = signed_with_age(0)
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+tests/task_feature/test_leeway.py:103: Failed
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_leeway.py::test_negative_leeway_value_error[-1]
+FAILED tests/task_feature/test_leeway.py::test_negative_leeway_value_error[-10]
+FAILED tests/task_feature/test_leeway.py::test_negative_leeway_rejected_even_without_max_age
+3 failed, 13 passed in 0.20s
+
+--- stderr ---

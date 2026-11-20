@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="16" time="0.207" timestamp="2026-11-20T02:55:45.295417+00:00" hostname="vm"><testcase classname="tests.task_feature.test_leeway" name="test_future_within_leeway_accepted[-1]" time="0.027" /><testcase classname="tests.task_feature.test_leeway" name="test_future_within_leeway_accepted[-3]" time="0.007" /><testcase classname="tests.task_feature.test_leeway" name="test_future_within_leeway_accepted[-5]" time="0.007" /><testcase classname="tests.task_feature.test_leeway" name="test_future_beyond_leeway_rejected[-6]" time="0.007"><failure message="Failed: DID NOT RAISE SignatureExpired">age = -6
+
+    @pytest.mark.parametrize("age", [-6, -20])  # AC2
+    def test_future_beyond_leeway_rejected(age):
+        s, tok = signed_with_age(age)
+&gt;       with pytest.raises(SignatureExpired):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SignatureExpired
+
+tests/task_feature/test_leeway.py:32: Failed</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_future_beyond_leeway_rejected[-20]" time="0.007" /><testcase classname="tests.task_feature.test_leeway" name="test_leeway_does_not_extend_max_age" time="0.014" /><testcase classname="tests.task_feature.test_leeway" name="test_explicit_zero_leeway_rejects_future" time="0.006"><failure message="Failed: DID NOT RAISE SignatureExpired">def test_explicit_zero_leeway_rejects_future():  # AC4
+        s, tok = signed_with_age(-1)
+&gt;       with pytest.raises(SignatureExpired):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SignatureExpired
+
+tests/task_feature/test_leeway.py:46: Failed</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_negative_leeway_value_error[-1]" time="0.007" /><testcase classname="tests.task_feature.test_leeway" name="test_negative_leeway_value_error[-10]" time="0.007" /><testcase classname="tests.task_feature.test_leeway" name="test_validate_mirrors_unsign" time="0.010"><failure message="assert True is False&#10; +  where True = verify_at_30(&lt;function test_validate_mirrors_unsign.&lt;locals&gt;.&lt;lambda&gt; at 0x7f13da013ba0&gt;)">def test_validate_mirrors_unsign():  # AC6
+        s, tok = signed_with_age(-4)
+        assert verify_at_30(lambda: s.validate(tok, max_age=60, leeway=5)) is True
+&gt;       assert verify_at_30(lambda: s.validate(tok, max_age=60, leeway=3)) is False
+E       assert True is False
+E        +  where True = verify_at_30(&lt;function test_validate_mirrors_unsign.&lt;locals&gt;.&lt;lambda&gt; at 0x7f13da013ba0&gt;)
+
+tests/task_feature/test_leeway.py:60: AssertionError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_serializer_loads_forwards_leeway" time="0.016"><failure message="Failed: DID NOT RAISE SignatureExpired">def test_serializer_loads_forwards_leeway():  # AC7
+        ser = TimedSerializer("secret")
+        with freeze_time(SIGN_AT.format(34)):
+            tok = ser.dumps({"a": 1})
+        assert verify_at_30(lambda: ser.loads(tok, max_age=60, leeway=5)) == {"a": 1}
+        value, ts = verify_at_30(lambda: ser.loads(tok, max_age=60, leeway=5, return_timestamp=True))
+        assert value == {"a": 1} and ts.second == 34
+&gt;       with pytest.raises(SignatureExpired):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SignatureExpired
+
+tests/task_feature/test_leeway.py:71: Failed</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_tampered_signature_still_rejected_with_leeway" time="0.007" /><testcase classname="tests.task_feature.test_leeway" name="test_leeway_without_max_age_is_harmless" time="0.006" /><testcase classname="tests.task_feature.test_leeway" name="test_rejection_carries_date_signed" time="0.006" /><testcase classname="tests.task_feature.test_leeway" name="test_return_timestamp_with_leeway" time="0.007" /><testcase classname="tests.task_feature.test_leeway" name="test_negative_leeway_rejected_even_without_max_age" time="0.009" /></testsuite></testsuites>

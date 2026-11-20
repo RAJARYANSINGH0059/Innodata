@@ -1,0 +1,32 @@
+F..F                                                                     [100%]
+=================================== FAILURES ===================================
+_________________ test_future_rejected_by_default_with_max_age _________________
+
+    def test_future_rejected_by_default_with_max_age():
+        s, tok = _tok(31)
+        with freeze_time("2024-01-01 00:00:30"):
+>           with pytest.raises(SignatureExpired):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE SignatureExpired
+
+tests/task_regression/test_default_behaviour.py:18: Failed
+____________________ test_validate_and_serializer_defaults _____________________
+
+    def test_validate_and_serializer_defaults():
+        s, tok = _tok(31)
+        ser = TimedSerializer("secret")
+        with freeze_time("2024-01-01 00:00:31"):
+            stok = ser.dumps([1])
+        with freeze_time("2024-01-01 00:00:30"):
+>           assert s.validate(tok, max_age=60) is False
+E           AssertionError: assert True is False
+E            +  where True = validate(b'v.ZZIAnw.h7zcUmkI42TaF-0hqHjpRMH1r4A', max_age=60)
+E            +    where validate = <itsdangerous.timed.TimestampSigner object at 0x7f169597ac40>.validate
+
+tests/task_regression/test_default_behaviour.py:42: AssertionError
+=========================== short test summary info ============================
+FAILED tests/task_regression/test_default_behaviour.py::test_future_rejected_by_default_with_max_age
+FAILED tests/task_regression/test_default_behaviour.py::test_validate_and_serializer_defaults
+2 failed, 2 passed in 0.09s
+
+--- stderr ---

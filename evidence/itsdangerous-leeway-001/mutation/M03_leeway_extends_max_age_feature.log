@@ -1,0 +1,16 @@
+.....F..........                                                         [100%]
+=================================== FAILURES ===================================
+_____________________ test_leeway_does_not_extend_max_age ______________________
+
+    def test_leeway_does_not_extend_max_age():  # AC3
+        s, tok = signed_with_age(11)
+>       with pytest.raises(SignatureExpired):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SignatureExpired
+
+tests/task_feature/test_leeway.py:38: Failed
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_leeway.py::test_leeway_does_not_extend_max_age
+1 failed, 15 passed in 0.18s
+
+--- stderr ---

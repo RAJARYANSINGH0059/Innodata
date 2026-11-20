@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="6" skipped="0" tests="16" time="0.220" timestamp="2026-11-20T02:55:36.639625+00:00" hostname="vm"><testcase classname="tests.task_feature.test_leeway" name="test_future_within_leeway_accepted[-1]" time="0.029"><failure message="itsdangerous.exc.SignatureExpired: Signature age -1 &lt; -5 seconds">age = -1
+
+    @pytest.mark.parametrize("age", [-1, -3, -5])  # AC1 incl. boundary
+    def test_future_within_leeway_accepted(age):
+        s, tok = signed_with_age(age)
+&gt;       assert verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5)) == b"payload"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_leeway.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+tests/task_feature/test_leeway.py:26: in &lt;lambda&gt;
+    assert verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5)) == b"payload"
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.timed.TimestampSigner object at 0x7fe8bd9dc1a0&gt;
+signed_value = b'payload.ZZIAnw.0L8uvEgnZIH1Hk6ZCYgIRtYLP2k', max_age = 60
+return_timestamp = False, leeway = 5
+
+    def unsign(
+        self,
+        signed_value: str | bytes,
+        max_age: int | None = None,
+        return_timestamp: bool = False,
+        leeway: int = 0,
+    ) -&gt; tuple[bytes, datetime] | bytes:
+        """Works like the regular :meth:`.Signer.unsign` but can also
+        validate the time. See the base docstring of the class for
+        the general behavior. If ``return_timestamp`` is ``True`` the
+        timestamp of the signature will be returned as an aware
+        :class:`datetime.datetime` object in UTC.
+    
+        When ``max_age`` is given, ``leeway`` is a number of seconds of
+        clock skew tolerated for signatures dated in the future. It does
+        not extend ``max_age``. It must not be negative.
+    
+        .. versionchanged:: 2.0
+            The timestamp is returned as a timezone-aware ``datetime``
+            in UTC rather than a naive ``datetime`` assumed to be UTC.
+        """
+        if leeway &lt; 0:
+            raise ValueError("leeway must not be negative")
+    
+        try:
+            result = super().unsign(signed_value)
+            sig_error = None
+        except BadSignature as e:
+            sig_error = e
+            result = e.payload or b""
+    
+        sep = want_bytes(self.sep)
+    
+        # If there is no timestamp in the result there is something
+        # seriously wrong. In case there was a signature error, we raise
+        # that one directly, otherwise we have a weird situation in
+        # which we shouldn't have come except someone uses a time-based
+        # serializer on non-timestamp data, so catch that.
+        if sep not in result:
+            if sig_error:
+                raise sig_error
+    
+            raise BadTimeSignature("timestamp missing", payload=result)
+    
+        value, ts_bytes = result.rsplit(sep, 1)
+        ts_int: int | None = None
+        ts_dt: datetime | None = None
+    
+        try:
+            ts_int = bytes_to_int(base64_decode(ts_bytes))
+        except Exception:
+            pass
+    
+        # Signature is *not* okay. Raise a proper error now that we have
+        # split the value and the timestamp.
+        if sig_error is not None:
+            if ts_int is not None:
+                try:
+                    ts_dt = self.timestamp_to_datetime(ts_int)
+                except (ValueError, OSError, OverflowError) as exc:
+                    # Windows raises OSError
+                    # 32-bit raises OverflowError
+                    raise BadTimeSignature(
+                        "Malformed timestamp", payload=value
+                    ) from exc
+    
+            raise BadTimeSignature(str(sig_error), payload=value, date_signed=ts_dt)
+    
+        # Signature was okay but the timestamp is actually not there or
+        # malformed. Should not happen, but we handle it anyway.
+        if ts_int is None:
+            raise BadTimeSignature("Malformed timestamp", payload=value)
+    
+        # Check timestamp is not older than max_age
+        if max_age is not None:
+            age = self.get_timestamp() - ts_int
+    
+            if age &gt; max_age:
+                raise SignatureExpired(
+                    f"Signature age {age} &gt; {max_age} seconds",
+                    payload=value,
+                    date_signed=self.timestamp_to_datetime(ts_int),
+                )
+    
+            if age &lt; 0:
+&gt;               raise SignatureExpired(
+                    f"Signature age {age} &lt; -{leeway} seconds" if leeway else f"Signature age {age} &lt; 0 seconds",
+                    payload=value,
+                    date_signed=self.timestamp_to_datetime(ts_int),
+                )
+E               itsdangerous.exc.SignatureExpired: Signature age -1 &lt; -5 seconds
+
+src/itsdangerous/timed.py:159: SignatureExpired</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_future_within_leeway_accepted[-3]" time="0.007"><failure message="itsdangerous.exc.SignatureExpired: Signature age -3 &lt; -5 seconds">age = -3
+
+    @pytest.mark.parametrize("age", [-1, -3, -5])  # AC1 incl. boundary
+    def test_future_within_leeway_accepted(age):
+        s, tok = signed_with_age(age)
+&gt;       assert verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5)) == b"payload"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_leeway.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+tests/task_feature/test_leeway.py:26: in &lt;lambda&gt;
+    assert verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5)) == b"payload"
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.timed.TimestampSigner object at 0x7fe8bd85df90&gt;
+signed_value = b'payload.ZZIAoQ.9tP_5Koy8TyFKpLaZbhwp54GexU', max_age = 60
+return_timestamp = False, leeway = 5
+
+    def unsign(
+        self,
+        signed_value: str | bytes,
+        max_age: int | None = None,
+        return_timestamp: bool = False,
+        leeway: int = 0,
+    ) -&gt; tuple[bytes, datetime] | bytes:
+        """Works like the regular :meth:`.Signer.unsign` but can also
+        validate the time. See the base docstring of the class for
+        the general behavior. If ``return_timestamp`` is ``True`` the
+        timestamp of the signature will be returned as an aware
+        :class:`datetime.datetime` object in UTC.
+    
+        When ``max_age`` is given, ``leeway`` is a number of seconds of
+        clock skew tolerated for signatures dated in the future. It does
+        not extend ``max_age``. It must not be negative.
+    
+        .. versionchanged:: 2.0
+            The timestamp is returned as a timezone-aware ``datetime``
+            in UTC rather than a naive ``datetime`` assumed to be UTC.
+        """
+        if leeway &lt; 0:
+            raise ValueError("leeway must not be negative")
+    
+        try:
+            result = super().unsign(signed_value)
+            sig_error = None
+        except BadSignature as e:
+            sig_error = e
+            result = e.payload or b""
+    
+        sep = want_bytes(self.sep)
+    
+        # If there is no timestamp in the result there is something
+        # seriously wrong. In case there was a signature error, we raise
+        # that one directly, otherwise we have a weird situation in
+        # which we shouldn't have come except someone uses a time-based
+        # serializer on non-timestamp data, so catch that.
+        if sep not in result:
+            if sig_error:
+                raise sig_error
+    
+            raise BadTimeSignature("timestamp missing", payload=result)
+    
+        value, ts_bytes = result.rsplit(sep, 1)
+        ts_int: int | None = None
+        ts_dt: datetime | None = None
+    
+        try:
+            ts_int = bytes_to_int(base64_decode(ts_bytes))
+        except Exception:
+            pass
+    
+        # Signature is *not* okay. Raise a proper error now that we have
+        # split the value and the timestamp.
+        if sig_error is not None:
+            if ts_int is not None:
+                try:
+                    ts_dt = self.timestamp_to_datetime(ts_int)
+                except (ValueError, OSError, OverflowError) as exc:
+                    # Windows raises OSError
+                    # 32-bit raises OverflowError
+                    raise BadTimeSignature(
+                        "Malformed timestamp", payload=value
+                    ) from exc
+    
+            raise BadTimeSignature(str(sig_error), payload=value, date_signed=ts_dt)
+    
+        # Signature was okay but the timestamp is actually not there or
+        # malformed. Should not happen, but we handle it anyway.
+        if ts_int is None:
+            raise BadTimeSignature("Malformed timestamp", payload=value)
+    
+        # Check timestamp is not older than max_age
+        if max_age is not None:
+            age = self.get_timestamp() - ts_int
+    
+            if age &gt; max_age:
+                raise SignatureExpired(
+                    f"Signature age {age} &gt; {max_age} seconds",
+                    payload=value,
+                    date_signed=self.timestamp_to_datetime(ts_int),
+                )
+    
+            if age &lt; 0:
+&gt;               raise SignatureExpired(
+                    f"Signature age {age} &lt; -{leeway} seconds" if leeway else f"Signature age {age} &lt; 0 seconds",
+                    payload=value,
+                    date_signed=self.timestamp_to_datetime(ts_int),
+                )
+E               itsdangerous.exc.SignatureExpired: Signature age -3 &lt; -5 seconds
+
+src/itsdangerous/timed.py:159: SignatureExpired</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_future_within_leeway_accepted[-5]" time="0.006"><failure message="itsdangerous.exc.SignatureExpired: Signature age -5 &lt; -5 seconds">age = -5
+
+    @pytest.mark.parametrize("age", [-1, -3, -5])  # AC1 incl. boundary
+    def test_future_within_leeway_accepted(age):
+        s, tok = signed_with_age(age)
+&gt;       assert verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5)) == b"payload"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_leeway.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+tests/task_feature/test_leeway.py:26: in &lt;lambda&gt;
+    assert verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5)) == b"payload"
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.timed.TimestampSigner object at 0x7fe8bd85e850&gt;
+signed_value = b'payload.ZZIAow.TrBznWN59GPCY155Twzb5L0bsVw', max_age = 60
+return_timestamp = False, leeway = 5
+
+    def unsign(
+        self,
+        signed_value: str | bytes,
+        max_age: int | None = None,
+        return_timestamp: bool = False,
+        leeway: int = 0,
+    ) -&gt; tuple[bytes, datetime] | bytes:
+        """Works like the regular :meth:`.Signer.unsign` but can also
+        validate the time. See the base docstring of the class for
+        the general behavior. If ``return_timestamp`` is ``True`` the
+        timestamp of the signature will be returned as an aware
+        :class:`datetime.datetime` object in UTC.
+    
+        When ``max_age`` is given, ``leeway`` is a number of seconds of
+        clock skew tolerated for signatures dated in the future. It does
+        not extend ``max_age``. It must not be negative.
+    
+        .. versionchanged:: 2.0
+            The timestamp is returned as a timezone-aware ``datetime``
+            in UTC rather than a naive ``datetime`` assumed to be UTC.
+        """
+        if leeway &lt; 0:
+            raise ValueError("leeway must not be negative")
+    
+        try:
+            result = super().unsign(signed_value)
+            sig_error = None
+        except BadSignature as e:
+            sig_error = e
+            result = e.payload or b""
+    
+        sep = want_bytes(self.sep)
+    
+        # If there is no timestamp in the result there is something
+        # seriously wrong. In case there was a signature error, we raise
+        # that one directly, otherwise we have a weird situation in
+        # which we shouldn't have come except someone uses a time-based
+        # serializer on non-timestamp data, so catch that.
+        if sep not in result:
+            if sig_error:
+                raise sig_error
+    
+            raise BadTimeSignature("timestamp missing", payload=result)
+    
+        value, ts_bytes = result.rsplit(sep, 1)
+        ts_int: int | None = None
+        ts_dt: datetime | None = None
+    
+        try:
+            ts_int = bytes_to_int(base64_decode(ts_bytes))
+        except Exception:
+            pass
+    
+        # Signature is *not* okay. Raise a proper error now that we have
+        # split the value and the timestamp.
+        if sig_error is not None:
+            if ts_int is not None:
+                try:
+                    ts_dt = self.timestamp_to_datetime(ts_int)
+                except (ValueError, OSError, OverflowError) as exc:
+                    # Windows raises OSError
+                    # 32-bit raises OverflowError
+                    raise BadTimeSignature(
+                        "Malformed timestamp", payload=value
+                    ) from exc
+    
+            raise BadTimeSignature(str(sig_error), payload=value, date_signed=ts_dt)
+    
+        # Signature was okay but the timestamp is actually not there or
+        # malformed. Should not happen, but we handle it anyway.
+        if ts_int is None:
+            raise BadTimeSignature("Malformed timestamp", payload=value)
+    
+        # Check timestamp is not older than max_age
+        if max_age is not None:
+            age = self.get_timestamp() - ts_int
+    
+            if age &gt; max_age:
+                raise SignatureExpired(
+                    f"Signature age {age} &gt; {max_age} seconds",
+                    payload=value,
+                    date_signed=self.timestamp_to_datetime(ts_int),
+                )
+    
+            if age &lt; 0:
+&gt;               raise SignatureExpired(
+                    f"Signature age {age} &lt; -{leeway} seconds" if leeway else f"Signature age {age} &lt; 0 seconds",
+                    payload=value,
+                    date_signed=self.timestamp_to_datetime(ts_int),
+                )
+E               itsdangerous.exc.SignatureExpired: Signature age -5 &lt; -5 seconds
+
+src/itsdangerous/timed.py:159: SignatureExpired</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_future_beyond_leeway_rejected[-6]" time="0.006" /><testcase classname="tests.task_feature.test_leeway" name="test_future_beyond_leeway_rejected[-20]" time="0.006" /><testcase classname="tests.task_feature.test_leeway" name="test_leeway_does_not_extend_max_age" time="0.012" /><testcase classname="tests.task_feature.test_leeway" name="test_explicit_zero_leeway_rejects_future" time="0.010" /><testcase classname="tests.task_feature.test_leeway" name="test_negative_leeway_value_error[-1]" time="0.007" /><testcase classname="tests.task_feature.test_leeway" name="test_negative_leeway_value_error[-10]" time="0.006" /><testcase classname="tests.task_feature.test_leeway" name="test_validate_mirrors_unsign" time="0.006"><failure message="assert False is True&#10; +  where False = verify_at_30(&lt;function test_validate_mirrors_unsign.&lt;locals&gt;.&lt;lambda&gt; at 0x7fe8bd908040&gt;)">def test_validate_mirrors_unsign():  # AC6
+        s, tok = signed_with_age(-4)
+&gt;       assert verify_at_30(lambda: s.validate(tok, max_age=60, leeway=5)) is True
+E       assert False is True
+E        +  where False = verify_at_30(&lt;function test_validate_mirrors_unsign.&lt;locals&gt;.&lt;lambda&gt; at 0x7fe8bd908040&gt;)
+
+tests/task_feature/test_leeway.py:59: AssertionError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_serializer_loads_forwards_leeway" time="0.006"><failure message="itsdangerous.exc.SignatureExpired: Signature age -4 &lt; -5 seconds">def test_serializer_loads_forwards_leeway():  # AC7
+        ser = TimedSerializer("secret")
+        with freeze_time(SIGN_AT.format(34)):
+            tok = ser.dumps({"a": 1})
+&gt;       assert verify_at_30(lambda: ser.loads(tok, max_age=60, leeway=5)) == {"a": 1}
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_leeway.py:68: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+tests/task_feature/test_leeway.py:68: in &lt;lambda&gt;
+    assert verify_at_30(lambda: ser.loads(tok, max_age=60, leeway=5)) == {"a": 1}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/timed.py:217: in loads
+    base64d, timestamp = signer.unsign(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.timed.TimestampSigner object at 0x7fe8bd724750&gt;
+signed_value = b'{"a": 1}.ZZIAog.uDD7b0vCGrtTMvLQgncNuyWb8TE', max_age = 60
+return_timestamp = True, leeway = 5
+
+    def unsign(
+        self,
+        signed_value: str | bytes,
+        max_age: int | None = None,
+        return_timestamp: bool = False,
+        leeway: int = 0,
+    ) -&gt; tuple[bytes, datetime] | bytes:
+        """Works like the regular :meth:`.Signer.unsign` but can also
+        validate the time. See the base docstring of the class for
+        the general behavior. If ``return_timestamp`` is ``True`` the
+        timestamp of the signature will be returned as an aware
+        :class:`datetime.datetime` object in UTC.
+    
+        When ``max_age`` is given, ``leeway`` is a number of seconds of
+        clock skew tolerated for signatures dated in the future. It does
+        not extend ``max_age``. It must not be negative.
+    
+        .. versionchanged:: 2.0
+            The timestamp is returned as a timezone-aware ``datetime``
+            in UTC rather than a naive ``datetime`` assumed to be UTC.
+        """
+        if leeway &lt; 0:
+            raise ValueError("leeway must not be negative")
+    
+        try:
+            result = super().unsign(signed_value)
+            sig_error = None
+        except BadSignature as e:
+            sig_error = e
+            result = e.payload or b""
+    
+        sep = want_bytes(self.sep)
+    
+        # If there is no timestamp in the result there is something
+        # seriously wrong. In case there was a signature error, we raise
+        # that one directly, otherwise we have a weird situation in
+        # which we shouldn't have come except someone uses a time-based
+        # serializer on non-timestamp data, so catch that.
+        if sep not in result:
+            if sig_error:
+                raise sig_error
+    
+            raise BadTimeSignature("timestamp missing", payload=result)
+    
+        value, ts_bytes = result.rsplit(sep, 1)
+        ts_int: int | None = None
+        ts_dt: datetime | None = None
+    
+        try:
+            ts_int = bytes_to_int(base64_decode(ts_bytes))
+        except Exception:
+            pass
+    
+        # Signature is *not* okay. Raise a proper error now that we have
+        # split the value and the timestamp.
+        if sig_error is not None:
+            if ts_int is not None:
+                try:
+                    ts_dt = self.timestamp_to_datetime(ts_int)
+                except (ValueError, OSError, OverflowError) as exc:
+                    # Windows raises OSError
+                    # 32-bit raises OverflowError
+                    raise BadTimeSignature(
+                        "Malformed timestamp", payload=value
+                    ) from exc
+    
+            raise BadTimeSignature(str(sig_error), payload=value, date_signed=ts_dt)
+    
+        # Signature was okay but the timestamp is actually not there or
+        # malformed. Should not happen, but we handle it anyway.
+        if ts_int is None:
+            raise BadTimeSignature("Malformed timestamp", payload=value)
+    
+        # Check timestamp is not older than max_age
+        if max_age is not None:
+            age = self.get_timestamp() - ts_int
+    
+            if age &gt; max_age:
+                raise SignatureExpired(
+                    f"Signature age {age} &gt; {max_age} seconds",
+                    payload=value,
+                    date_signed=self.timestamp_to_datetime(ts_int),
+                )
+    
+            if age &lt; 0:
+&gt;               raise SignatureExpired(
+                    f"Signature age {age} &lt; -{leeway} seconds" if leeway else f"Signature age {age} &lt; 0 seconds",
+                    payload=value,
+                    date_signed=self.timestamp_to_datetime(ts_int),
+                )
+E               itsdangerous.exc.SignatureExpired: Signature age -4 &lt; -5 seconds
+
+src/itsdangerous/timed.py:159: SignatureExpired</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_tampered_signature_still_rejected_with_leeway" time="0.006" /><testcase classname="tests.task_feature.test_leeway" name="test_leeway_without_max_age_is_harmless" time="0.008" /><testcase classname="tests.task_feature.test_leeway" name="test_rejection_carries_date_signed" time="0.006" /><testcase classname="tests.task_feature.test_leeway" name="test_return_timestamp_with_leeway" time="0.006"><failure message="itsdangerous.exc.SignatureExpired: Signature age -2 &lt; -5 seconds">def test_return_timestamp_with_leeway():  # AC1 + return_timestamp
+        s, tok = signed_with_age(-2)
+&gt;       value, ts = verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5, return_timestamp=True))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_leeway.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+tests/task_feature/test_leeway.py:97: in &lt;lambda&gt;
+    value, ts = verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=5, return_timestamp=True))
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.timed.TimestampSigner object at 0x7fe8bd923e90&gt;
+signed_value = b'payload.ZZIAoA.Y4jEI0anJR6RSDUEt8SQdxLQrHs', max_age = 60
+return_timestamp = True, leeway = 5
+
+    def unsign(
+        self,
+        signed_value: str | bytes,
+        max_age: int | None = None,
+        return_timestamp: bool = False,
+        leeway: int = 0,
+    ) -&gt; tuple[bytes, datetime] | bytes:
+        """Works like the regular :meth:`.Signer.unsign` but can also
+        validate the time. See the base docstring of the class for
+        the general behavior. If ``return_timestamp`` is ``True`` the
+        timestamp of the signature will be returned as an aware
+        :class:`datetime.datetime` object in UTC.
+    
+        When ``max_age`` is given, ``leeway`` is a number of seconds of
+        clock skew tolerated for signatures dated in the future. It does
+        not extend ``max_age``. It must not be negative.
+    
+        .. versionchanged:: 2.0
+            The timestamp is returned as a timezone-aware ``datetime``
+            in UTC rather than a naive ``datetime`` assumed to be UTC.
+        """
+        if leeway &lt; 0:
+            raise ValueError("leeway must not be negative")
+    
+        try:
+            result = super().unsign(signed_value)
+            sig_error = None
+        except BadSignature as e:
+            sig_error = e
+            result = e.payload or b""
+    
+        sep = want_bytes(self.sep)
+    
+        # If there is no timestamp in the result there is something
+        # seriously wrong. In case there was a signature error, we raise
+        # that one directly, otherwise we have a weird situation in
+        # which we shouldn't have come except someone uses a time-based
+        # serializer on non-timestamp data, so catch that.
+        if sep not in result:
+            if sig_error:
+                raise sig_error
+    
+            raise BadTimeSignature("timestamp missing", payload=result)
+    
+        value, ts_bytes = result.rsplit(sep, 1)
+        ts_int: int | None = None
+        ts_dt: datetime | None = None
+    
+        try:
+            ts_int = bytes_to_int(base64_decode(ts_bytes))
+        except Exception:
+            pass
+    
+        # Signature is *not* okay. Raise a proper error now that we have
+        # split the value and the timestamp.
+        if sig_error is not None:
+            if ts_int is not None:
+                try:
+                    ts_dt = self.timestamp_to_datetime(ts_int)
+                except (ValueError, OSError, OverflowError) as exc:
+                    # Windows raises OSError
+                    # 32-bit raises OverflowError
+                    raise BadTimeSignature(
+                        "Malformed timestamp", payload=value
+                    ) from exc
+    
+            raise BadTimeSignature(str(sig_error), payload=value, date_signed=ts_dt)
+    
+        # Signature was okay but the timestamp is actually not there or
+        # malformed. Should not happen, but we handle it anyway.
+        if ts_int is None:
+            raise BadTimeSignature("Malformed timestamp", payload=value)
+    
+        # Check timestamp is not older than max_age
+        if max_age is not None:
+            age = self.get_timestamp() - ts_int
+    
+            if age &gt; max_age:
+                raise SignatureExpired(
+                    f"Signature age {age} &gt; {max_age} seconds",
+                    payload=value,
+                    date_signed=self.timestamp_to_datetime(ts_int),
+                )
+    
+            if age &lt; 0:
+&gt;               raise SignatureExpired(
+                    f"Signature age {age} &lt; -{leeway} seconds" if leeway else f"Signature age {age} &lt; 0 seconds",
+                    payload=value,
+                    date_signed=self.timestamp_to_datetime(ts_int),
+                )
+E               itsdangerous.exc.SignatureExpired: Signature age -2 &lt; -5 seconds
+
+src/itsdangerous/timed.py:159: SignatureExpired</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_negative_leeway_rejected_even_without_max_age" time="0.009" /></testsuite></testsuites>

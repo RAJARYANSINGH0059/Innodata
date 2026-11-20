@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "innodata-coding-task-factory"
+version = "0.1.0"
+description = "Phase 1 foundation for a repository-grounded, evidence-carrying coding task factory"
+requires-python = ">=3.11"
+license = { text = "Provisional; add a project license after checking all included dependencies and source assets" }
+authors = [{ name = "Phase 1 prototype team" }]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "freezegun>=1.5", "ruff>=0.6", "bandit>=1.7"]
+
+[project.scripts]
+taskfactory = "taskfactory.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["taskfactory*"]
+
+[tool.ruff.lint]
+select = ["E9", "F"]

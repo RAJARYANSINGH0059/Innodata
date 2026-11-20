@@ -1,0 +1,18 @@
+.......F                                                                 [100%]
+=================================== FAILURES ===================================
+________________ test_zero_limit_rejects_any_compressed_payload ________________
+
+    def test_zero_limit_rejects_any_compressed_payload():  # AC2 with N = 0 (0 is a limit, not "unset")
+        s = URLSafeSerializer(KEY)
+        tok = s.dumps("0" * 5000)
+        s.max_decompressed_size = 0
+>       with pytest.raises(BadPayload):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BadPayload
+
+tests/task_feature/test_decompress_limit.py:85: Failed
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_decompress_limit.py::test_zero_limit_rejects_any_compressed_payload
+1 failed, 7 passed in 0.22s
+
+--- stderr ---

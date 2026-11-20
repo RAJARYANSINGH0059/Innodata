@@ -1,0 +1,15 @@
+...F....                                                                 [100%]
+=================================== FAILURES ===================================
+______________________ test_default_is_none_and_unlimited ______________________
+
+    def test_default_is_none_and_unlimited():  # AC3
+>       assert URLSafeSerializer.max_decompressed_size is None
+E       assert 0 is None
+E        +  where 0 = URLSafeSerializer.max_decompressed_size
+
+tests/task_feature/test_decompress_limit.py:38: AssertionError
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_decompress_limit.py::test_default_is_none_and_unlimited
+1 failed, 7 passed in 0.20s
+
+--- stderr ---

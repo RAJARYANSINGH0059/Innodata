@@ -1,0 +1,28 @@
+[task]
+id = "itsdangerous-leeway-001"
+kind = "feature"
+title = "Clock-skew leeway for TimestampSigner.unsign / validate / TimedSerializer.loads"
+
+[repo]
+url = "https://github.com/pallets/itsdangerous"
+commit = "672971d66a2ef9f85151e53283113f33d642dabd"
+license = "BSD-3-Clause"
+
+[solution]
+patch = "solution/solution.diff"
+
+[tests]
+feature = "tests/feature"
+regression = "tests/regression"
+inject_dir = "tests"
+
+[run]
+baseline_targets = ["tests/test_itsdangerous"]
+pythonpath = ["src"]
+import_probe = "itsdangerous"
+timeout = 300
+repeats = 3
+
+[variation]
+dimensions = ["time-based-validation", "business-rule-tolerance", "api-parameter-extension", "input-validation"]
+summary = "Clock-skew tolerance in timestamp verification: new keyword threaded through signer, validate and serializer; arithmetic rule on timestamps."

@@ -1,0 +1,150 @@
+{
+  "results": [
+    {
+      "description": "boundary age==-leeway wrongly rejected",
+      "failed_tests": [
+        "test_future_within_leeway_accepted[-5]"
+      ],
+      "id": "M01_boundary_off_by_one",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "leeway accepted but ignored",
+      "failed_tests": [
+        "test_future_within_leeway_accepted[-1]",
+        "test_future_within_leeway_accepted[-3]",
+        "test_future_within_leeway_accepted[-5]",
+        "test_return_timestamp_with_leeway",
+        "test_serializer_loads_forwards_leeway",
+        "test_validate_mirrors_unsign"
+      ],
+      "id": "M02_leeway_ignored",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "leeway also extends max_age",
+      "failed_tests": [
+        "test_leeway_does_not_extend_max_age"
+      ],
+      "id": "M03_leeway_extends_max_age",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "validate() does not forward leeway",
+      "failed_tests": [
+        "test_negative_leeway_rejected_even_without_max_age",
+        "test_validate_mirrors_unsign"
+      ],
+      "id": "M04_validate_drops_leeway",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "loads() does not forward leeway",
+      "failed_tests": [
+        "test_serializer_loads_forwards_leeway"
+      ],
+      "id": "M05_serializer_drops_leeway",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "negative leeway silently accepted",
+      "failed_tests": [
+        "test_negative_leeway_rejected_even_without_max_age",
+        "test_negative_leeway_value_error[-10]",
+        "test_negative_leeway_value_error[-1]"
+      ],
+      "id": "M06_negative_leeway_unchecked",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "accepts one second beyond leeway",
+      "failed_tests": [
+        "test_explicit_zero_leeway_rejects_future",
+        "test_future_beyond_leeway_rejected[-6]",
+        "test_serializer_loads_forwards_leeway",
+        "test_validate_mirrors_unsign"
+      ],
+      "id": "M07_too_generous",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "TypeError instead of ValueError",
+      "failed_tests": [
+        "test_negative_leeway_rejected_even_without_max_age",
+        "test_negative_leeway_value_error[-10]",
+        "test_negative_leeway_value_error[-1]"
+      ],
+      "id": "M08_wrong_exception_type",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "leeway=0 disables future check",
+      "failed_tests": [],
+      "id": "M09_leeway_zero_means_unlimited",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "signature not verified when leeway>0",
+      "failed_tests": [
+        "test_tampered_signature_still_rejected_with_leeway"
+      ],
+      "id": "M10_skips_sig_check_when_leeway",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "negative leeway clamped instead of rejected",
+      "failed_tests": [
+        "test_negative_leeway_rejected_even_without_max_age",
+        "test_negative_leeway_value_error[-10]",
+        "test_negative_leeway_value_error[-1]"
+      ],
+      "id": "M11_negative_leeway_clamped",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "equivalent arithmetic form",
+      "failed_tests": [],
+      "id": "A02_alt_arithmetic_form",
+      "kind": "alt_valid",
+      "outcome": "ACCEPTED"
+    },
+    {
+      "description": "spec says negative leeway raises ValueError unconditionally",
+      "failed_tests": [
+        "test_negative_leeway_rejected_even_without_max_age"
+      ],
+      "id": "M12_negative_leeway_checked_only_with_max_age",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "exception message unspecified when leeway>0",
+      "failed_tests": [],
+      "id": "A01_alt_message_text",
+      "kind": "alt_valid",
+      "outcome": "ACCEPTED"
+    }
+  ],
+  "summary": {
+    "ACCEPTED": 2,
+    "EQUIVALENT": 0,
+    "INVALID": 0,
+    "KILLED": 12,
+    "MISLABELLED_EQUIVALENT": 0,
+    "REJECTED_VALID_ALTERNATIVE": 0,
+    "SURVIVED": 0,
+    "TIMEOUT": 0
+  },
+  "task_id": "itsdangerous-leeway-001"
+}

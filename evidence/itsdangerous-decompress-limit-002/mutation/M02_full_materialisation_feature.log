@@ -1,0 +1,25 @@
+....F...                                                                 [100%]
+=================================== FAILURES ===================================
+_______________ test_rejection_does_not_materialise_full_output ________________
+
+    def test_rejection_does_not_materialise_full_output():  # AC4
+        s = URLSafeSerializer(KEY)
+        tok = s.dumps("0" * (32 << 20))  # ~32 MiB when decompressed, tiny token
+        s.max_decompressed_size = 1024
+        tracemalloc.start()
+        try:
+            with pytest.raises(BadPayload):
+                s.loads(tok)
+            _, peak = tracemalloc.get_traced_memory()
+        finally:
+            tracemalloc.stop()
+>       assert peak < 4 << 20, f"peak {peak} bytes: output was materialised"
+E       AssertionError: peak 81264759 bytes: output was materialised
+E       assert 81264759 < (4 << 20)
+
+tests/task_feature/test_decompress_limit.py:55: AssertionError
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_decompress_limit.py::test_rejection_does_not_materialise_full_output
+1 failed, 7 passed in 0.24s
+
+--- stderr ---

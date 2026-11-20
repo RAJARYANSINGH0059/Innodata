@@ -1,0 +1,28 @@
+[task]
+id = "itsdangerous-decompress-limit-002"
+kind = "feature"
+title = "max_decompressed_size guard for URL-safe serializers (zip-bomb defence)"
+
+[repo]
+url = "https://github.com/pallets/itsdangerous"
+commit = "672971d66a2ef9f85151e53283113f33d642dabd"
+license = "BSD-3-Clause"
+
+[solution]
+patch = "solution/solution.diff"
+
+[tests]
+feature = "tests/feature"
+regression = "tests/regression"
+inject_dir = "tests"
+
+[run]
+baseline_targets = ["tests/test_itsdangerous"]
+pythonpath = ["src"]
+import_probe = "itsdangerous"
+timeout = 300
+repeats = 3
+
+[variation]
+dimensions = ["resource-limits-security", "streaming-decoding", "error-handling", "configuration-attribute"]
+summary = "Bounded zlib decompression in URL-safe payload decoding: stateful streaming, memory bound, failure semantics on unsafe loads."

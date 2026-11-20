@@ -1,0 +1,13 @@
+# DEFECTS
+- D-001 itsdangerous baseline needs undeclared dev dep `freezegun` (open; task.toml doesn't yet declare/install test deps).
+- D-002 (fixed) Test defect: `signed_with_age(-100)` built an invalid timestamp (`00:00:130`); caught by State B, not State A. Fixed by using age -25. Lesson: State A alone cannot detect broken feature tests.
+- D-003 (fixed) Harness bug: `run_mutants` did not resolve `out_dir`; JUnit reports landed in the temp workspace → every mutant looked "caught", 2 valid alternatives "rejected". Fixed; regression test added (relative out dir).
+- D-004 (fixed) Oracle gap: mutant M12 (ValueError only when max_age set) survived; added `test_negative_leeway_rejected_even_without_max_age`.
+- D-005 (open) `taskfactory.package.build_task_package` not yet wired to the orchestrator; task dir is hand-assembled (task.toml/instruction.md/solution/tests) following the speaker-described layout, not the organiser schema.
+- D-006 (open) Runner is not a sandbox; tasks execute on host. Needs container/Actions isolation.
+- D-007 (fixed) Test defect in tamper test: replace("HI","hi") was a no-op so tampering was not applied; test now mutates file for real and asserts the change.
+- D-008 (fixed) Task-2 tests AC5/AC8 passed in State A inside the feature dir (preservation tests); moved to regression dir so every feature test must fail in A.
+- D-009 (fixed) Oracle gap: limit=0 untested (M05 `if not limit` survived); added `test_zero_limit_rejects_any_compressed_payload`.
+- D-010 (fixed) Runner trusted "equivalent" labels; now reports MISLABELLED_EQUIVALENT if tests catch the variant.
+- D-011 (fixed) PYTHONPATH joined with ':' (breaks Windows) → os.pathsep (unverified on Windows).
+- D-012 (fixed) JUnit XML parsed without size cap → 50 MiB cap + entity-bomb test.

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="8" skipped="0" tests="8" time="0.312" timestamp="2026-11-20T02:56:17.291042+00:00" hostname="vm"><testcase classname="tests.task_feature.test_decompress_limit" name="test_oversized_compressed_payload_rejected[URLSafeSerializer]" time="0.007"><failure message="Failed: DID NOT RAISE BadPayload">cls = &lt;class 'itsdangerous.url_safe.URLSafeSerializer'&gt;
+
+    @pytest.mark.parametrize("cls", [URLSafeSerializer, URLSafeTimedSerializer])
+    def test_oversized_compressed_payload_rejected(cls):  # AC1
+        s = cls(KEY)
+        tok = s.dumps("0" * (1 &lt;&lt; 20))
+        s.max_decompressed_size = 1024
+&gt;       with pytest.raises(BadPayload):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BadPayload
+
+tests/task_feature/test_decompress_limit.py:22: Failed</failure></testcase><testcase classname="tests.task_feature.test_decompress_limit" name="test_oversized_compressed_payload_rejected[URLSafeTimedSerializer]" time="0.006"><failure message="Failed: DID NOT RAISE BadPayload">cls = &lt;class 'itsdangerous.url_safe.URLSafeTimedSerializer'&gt;
+
+    @pytest.mark.parametrize("cls", [URLSafeSerializer, URLSafeTimedSerializer])
+    def test_oversized_compressed_payload_rejected(cls):  # AC1
+        s = cls(KEY)
+        tok = s.dumps("0" * (1 &lt;&lt; 20))
+        s.max_decompressed_size = 1024
+&gt;       with pytest.raises(BadPayload):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BadPayload
+
+tests/task_feature/test_decompress_limit.py:22: Failed</failure></testcase><testcase classname="tests.task_feature.test_decompress_limit" name="test_exact_size_boundary" time="0.001"><failure message="Failed: DID NOT RAISE BadPayload">def test_exact_size_boundary():  # AC2
+        n = 5000
+        s = URLSafeSerializer(KEY)
+        tok = s.dumps("0" * n)
+        s.max_decompressed_size = json_len(n)
+        assert s.loads(tok) == "0" * n
+        s.max_decompressed_size = json_len(n) - 1
+&gt;       with pytest.raises(BadPayload):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BadPayload
+
+tests/task_feature/test_decompress_limit.py:33: Failed</failure></testcase><testcase classname="tests.task_feature.test_decompress_limit" name="test_default_is_none_and_unlimited" time="0.000"><failure message="AttributeError: type object 'URLSafeSerializer' has no attribute 'max_decompressed_size'">def test_default_is_none_and_unlimited():  # AC3
+&gt;       assert URLSafeSerializer.max_decompressed_size is None
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AttributeError: type object 'URLSafeSerializer' has no attribute 'max_decompressed_size'
+
+tests/task_feature/test_decompress_limit.py:38: AttributeError</failure></testcase><testcase classname="tests.task_feature.test_decompress_limit" name="test_rejection_does_not_materialise_full_output" time="0.236"><failure message="Failed: DID NOT RAISE BadPayload">def test_rejection_does_not_materialise_full_output():  # AC4
+        s = URLSafeSerializer(KEY)
+        tok = s.dumps("0" * (32 &lt;&lt; 20))  # ~32 MiB when decompressed, tiny token
+        s.max_decompressed_size = 1024
+        tracemalloc.start()
+        try:
+&gt;           with pytest.raises(BadPayload):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE BadPayload
+
+tests/task_feature/test_decompress_limit.py:50: Failed</failure></testcase><testcase classname="tests.task_feature.test_decompress_limit" name="test_loads_unsafe_oversized_invalid_signature" time="0.011"><failure message="AssertionError: assert (False, '0000...000000000000') == (False, None)&#10;  &#10;  At index 1 diff: '00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000...&#10;  &#10;  ...Full output truncated (2 lines hidden), use '-vv' to show">def test_loads_unsafe_oversized_invalid_signature():  # AC6
+        s = URLSafeSerializer(KEY)
+        other = URLSafeSerializer("different-key")
+        s.max_decompressed_size = 1024
+        sig_bad = other.dumps("0" * (1 &lt;&lt; 20))  # valid under another key =&gt; invalid signature here
+&gt;       assert s.loads_unsafe(sig_bad) == (False, None)
+E       AssertionError: assert (False, '0000...000000000000') == (False, None)
+E         
+E         At index 1 diff: '00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show
+
+tests/task_feature/test_decompress_limit.py:65: AssertionError</failure></testcase><testcase classname="tests.task_feature.test_decompress_limit" name="test_subclass_and_instance_configuration" time="0.001"><failure message="Failed: DID NOT RAISE BadPayload">def test_subclass_and_instance_configuration():  # AC7
+        class Limited(URLSafeSerializer):
+            max_decompressed_size = 100
+    
+        tok = URLSafeSerializer(KEY).dumps("0" * 10_000)
+&gt;       with pytest.raises(BadPayload):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BadPayload
+
+tests/task_feature/test_decompress_limit.py:73: Failed</failure></testcase><testcase classname="tests.task_feature.test_decompress_limit" name="test_zero_limit_rejects_any_compressed_payload" time="0.001"><failure message="Failed: DID NOT RAISE BadPayload">def test_zero_limit_rejects_any_compressed_payload():  # AC2 with N = 0 (0 is a limit, not "unset")
+        s = URLSafeSerializer(KEY)
+        tok = s.dumps("0" * 5000)
+        s.max_decompressed_size = 0
+&gt;       with pytest.raises(BadPayload):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BadPayload
+
+tests/task_feature/test_decompress_limit.py:85: Failed</failure></testcase></testsuite></testsuites>

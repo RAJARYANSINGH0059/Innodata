@@ -1,0 +1,17 @@
+...........F....                                                         [100%]
+=================================== FAILURES ===================================
+______________ test_tampered_signature_still_rejected_with_leeway ______________
+
+    def test_tampered_signature_still_rejected_with_leeway():  # AC8
+        s, tok = signed_with_age(-2)
+        bad = tok[:-1] + (b"A" if tok[-1:] != b"A" else b"B")
+>       with pytest.raises(BadSignature):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BadSignature
+
+tests/task_feature/test_leeway.py:78: Failed
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_leeway.py::test_tampered_signature_still_rejected_with_leeway
+1 failed, 15 passed in 0.19s
+
+--- stderr ---

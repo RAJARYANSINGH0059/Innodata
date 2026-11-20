@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="4" time="0.091" timestamp="2026-11-20T02:55:45.805523+00:00" hostname="vm"><testcase classname="tests.task_regression.test_default_behaviour" name="test_future_rejected_by_default_with_max_age" time="0.027"><failure message="Failed: DID NOT RAISE SignatureExpired">def test_future_rejected_by_default_with_max_age():
+        s, tok = _tok(31)
+        with freeze_time("2024-01-01 00:00:30"):
+&gt;           with pytest.raises(SignatureExpired):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE SignatureExpired
+
+tests/task_regression/test_default_behaviour.py:18: Failed</failure></testcase><testcase classname="tests.task_regression.test_default_behaviour" name="test_expired_rejected_by_default" time="0.007" /><testcase classname="tests.task_regression.test_default_behaviour" name="test_future_accepted_without_max_age" time="0.006" /><testcase classname="tests.task_regression.test_default_behaviour" name="test_validate_and_serializer_defaults" time="0.010"><failure message="AssertionError: assert True is False&#10; +  where True = validate(b'v.ZZIAnw.h7zcUmkI42TaF-0hqHjpRMH1r4A', max_age=60)&#10; +    where validate = &lt;itsdangerous.timed.TimestampSigner object at 0x7f169597ac40&gt;.validate">def test_validate_and_serializer_defaults():
+        s, tok = _tok(31)
+        ser = TimedSerializer("secret")
+        with freeze_time("2024-01-01 00:00:31"):
+            stok = ser.dumps([1])
+        with freeze_time("2024-01-01 00:00:30"):
+&gt;           assert s.validate(tok, max_age=60) is False
+E           AssertionError: assert True is False
+E            +  where True = validate(b'v.ZZIAnw.h7zcUmkI42TaF-0hqHjpRMH1r4A', max_age=60)
+E            +    where validate = &lt;itsdangerous.timed.TimestampSigner object at 0x7f169597ac40&gt;.validate
+
+tests/task_regression/test_default_behaviour.py:42: AssertionError</failure></testcase></testsuite></testsuites>

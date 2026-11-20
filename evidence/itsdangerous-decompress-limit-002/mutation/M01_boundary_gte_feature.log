@@ -1,0 +1,46 @@
+..F.....                                                                 [100%]
+=================================== FAILURES ===================================
+___________________________ test_exact_size_boundary ___________________________
+
+    def test_exact_size_boundary():  # AC2
+        n = 5000
+        s = URLSafeSerializer(KEY)
+        tok = s.dumps("0" * n)
+        s.max_decompressed_size = json_len(n)
+>       assert s.loads(tok) == "0" * n
+               ^^^^^^^^^^^^
+
+tests/task_feature/test_decompress_limit.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:339: in loads
+    return self.load_payload(signer.unsign(s))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <itsdangerous.url_safe.URLSafeSerializer object at 0x7fa817ec3110>
+data = b'x\x9c\xed\xc1\xb1\x00\x00\x00\x00\x020\x97\x08\xf2\xa7\x8b\xa2o[\n\x00\x00\x00\x00\xdce\x89C\xa9\xf2'
+
+    def _decompress(self, data: bytes) -> bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) >= limit or d.unconsumed_tail:
+>           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 5002 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_decompress_limit.py::test_exact_size_boundary
+1 failed, 7 passed in 0.21s
+
+--- stderr ---

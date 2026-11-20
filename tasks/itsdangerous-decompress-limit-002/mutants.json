@@ -1,0 +1,122 @@
+[
+ {
+  "id": "M01_boundary_gte",
+  "kind": "wrong",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "        if len(out) > limit or d.unconsumed_tail:",
+  "new": "        if len(out) >= limit or d.unconsumed_tail:",
+  "description": "size == N wrongly rejected"
+ },
+ {
+  "id": "M02_full_materialisation",
+  "kind": "wrong",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "out = d.decompress(data, limit + 1)",
+  "new": "out = d.decompress(data)",
+  "description": "decompresses everything before checking"
+ },
+ {
+  "id": "M03_off_by_one_accepts_N_plus_1",
+  "kind": "equivalent",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "        if len(out) > limit or d.unconsumed_tail:",
+  "new": "        if len(out) > limit + 1 or d.unconsumed_tail:",
+  "description": "accepts N+1 bytes | classified equivalent AFTER observation: redundant with post-flush check (defence in depth)"
+ },
+ {
+  "id": "M04_default_zero",
+  "kind": "wrong",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "max_decompressed_size: int | None = None",
+  "new": "max_decompressed_size: int | None = 0",
+  "description": "default is not unlimited"
+ },
+ {
+  "id": "M05_falsy_limit_means_unlimited",
+  "kind": "wrong",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "if limit is None:",
+  "new": "if not limit:",
+  "description": "limit 0 treated as unlimited"
+ },
+ {
+  "id": "M06_limit_ignored",
+  "kind": "wrong",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "        limit = self.max_decompressed_size\n",
+  "new": "        limit = None\n",
+  "description": "attribute ignored"
+ },
+ {
+  "id": "M07_limit_class_shared_mutation",
+  "kind": "wrong",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "        limit = self.max_decompressed_size\n",
+  "new": "        limit = type(self).max_decompressed_size\n",
+  "description": "instance override ignored"
+ },
+ {
+  "id": "M08_tail_check_removed",
+  "kind": "equivalent",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "        if len(out) > limit or d.unconsumed_tail:",
+  "new": "        if len(out) > limit:",
+  "description": "tail check removed (suspected equivalent) | classified equivalent AFTER observation: redundant: output is capped at limit+1 so len(out)>limit already fires"
+ },
+ {
+  "id": "M09_post_flush_check_removed",
+  "kind": "equivalent",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "        out += d.flush()\n\n        if len(out) > limit:\n            raise BadPayload(f\"Decompressed payload is larger than {limit} bytes\")\n\n",
+  "new": "        out += d.flush()\n\n",
+  "description": "post-flush check removed (suspected equivalent) | classified equivalent AFTER observation: redundant with pre-flush check"
+ },
+ {
+  "id": "M10_returns_truncated_instead_of_error",
+  "kind": "equivalent",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "            raise BadPayload(\n                f\"Decompressed payload is larger than {limit} bytes\",\n            )\n",
+  "new": "            return out[:limit]\n",
+  "description": "truncates silently | classified equivalent AFTER observation: truncated JSON is invalid, so BadPayload still raised (weak mutant)"
+ },
+ {
+  "id": "M11_limit_applies_to_uncompressed",
+  "kind": "wrong",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "        decompress = False\n",
+  "new": "        decompress = False\n        if self.max_decompressed_size is not None and len(payload) > self.max_decompressed_size and not payload.startswith(b'.'):\n            raise BadPayload('too large')\n",
+  "description": "limit wrongly applied to uncompressed payloads"
+ },
+ {
+  "id": "M12_bare_zlib_error_swallowed",
+  "kind": "equivalent",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "            except BadPayload:\n                raise\n            except Exception as e:",
+  "new": "            except Exception:\n                return super().load_payload(json, *args, **kwargs)\n            except BadPayload:\n                raise\n            except Exception as e:",
+  "description": "corrupt data not rejected | classified equivalent AFTER observation: fallback parses raw zlib bytes as JSON, still BadPayload (weak mutant)"
+ },
+ {
+  "id": "A01_alt_chunked_streaming",
+  "kind": "alt_valid",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "        d = zlib.decompressobj()\n        out = d.decompress(data, limit + 1)\n\n        if len(out) > limit or d.unconsumed_tail:\n            raise BadPayload(\n                f\"Decompressed payload is larger than {limit} bytes\",\n            )\n\n        out += d.flush()\n\n        if len(out) > limit:\n            raise BadPayload(f\"Decompressed payload is larger than {limit} bytes\")\n\n        return out\n",
+  "new": "        d = zlib.decompressobj()\n        out = b\"\"\n        rest = data\n\n        while rest:\n            out += d.decompress(rest, 4096)\n            rest = d.unconsumed_tail\n\n            if len(out) > limit:\n                raise BadPayload(\"Decompressed payload is too large\")\n\n        out += d.flush()\n\n        if len(out) > limit:\n            raise BadPayload(\"Decompressed payload is too large\")\n\n        return out\n",
+  "description": "chunked decompression loop"
+ },
+ {
+  "id": "A02_alt_value_error_wrapped",
+  "kind": "alt_valid",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "        if len(out) > limit or d.unconsumed_tail:\n            raise BadPayload(\n                f\"Decompressed payload is larger than {limit} bytes\",\n            )",
+  "new": "        if len(out) > limit or d.unconsumed_tail:\n            raise ValueError('too big')",
+  "description": "error type wrapped to BadPayload by caller; message unspecified"
+ },
+ {
+  "id": "M13_both_size_checks_removed",
+  "kind": "wrong",
+  "file": "src/itsdangerous/url_safe.py",
+  "old": "        if len(out) > limit or d.unconsumed_tail:\n            raise BadPayload(\n                f\"Decompressed payload is larger than {limit} bytes\",\n            )\n\n        out += d.flush()\n\n        if len(out) > limit:\n            raise BadPayload(f\"Decompressed payload is larger than {limit} bytes\")\n",
+  "new": "        out += d.flush()\n",
+  "description": "removes BOTH redundant checks; limit enforced nowhere"
+ }
+]

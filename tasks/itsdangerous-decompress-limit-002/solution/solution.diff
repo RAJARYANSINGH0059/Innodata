@@ -1,0 +1,55 @@
+diff --git a/src/itsdangerous/url_safe.py b/src/itsdangerous/url_safe.py
+index 56a0793..4435abb 100644
+--- a/src/itsdangerous/url_safe.py
++++ b/src/itsdangerous/url_safe.py
+@@ -20,6 +20,11 @@ class URLSafeSerializerMixin(Serializer[str]):
+ 
+     default_serializer: _PDataSerializer[str] = _CompactJSON
+ 
++    #: Maximum number of bytes a compressed payload may expand to when
++    #: loaded. ``None`` disables the limit. Exceeding it raises
++    #: :exc:`.BadPayload` without decompressing the remainder.
++    max_decompressed_size: int | None = None
++
+     def load_payload(
+         self,
+         payload: bytes,
+@@ -43,7 +48,9 @@ class URLSafeSerializerMixin(Serializer[str]):
+ 
+         if decompress:
+             try:
+-                json = zlib.decompress(json)
++                json = self._decompress(json)
++            except BadPayload:
++                raise
+             except Exception as e:
+                 raise BadPayload(
+                     "Could not zlib decompress the payload before decoding the payload",
+@@ -52,6 +59,27 @@ class URLSafeSerializerMixin(Serializer[str]):
+ 
+         return super().load_payload(json, *args, **kwargs)
+ 
++    def _decompress(self, data: bytes) -> bytes:
++        limit = self.max_decompressed_size
++
++        if limit is None:
++            return zlib.decompress(data)
++
++        d = zlib.decompressobj()
++        out = d.decompress(data, limit + 1)
++
++        if len(out) > limit or d.unconsumed_tail:
++            raise BadPayload(
++                f"Decompressed payload is larger than {limit} bytes",
++            )
++
++        out += d.flush()
++
++        if len(out) > limit:
++            raise BadPayload(f"Decompressed payload is larger than {limit} bytes")
++
++        return out
++
+     def dump_payload(self, obj: t.Any) -> bytes:
+         json = super().dump_payload(obj)
+         is_compressed = False

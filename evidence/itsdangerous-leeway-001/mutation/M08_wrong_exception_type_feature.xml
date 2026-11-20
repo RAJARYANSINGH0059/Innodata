@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="16" time="0.201" timestamp="2026-11-20T02:55:47.165034+00:00" hostname="vm"><testcase classname="tests.task_feature.test_leeway" name="test_future_within_leeway_accepted[-1]" time="0.026" /><testcase classname="tests.task_feature.test_leeway" name="test_future_within_leeway_accepted[-3]" time="0.006" /><testcase classname="tests.task_feature.test_leeway" name="test_future_within_leeway_accepted[-5]" time="0.007" /><testcase classname="tests.task_feature.test_leeway" name="test_future_beyond_leeway_rejected[-6]" time="0.007" /><testcase classname="tests.task_feature.test_leeway" name="test_future_beyond_leeway_rejected[-20]" time="0.006" /><testcase classname="tests.task_feature.test_leeway" name="test_leeway_does_not_extend_max_age" time="0.012" /><testcase classname="tests.task_feature.test_leeway" name="test_explicit_zero_leeway_rejects_future" time="0.007" /><testcase classname="tests.task_feature.test_leeway" name="test_negative_leeway_value_error[-1]" time="0.006"><failure message="TypeError: leeway must not be negative">bad = -1
+
+    @pytest.mark.parametrize("bad", [-1, -10])  # AC5
+    def test_negative_leeway_value_error(bad):
+        s, tok = signed_with_age(0)
+        with pytest.raises(ValueError):
+&gt;           verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=bad))
+
+tests/task_feature/test_leeway.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+tests/task_feature/test_leeway.py:54: in &lt;lambda&gt;
+    verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=bad))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.timed.TimestampSigner object at 0x7f846b780950&gt;
+signed_value = b'payload.ZZIAng.yEXsn3CQymN4_ZJzwkywvpYdoMk', max_age = 60
+return_timestamp = False, leeway = -1
+
+    def unsign(
+        self,
+        signed_value: str | bytes,
+        max_age: int | None = None,
+        return_timestamp: bool = False,
+        leeway: int = 0,
+    ) -&gt; tuple[bytes, datetime] | bytes:
+        """Works like the regular :meth:`.Signer.unsign` but can also
+        validate the time. See the base docstring of the class for
+        the general behavior. If ``return_timestamp`` is ``True`` the
+        timestamp of the signature will be returned as an aware
+        :class:`datetime.datetime` object in UTC.
+    
+        When ``max_age`` is given, ``leeway`` is a number of seconds of
+        clock skew tolerated for signatures dated in the future. It does
+        not extend ``max_age``. It must not be negative.
+    
+        .. versionchanged:: 2.0
+            The timestamp is returned as a timezone-aware ``datetime``
+            in UTC rather than a naive ``datetime`` assumed to be UTC.
+        """
+        if leeway &lt; 0:
+&gt;           raise TypeError("leeway must not be negative")
+E           TypeError: leeway must not be negative
+
+src/itsdangerous/timed.py:96: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_negative_leeway_value_error[-10]" time="0.006"><failure message="TypeError: leeway must not be negative">bad = -10
+
+    @pytest.mark.parametrize("bad", [-1, -10])  # AC5
+    def test_negative_leeway_value_error(bad):
+        s, tok = signed_with_age(0)
+        with pytest.raises(ValueError):
+&gt;           verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=bad))
+
+tests/task_feature/test_leeway.py:54: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+tests/task_feature/test_leeway.py:54: in &lt;lambda&gt;
+    verify_at_30(lambda: s.unsign(tok, max_age=60, leeway=bad))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.timed.TimestampSigner object at 0x7f846b781d50&gt;
+signed_value = b'payload.ZZIAng.yEXsn3CQymN4_ZJzwkywvpYdoMk', max_age = 60
+return_timestamp = False, leeway = -10
+
+    def unsign(
+        self,
+        signed_value: str | bytes,
+        max_age: int | None = None,
+        return_timestamp: bool = False,
+        leeway: int = 0,
+    ) -&gt; tuple[bytes, datetime] | bytes:
+        """Works like the regular :meth:`.Signer.unsign` but can also
+        validate the time. See the base docstring of the class for
+        the general behavior. If ``return_timestamp`` is ``True`` the
+        timestamp of the signature will be returned as an aware
+        :class:`datetime.datetime` object in UTC.
+    
+        When ``max_age`` is given, ``leeway`` is a number of seconds of
+        clock skew tolerated for signatures dated in the future. It does
+        not extend ``max_age``. It must not be negative.
+    
+        .. versionchanged:: 2.0
+            The timestamp is returned as a timezone-aware ``datetime``
+            in UTC rather than a naive ``datetime`` assumed to be UTC.
+        """
+        if leeway &lt; 0:
+&gt;           raise TypeError("leeway must not be negative")
+E           TypeError: leeway must not be negative
+
+src/itsdangerous/timed.py:96: TypeError</failure></testcase><testcase classname="tests.task_feature.test_leeway" name="test_validate_mirrors_unsign" time="0.012" /><testcase classname="tests.task_feature.test_leeway" name="test_serializer_loads_forwards_leeway" time="0.012" /><testcase classname="tests.task_feature.test_leeway" name="test_tampered_signature_still_rejected_with_leeway" time="0.006" /><testcase classname="tests.task_feature.test_leeway" name="test_leeway_without_max_age_is_harmless" time="0.006" /><testcase classname="tests.task_feature.test_leeway" name="test_rejection_carries_date_signed" time="0.006" /><testcase classname="tests.task_feature.test_leeway" name="test_return_timestamp_with_leeway" time="0.006" /><testcase classname="tests.task_feature.test_leeway" name="test_negative_leeway_rejected_even_without_max_age" time="0.006"><failure message="TypeError: leeway must not be negative">def test_negative_leeway_rejected_even_without_max_age():  # AC5: unconditional ValueError
+        s, tok = signed_with_age(0)
+        with pytest.raises(ValueError):
+&gt;           verify_at_30(lambda: s.unsign(tok, leeway=-1))
+
+tests/task_feature/test_leeway.py:104: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/task_feature/test_leeway.py:20: in verify_at_30
+    return fn()
+           ^^^^
+tests/task_feature/test_leeway.py:104: in &lt;lambda&gt;
+    verify_at_30(lambda: s.unsign(tok, leeway=-1))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.timed.TimestampSigner object at 0x7f846b7fc410&gt;
+signed_value = b'payload.ZZIAng.yEXsn3CQymN4_ZJzwkywvpYdoMk', max_age = None
+return_timestamp = False, leeway = -1
+
+    def unsign(
+        self,
+        signed_value: str | bytes,
+        max_age: int | None = None,
+        return_timestamp: bool = False,
+        leeway: int = 0,
+    ) -&gt; tuple[bytes, datetime] | bytes:
+        """Works like the regular :meth:`.Signer.unsign` but can also
+        validate the time. See the base docstring of the class for
+        the general behavior. If ``return_timestamp`` is ``True`` the
+        timestamp of the signature will be returned as an aware
+        :class:`datetime.datetime` object in UTC.
+    
+        When ``max_age`` is given, ``leeway`` is a number of seconds of
+        clock skew tolerated for signatures dated in the future. It does
+        not extend ``max_age``. It must not be negative.
+    
+        .. versionchanged:: 2.0
+            The timestamp is returned as a timezone-aware ``datetime``
+            in UTC rather than a naive ``datetime`` assumed to be UTC.
+        """
+        if leeway &lt; 0:
+&gt;           raise TypeError("leeway must not be negative")
+E           TypeError: leeway must not be negative
+
+src/itsdangerous/timed.py:96: TypeError</failure></testcase></testsuite></testsuites>

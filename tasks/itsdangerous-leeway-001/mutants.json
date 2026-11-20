@@ -1,0 +1,114 @@
+[
+ {
+  "id": "M01_boundary_off_by_one",
+  "kind": "wrong",
+  "file": "src/itsdangerous/timed.py",
+  "old": "if age < -leeway:",
+  "new": "if age <= -leeway:",
+  "description": "boundary age==-leeway wrongly rejected"
+ },
+ {
+  "id": "M02_leeway_ignored",
+  "kind": "wrong",
+  "file": "src/itsdangerous/timed.py",
+  "old": "if age < -leeway:",
+  "new": "if age < 0:",
+  "description": "leeway accepted but ignored"
+ },
+ {
+  "id": "M03_leeway_extends_max_age",
+  "kind": "wrong",
+  "file": "src/itsdangerous/timed.py",
+  "old": "if age > max_age:",
+  "new": "if age > max_age + leeway:",
+  "description": "leeway also extends max_age"
+ },
+ {
+  "id": "M04_validate_drops_leeway",
+  "kind": "wrong",
+  "file": "src/itsdangerous/timed.py",
+  "old": "self.unsign(signed_value, max_age=max_age, leeway=leeway)",
+  "new": "self.unsign(signed_value, max_age=max_age)",
+  "description": "validate() does not forward leeway"
+ },
+ {
+  "id": "M05_serializer_drops_leeway",
+  "kind": "wrong",
+  "file": "src/itsdangerous/timed.py",
+  "old": "s, max_age=max_age, return_timestamp=True, leeway=leeway",
+  "new": "s, max_age=max_age, return_timestamp=True",
+  "description": "loads() does not forward leeway"
+ },
+ {
+  "id": "M06_negative_leeway_unchecked",
+  "kind": "wrong",
+  "file": "src/itsdangerous/timed.py",
+  "old": "        if leeway < 0:\n            raise ValueError(\"leeway must not be negative\")\n\n",
+  "new": "",
+  "description": "negative leeway silently accepted"
+ },
+ {
+  "id": "M07_too_generous",
+  "kind": "wrong",
+  "file": "src/itsdangerous/timed.py",
+  "old": "if age < -leeway:",
+  "new": "if age < -leeway - 1:",
+  "description": "accepts one second beyond leeway"
+ },
+ {
+  "id": "M08_wrong_exception_type",
+  "kind": "wrong",
+  "file": "src/itsdangerous/timed.py",
+  "old": "raise ValueError(\"leeway must not be negative\")",
+  "new": "raise TypeError(\"leeway must not be negative\")",
+  "description": "TypeError instead of ValueError"
+ },
+ {
+  "id": "M09_leeway_zero_means_unlimited",
+  "kind": "wrong",
+  "file": "src/itsdangerous/timed.py",
+  "old": "if age < -leeway:",
+  "new": "if leeway == 0 or age < -leeway:",
+  "description": "leeway=0 disables future check"
+ },
+ {
+  "id": "M10_skips_sig_check_when_leeway",
+  "kind": "wrong",
+  "file": "src/itsdangerous/timed.py",
+  "old": "            result = super().unsign(signed_value)\n            sig_error = None",
+  "new": "            result = super().unsign(signed_value) if not leeway else signed_value.rsplit(b'.', 1)[0]\n            sig_error = None",
+  "description": "signature not verified when leeway>0"
+ },
+ {
+  "id": "M11_negative_leeway_clamped",
+  "kind": "wrong",
+  "file": "src/itsdangerous/timed.py",
+  "old": "raise ValueError(\"leeway must not be negative\")",
+  "new": "leeway = 0",
+  "description": "negative leeway clamped instead of rejected"
+ },
+ {
+  "id": "A02_alt_arithmetic_form",
+  "kind": "alt_valid",
+  "file": "src/itsdangerous/timed.py",
+  "old": "if age < -leeway:",
+  "new": "if age + leeway < 0:",
+  "description": "equivalent arithmetic form"
+ },
+ {
+  "id": "M12_negative_leeway_checked_only_with_max_age",
+  "kind": "wrong",
+  "file": "src/itsdangerous/timed.py",
+  "old": "        if leeway < 0:\n            raise ValueError(\"leeway must not be negative\")\n\n        try:",
+  "new": "        if max_age is not None and leeway < 0:\n            raise ValueError(\"leeway must not be negative\")\n\n        try:",
+  "description": "spec says negative leeway raises ValueError unconditionally"
+ },
+ {
+  "id": "A01_alt_message_text",
+  "kind": "alt_valid",
+  "file": "src/itsdangerous/timed.py",
+  "old": "f\"Signature age {age} < -{leeway} seconds\" if leeway else f\"Signature age {age} < 0 seconds\"",
+  "new": "f\"Signature is {-age}s in the future (leeway {leeway}s)\"",
+  "description": "exception message unspecified when leeway>0"
+ }
+]

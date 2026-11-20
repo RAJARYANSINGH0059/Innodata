@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="5" time="0.045" timestamp="2026-11-20T02:56:37.876909+00:00" hostname="vm"><testcase classname="tests.task_regression.test_payload_behaviour" name="test_roundtrip_compressed_and_uncompressed" time="0.001"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">def test_roundtrip_compressed_and_uncompressed():
+        s = URLSafeSerializer(KEY)
+&gt;       assert s.loads(s.dumps("0" * 50_000)) == "0" * 50_000
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_regression/test_payload_behaviour.py:13: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:339: in loads
+    return self.load_payload(signer.unsign(s))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7fc6c68bcc20&gt;
+data = b'x\x9c\xed\xc1\x81\x0c\x00\x00\x00\x020\x97\x08\xf2\xa7\xcb\xa3\xfdO\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\...0\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xb8\x92\x01\x98\x0e\xa1a'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.task_regression.test_payload_behaviour" name="test_corrupt_zlib_is_bad_payload" time="0.000" /><testcase classname="tests.task_regression.test_payload_behaviour" name="test_instances_are_independent" time="0.000"><failure message="itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes">def test_instances_are_independent():
+        a, b = URLSafeSerializer(KEY), URLSafeSerializer(KEY)
+        a.max_decompressed_size = 10
+&gt;       assert b.loads(b.dumps("0" * 5000)) == "0" * 5000
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_regression/test_payload_behaviour.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:339: in loads
+    return self.load_payload(signer.unsign(s))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/itsdangerous/url_safe.py:51: in load_payload
+    json = self._decompress(json)
+           ^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.url_safe.URLSafeSerializer object at 0x7fc6c682dba0&gt;
+data = b'x\x9c\xed\xc1\xb1\x00\x00\x00\x00\x020\x97\x08\xf2\xa7\x8b\xa2o[\n\x00\x00\x00\x00\xdce\x89C\xa9\xf2'
+
+    def _decompress(self, data: bytes) -&gt; bytes:
+        limit = self.max_decompressed_size
+    
+        if limit is None:
+            return zlib.decompress(data)
+    
+        d = zlib.decompressobj()
+        out = d.decompress(data, limit + 1)
+    
+        if len(out) &gt; limit or d.unconsumed_tail:
+&gt;           raise BadPayload(
+                f"Decompressed payload is larger than {limit} bytes",
+            )
+E           itsdangerous.exc.BadPayload: Decompressed payload is larger than 0 bytes
+
+src/itsdangerous/url_safe.py:72: BadPayload</failure></testcase><testcase classname="tests.task_regression.test_payload_behaviour" name="test_uncompressed_payload_unaffected" time="0.000" /><testcase classname="tests.task_regression.test_payload_behaviour" name="test_corrupt_zlib_still_bad_payload_with_limit" time="0.000" /></testsuite></testsuites>
