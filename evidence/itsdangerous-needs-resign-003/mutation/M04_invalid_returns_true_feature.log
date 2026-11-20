@@ -1,0 +1,78 @@
+...F.F..FFFF                                                             [100%]
+=================================== FAILURES ===================================
+____________________ test_tampered_or_unknown_key_rejected _____________________
+
+    def test_tampered_or_unknown_key_rejected():  # AC4
+        s = Serializer(["k1", "k2"])
+        tok = s.dumps("x")
+        bad = tok[:-1] + ("A" if tok[-1] != "A" else "B")
+>       with pytest.raises(BadSignature):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BadSignature
+
+tests/task_feature/test_needs_resign.py:35: Failed
+____________________________ test_salt_is_honoured _____________________________
+
+    def test_salt_is_honoured():  # AC6
+        s = Serializer(["k1", "k2"])
+        tok = s.dumps(1, salt="ctx")
+        assert s.needs_resign(tok, salt="ctx") is False
+>       with pytest.raises(BadSignature):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BadSignature
+
+tests/task_feature/test_needs_resign.py:55: Failed
+____________________ test_garbage_input_is_bad_signature[0] ____________________
+
+junk = ''
+
+    @pytest.mark.parametrize("junk", ["", "no-signature-here", b"", "a.b.c"])
+    def test_garbage_input_is_bad_signature(junk):  # AC9
+>       with pytest.raises(BadSignature):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BadSignature
+
+tests/task_feature/test_needs_resign.py:86: Failed
+____________ test_garbage_input_is_bad_signature[no-signature-here] ____________
+
+junk = 'no-signature-here'
+
+    @pytest.mark.parametrize("junk", ["", "no-signature-here", b"", "a.b.c"])
+    def test_garbage_input_is_bad_signature(junk):  # AC9
+>       with pytest.raises(BadSignature):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BadSignature
+
+tests/task_feature/test_needs_resign.py:86: Failed
+____________________ test_garbage_input_is_bad_signature[1] ____________________
+
+junk = b''
+
+    @pytest.mark.parametrize("junk", ["", "no-signature-here", b"", "a.b.c"])
+    def test_garbage_input_is_bad_signature(junk):  # AC9
+>       with pytest.raises(BadSignature):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BadSignature
+
+tests/task_feature/test_needs_resign.py:86: Failed
+__________________ test_garbage_input_is_bad_signature[a.b.c] __________________
+
+junk = 'a.b.c'
+
+    @pytest.mark.parametrize("junk", ["", "no-signature-here", b"", "a.b.c"])
+    def test_garbage_input_is_bad_signature(junk):  # AC9
+>       with pytest.raises(BadSignature):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE BadSignature
+
+tests/task_feature/test_needs_resign.py:86: Failed
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_needs_resign.py::test_tampered_or_unknown_key_rejected
+FAILED tests/task_feature/test_needs_resign.py::test_salt_is_honoured - Faile...
+FAILED tests/task_feature/test_needs_resign.py::test_garbage_input_is_bad_signature[0]
+FAILED tests/task_feature/test_needs_resign.py::test_garbage_input_is_bad_signature[no-signature-here]
+FAILED tests/task_feature/test_needs_resign.py::test_garbage_input_is_bad_signature[1]
+FAILED tests/task_feature/test_needs_resign.py::test_garbage_input_is_bad_signature[a.b.c]
+6 failed, 6 passed in 0.13s
+
+--- stderr ---

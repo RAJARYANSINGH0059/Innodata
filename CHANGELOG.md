@@ -6,3 +6,4 @@
 - M5: CI workflow, demo script, docs, security scan fixes (JUnit cap, pathsep), 43 tests, py3.11/3.12 verified.
 - Discovery: taskfactory/discovery.py, `discover` CLI, tests/test_discovery.py, evidence/discovery-itsdangerous/. Published to GitHub (44bcdc4), CI green.
 - Windows hardening: LF forced in clones, .gitattributes, docs/WINDOWS.md, CRLF regression test.
+- Task 003 needs_resign (validated), 3-task variation, docs.

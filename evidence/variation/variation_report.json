@@ -15,6 +15,36 @@
         "test_tokens": 0.14
       },
       "verdict": "DISTINCT"
+    },
+    {
+      "a": "itsdangerous-leeway-001",
+      "b": "itsdangerous-needs-resign-003",
+      "composite": 0.068,
+      "shared_declared_dimensions": [],
+      "shared_files": [],
+      "similarity": {
+        "criteria_tokens": 0.091,
+        "entrypoints": 0.16,
+        "files": 0.0,
+        "symbols": 0.0,
+        "test_tokens": 0.088
+      },
+      "verdict": "DISTINCT"
+    },
+    {
+      "a": "itsdangerous-decompress-limit-002",
+      "b": "itsdangerous-needs-resign-003",
+      "composite": 0.049,
+      "shared_declared_dimensions": [],
+      "shared_files": [],
+      "similarity": {
+        "criteria_tokens": 0.067,
+        "entrypoints": 0.1,
+        "files": 0.0,
+        "symbols": 0.0,
+        "test_tokens": 0.078
+      },
+      "verdict": "DISTINCT"
     }
   ],
   "signatures": [
@@ -238,6 +268,124 @@
         "unlimited",
         "unsafe",
         "zero"
+      ]
+    },
+    {
+      "criteria_tokens": [
+        "accepts",
+        "answer",
+        "badsignature",
+        "bool",
+        "boolean",
+        "both",
+        "bytes",
+        "calls",
+        "configured",
+        "criterion",
+        "current",
+        "empty",
+        "error",
+        "expired",
+        "fallback",
+        "fallbacks",
+        "false",
+        "garbage",
+        "give",
+        "honoured",
+        "input",
+        "keys",
+        "loads",
+        "measure",
+        "middle",
+        "missing",
+        "never",
+        "newest",
+        "older",
+        "oldest",
+        "payload",
+        "repeated",
+        "result",
+        "returns",
+        "right",
+        "salt",
+        "same",
+        "secret",
+        "signatureexpired",
+        "signed",
+        "signer",
+        "tampered",
+        "three",
+        "timedserializer",
+        "token",
+        "tokens",
+        "true",
+        "unaffected",
+        "undecodable",
+        "unknown",
+        "validly",
+        "wrong"
+      ],
+      "declared_dimensions": [
+        "key-rotation",
+        "signature-verification-state",
+        "new-public-method",
+        "fallback-compatibility"
+      ],
+      "declared_summary": "Operational key-rotation introspection: classify valid tokens by which signer verified them, without touching payload or timestamp.",
+      "entrypoints": [
+        "BadSignature",
+        "False",
+        "Serializer",
+        "Serializer.needs_resign",
+        "SignatureExpired",
+        "TimedSerializer",
+        "True",
+        "bytes",
+        "fallback_signers",
+        "loads",
+        "salt",
+        "secret_keys"
+      ],
+      "feature_test_count": 9,
+      "files": [
+        "src/itsdangerous/serializer.py"
+      ],
+      "symbols": [
+        "Serializer",
+        "needs_resign"
+      ],
+      "task_id": "itsdangerous-needs-resign-003",
+      "test_tokens": [
+        "bytes",
+        "current",
+        "deserialised",
+        "effect",
+        "fallback",
+        "free",
+        "garbage",
+        "honoured",
+        "idempotent",
+        "ignores",
+        "input",
+        "keys",
+        "need",
+        "needs",
+        "never",
+        "older",
+        "payload",
+        "rejected",
+        "resign",
+        "rotation",
+        "salt",
+        "serializer",
+        "side",
+        "signature",
+        "signer",
+        "tampered",
+        "test",
+        "three",
+        "timed",
+        "unknown"
       ]
     }
   ]

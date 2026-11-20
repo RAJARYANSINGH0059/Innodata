@@ -1,0 +1,42 @@
+..F.........                                                             [100%]
+=================================== FAILURES ===================================
+______________ test_fallback_signer_needs_resign_current_does_not ______________
+
+    def test_fallback_signer_needs_resign_current_does_not():  # AC3
+        old = Serializer("k", signer_kwargs={"digest_method": hashlib.sha256})
+        cur = Serializer("k", fallback_signers=[{"digest_method": hashlib.sha256}])
+>       assert cur.needs_resign(old.dumps(7)) is True
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_needs_resign.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:381: in needs_resign
+    raise t.cast(BadSignature, last_exception)
+src/itsdangerous/serializer.py:375: in needs_resign
+    signer.unsign(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <itsdangerous.signer.Signer object at 0x7f1b951242f0>
+signed_value = b'7.vBbe7_h6BnYKg7t8mDwMwABZBimgqzC77YVxX0h2lLo'
+
+    def unsign(self, signed_value: str | bytes) -> bytes:
+        """Unsigns the given string."""
+        signed_value = want_bytes(signed_value)
+    
+        if self.sep not in signed_value:
+            raise BadSignature(f"No {self.sep!r} found in value")
+    
+        value, sig = signed_value.rsplit(self.sep, 1)
+    
+        if self.verify_signature(value, sig):
+            return value
+    
+>       raise BadSignature(f"Signature {sig!r} does not match", payload=value)
+E       itsdangerous.exc.BadSignature: Signature b'vBbe7_h6BnYKg7t8mDwMwABZBimgqzC77YVxX0h2lLo' does not match
+
+src/itsdangerous/signer.py:256: BadSignature
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_needs_resign.py::test_fallback_signer_needs_resign_current_does_not
+1 failed, 11 passed in 0.12s
+
+--- stderr ---

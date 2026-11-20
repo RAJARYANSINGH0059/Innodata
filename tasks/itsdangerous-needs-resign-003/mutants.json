@@ -1,0 +1,106 @@
+[
+ {
+  "id": "M01_resign_always_false_for_old",
+  "kind": "wrong",
+  "file": "src/itsdangerous/serializer.py",
+  "old": "                return True",
+  "new": "                return False",
+  "description": "old key / fallback reported as not needing resign"
+ },
+ {
+  "id": "M02_current_reports_true",
+  "kind": "wrong",
+  "file": "src/itsdangerous/serializer.py",
+  "old": "        else:\n            return False\n",
+  "new": "        else:\n            return True\n",
+  "description": "current-key token reported as needing resign"
+ },
+ {
+  "id": "M03_fallbacks_not_consulted",
+  "kind": "wrong",
+  "file": "src/itsdangerous/serializer.py",
+  "old": "for signer in self.iter_unsigners(salt):\n            try:\n                signer.unsign(s)",
+  "new": "for signer in list(self.iter_unsigners(salt))[:1]:\n            try:\n                signer.unsign(s)",
+  "description": "fallback signers ignored"
+ },
+ {
+  "id": "M04_invalid_returns_true",
+  "kind": "wrong",
+  "file": "src/itsdangerous/serializer.py",
+  "old": "        raise t.cast(BadSignature, last_exception)\n\n    def load(self, f",
+  "new": "        return True\n\n    def load(self, f",
+  "description": "bad signature silently reported as needing resign"
+ },
+ {
+  "id": "M05_oldest_key_treated_as_current",
+  "kind": "wrong",
+  "file": "src/itsdangerous/serializer.py",
+  "old": "            self.secret_key,\n            salt=self.salt if salt is None else salt,",
+  "new": "            self.secret_keys[0],\n            salt=self.salt if salt is None else salt,",
+  "description": "oldest key considered current"
+ },
+ {
+  "id": "M06_salt_ignored_for_current",
+  "kind": "wrong",
+  "file": "src/itsdangerous/serializer.py",
+  "old": "salt=self.salt if salt is None else salt,",
+  "new": "salt=self.salt,",
+  "description": "explicit salt not applied to the current-signer check"
+ },
+ {
+  "id": "M07_payload_deserialised",
+  "kind": "wrong",
+  "file": "src/itsdangerous/serializer.py",
+  "old": "            current.unsign(s)\n        except BadSignature:\n            pass",
+  "new": "            self.load_payload(current.unsign(s))\n        except BadSignature:\n            pass",
+  "description": "payload is loaded (violates signature-only)"
+ },
+ {
+  "id": "M08_invalid_returns_false",
+  "kind": "wrong",
+  "file": "src/itsdangerous/serializer.py",
+  "old": "        raise t.cast(BadSignature, last_exception)\n\n    def load(self, f",
+  "new": "        return False\n\n    def load(self, f",
+  "description": "bad signature silently reported as fine"
+ },
+ {
+  "id": "M09_side_effect_reverses_keys",
+  "kind": "wrong",
+  "file": "src/itsdangerous/serializer.py",
+  "old": "        s = want_bytes(s)\n        current = self.signer(",
+  "new": "        s = want_bytes(s)\n        self.secret_keys.reverse()\n        current = self.signer(",
+  "description": "mutates serializer state"
+ },
+ {
+  "id": "M10_bytes_input_broken",
+  "kind": "wrong",
+  "file": "src/itsdangerous/serializer.py",
+  "old": "        s = want_bytes(s)\n        current = self.signer(",
+  "new": "        s = str(s)\n        current = self.signer(",
+  "description": "bytes tokens stringified"
+ },
+ {
+  "id": "M11_always_true_by_construction",
+  "kind": "equivalent",
+  "file": "src/itsdangerous/serializer.py",
+  "old": "            except BadSignature as err:\n                last_exception = err\n            else:\n                return True",
+  "new": "            except BadSignature as err:\n                last_exception = err\n                continue\n            else:\n                return not isinstance(signer, type(current)) or signer is not current",
+  "description": "returns `not isinstance(...) or signer is not current`; `signer` is never the `current` object (iter_unsigners builds new ones), so this is always True == original. Classified equivalent AFTER observing it survive; poorly designed mutant."
+ },
+ {
+  "id": "A01_alt_single_loop_with_index",
+  "kind": "alt_valid",
+  "file": "src/itsdangerous/serializer.py",
+  "old": "        try:\n            current.unsign(s)\n        except BadSignature:\n            pass\n        else:\n            return False\n\n        last_exception = None\n\n        for signer in self.iter_unsigners(salt):\n            try:\n                signer.unsign(s)\n            except BadSignature as err:\n                last_exception = err\n            else:\n                return True\n\n        raise t.cast(BadSignature, last_exception)\n\n    def load(self, f",
+  "new": "        last_exception = None\n\n        for index, signer in enumerate([current, *self.iter_unsigners(salt)]):\n            try:\n                signer.unsign(s)\n            except BadSignature as err:\n                last_exception = err\n            else:\n                return index != 0\n\n        raise t.cast(BadSignature, last_exception)\n\n    def load(self, f",
+  "description": "one loop over [current, *unsigners]; index 0 means current"
+ },
+ {
+  "id": "A02_alt_uses_validate",
+  "kind": "alt_valid",
+  "file": "src/itsdangerous/serializer.py",
+  "old": "        try:\n            current.unsign(s)\n        except BadSignature:\n            pass\n        else:\n            return False\n",
+  "new": "        if current.validate(s):\n            return False\n",
+  "description": "Signer.validate instead of try/except"
+ }
+]

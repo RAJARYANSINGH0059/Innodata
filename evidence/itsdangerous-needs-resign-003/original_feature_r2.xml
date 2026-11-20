@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="12" skipped="0" tests="12" time="0.159" timestamp="2026-11-20T08:53:25.666409+00:00" hostname="vm"><testcase classname="tests.task_feature.test_needs_resign" name="test_current_key_does_not_need_resign" time="0.000"><failure message="AttributeError: 'Serializer' object has no attribute 'needs_resign'">def test_current_key_does_not_need_resign():  # AC1
+        s = Serializer(["k1", "k2"])
+&gt;       assert s.needs_resign(s.dumps({"a": 1})) is False
+               ^^^^^^^^^^^^^^
+E       AttributeError: 'Serializer' object has no attribute 'needs_resign'
+
+tests/task_feature/test_needs_resign.py:12: AttributeError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_older_keys_need_resign_three_key_rotation" time="0.002"><failure message="AttributeError: 'Serializer' object has no attribute 'needs_resign'">def test_older_keys_need_resign_three_key_rotation():  # AC2
+        keys = ["k1", "k2", "k3"]
+        s = Serializer(keys)
+        tokens = {k: Serializer([k]).dumps(1) for k in keys}
+&gt;       assert s.needs_resign(tokens["k3"]) is False
+               ^^^^^^^^^^^^^^
+E       AttributeError: 'Serializer' object has no attribute 'needs_resign'
+
+tests/task_feature/test_needs_resign.py:19: AttributeError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_fallback_signer_needs_resign_current_does_not" time="0.000"><failure message="AttributeError: 'Serializer' object has no attribute 'needs_resign'">def test_fallback_signer_needs_resign_current_does_not():  # AC3
+        old = Serializer("k", signer_kwargs={"digest_method": hashlib.sha256})
+        cur = Serializer("k", fallback_signers=[{"digest_method": hashlib.sha256}])
+&gt;       assert cur.needs_resign(old.dumps(7)) is True
+               ^^^^^^^^^^^^^^^^
+E       AttributeError: 'Serializer' object has no attribute 'needs_resign'
+
+tests/task_feature/test_needs_resign.py:27: AttributeError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_tampered_or_unknown_key_rejected" time="0.000"><failure message="AttributeError: 'Serializer' object has no attribute 'needs_resign'">def test_tampered_or_unknown_key_rejected():  # AC4
+        s = Serializer(["k1", "k2"])
+        tok = s.dumps("x")
+        bad = tok[:-1] + ("A" if tok[-1] != "A" else "B")
+        with pytest.raises(BadSignature):
+&gt;           s.needs_resign(bad)
+            ^^^^^^^^^^^^^^
+E           AttributeError: 'Serializer' object has no attribute 'needs_resign'
+
+tests/task_feature/test_needs_resign.py:36: AttributeError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_payload_never_deserialised" time="0.000"><failure message="AttributeError: 'Serializer' object has no attribute 'needs_resign'">def test_payload_never_deserialised():  # AC5
+        s = Serializer(["k1", "k2"])
+        garbage = s.make_signer().sign(b"\xff\xfe not json")  # bytes: str would be re-encoded as UTF-8
+        with pytest.raises(BadPayload):
+            s.loads(garbage)  # precondition: the payload really is undecodable
+&gt;       assert s.needs_resign(garbage) is False
+               ^^^^^^^^^^^^^^
+E       AttributeError: 'Serializer' object has no attribute 'needs_resign'
+
+tests/task_feature/test_needs_resign.py:46: AttributeError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_salt_is_honoured" time="0.001"><failure message="AttributeError: 'Serializer' object has no attribute 'needs_resign'">def test_salt_is_honoured():  # AC6
+        s = Serializer(["k1", "k2"])
+        tok = s.dumps(1, salt="ctx")
+&gt;       assert s.needs_resign(tok, salt="ctx") is False
+               ^^^^^^^^^^^^^^
+E       AttributeError: 'Serializer' object has no attribute 'needs_resign'
+
+tests/task_feature/test_needs_resign.py:54: AttributeError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_timed_serializer_ignores_age" time="0.041"><failure message="AttributeError: 'TimedSerializer' object has no attribute 'needs_resign'">def test_timed_serializer_ignores_age():  # AC7
+        cur = TimedSerializer(["k1", "k2"])
+        with freeze_time("2020-01-01"):
+            old_tok = TimedSerializer(["k1"]).dumps(1)
+            new_tok = cur.dumps(1)
+        with freeze_time("2035-01-01"):
+&gt;           assert cur.needs_resign(old_tok) is True
+                   ^^^^^^^^^^^^^^^^
+E           AttributeError: 'TimedSerializer' object has no attribute 'needs_resign'
+
+tests/task_feature/test_needs_resign.py:69: AttributeError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_str_bytes_idempotent_and_side_effect_free" time="0.001"><failure message="AttributeError: 'Serializer' object has no attribute 'needs_resign'">def test_str_bytes_idempotent_and_side_effect_free():  # AC8
+        s = Serializer(["k1", "k2"])
+        tok = Serializer(["k1"]).dumps([1, 2])
+        keys_before = list(s.secret_keys)
+&gt;       assert s.needs_resign(tok) is True
+               ^^^^^^^^^^^^^^
+E       AttributeError: 'Serializer' object has no attribute 'needs_resign'
+
+tests/task_feature/test_needs_resign.py:77: AttributeError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_garbage_input_is_bad_signature[0]" time="0.001"><failure message="AttributeError: 'Serializer' object has no attribute 'needs_resign'">junk = ''
+
+    @pytest.mark.parametrize("junk", ["", "no-signature-here", b"", "a.b.c"])
+    def test_garbage_input_is_bad_signature(junk):  # AC9
+        with pytest.raises(BadSignature):
+&gt;           Serializer(["k1", "k2"]).needs_resign(junk)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AttributeError: 'Serializer' object has no attribute 'needs_resign'
+
+tests/task_feature/test_needs_resign.py:87: AttributeError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_garbage_input_is_bad_signature[no-signature-here]" time="0.001"><failure message="AttributeError: 'Serializer' object has no attribute 'needs_resign'">junk = 'no-signature-here'
+
+    @pytest.mark.parametrize("junk", ["", "no-signature-here", b"", "a.b.c"])
+    def test_garbage_input_is_bad_signature(junk):  # AC9
+        with pytest.raises(BadSignature):
+&gt;           Serializer(["k1", "k2"]).needs_resign(junk)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AttributeError: 'Serializer' object has no attribute 'needs_resign'
+
+tests/task_feature/test_needs_resign.py:87: AttributeError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_garbage_input_is_bad_signature[1]" time="0.001"><failure message="AttributeError: 'Serializer' object has no attribute 'needs_resign'">junk = b''
+
+    @pytest.mark.parametrize("junk", ["", "no-signature-here", b"", "a.b.c"])
+    def test_garbage_input_is_bad_signature(junk):  # AC9
+        with pytest.raises(BadSignature):
+&gt;           Serializer(["k1", "k2"]).needs_resign(junk)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AttributeError: 'Serializer' object has no attribute 'needs_resign'
+
+tests/task_feature/test_needs_resign.py:87: AttributeError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_garbage_input_is_bad_signature[a.b.c]" time="0.000"><failure message="AttributeError: 'Serializer' object has no attribute 'needs_resign'">junk = 'a.b.c'
+
+    @pytest.mark.parametrize("junk", ["", "no-signature-here", b"", "a.b.c"])
+    def test_garbage_input_is_bad_signature(junk):  # AC9
+        with pytest.raises(BadSignature):
+&gt;           Serializer(["k1", "k2"]).needs_resign(junk)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AttributeError: 'Serializer' object has no attribute 'needs_resign'
+
+tests/task_feature/test_needs_resign.py:87: AttributeError</failure></testcase></testsuite></testsuites>

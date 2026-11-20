@@ -38,6 +38,7 @@ Key deltas: team size 1–4; bug-fix mentioned by speaker (unwritten); 3 organis
 - TASKS (both TASK_VALIDATED, reconstruct PASS, manifests written): itsdangerous-leeway-001; itsdangerous-decompress-limit-002. Variation: 0.061 DISTINCT (EXP-002).
 - Still NOT done: 2nd repository (M4: sindresorhus/is TS or other), GitHub Actions CI + publish guide (M5), security/licence scan, automated discovery/requirement generation (tasks are hand/AI-authored in-session), model/prompt metadata in packages, organiser schema serializer, bug-fix task type, independent test author/reviewer.
 - Discovery module ADDED (taskfactory/discovery.py, CLI `discover`): deterministic, anchored candidates; see V-027/V-028 for limits. Requirement/patch/test generation still manual/AI-in-session.
+- TASK 3 added: itsdangerous-needs-resign-003 (from discovery candidate C004) — validated, mutated, reconstructed; 3 tasks, all pairs DISTINCT.
 - Next: M4 portability — run the same orchestrator on a non-Python repo; requires a runner/adapter for JS/TS (node available: v22) and a decision on how `validate` invokes non-pytest runners (JUnit via vitest/jest reporter).
 
 ## M5 status (2026-11-20)

@@ -16,8 +16,17 @@ weighted Jaccard over files/symbols/entrypoints/criteria/test tokens (weights {'
 - declared dimensions: resource-limits-security, streaming-decoding, error-handling, configuration-attribute
 - summary: Bounded zlib decompression in URL-safe payload decoding: stateful streaming, memory bound, failure semantics on unsafe loads.
 
+## itsdangerous-needs-resign-003
+- files: src/itsdangerous/serializer.py
+- symbols: Serializer, needs_resign
+- feature tests: 9
+- declared dimensions: key-rotation, signature-verification-state, new-public-method, fallback-compatibility
+- summary: Operational key-rotation introspection: classify valid tokens by which signer verified them, without touching payload or timestamp.
+
 ## Pairwise
 
 | A | B | composite | files | symbols | entrypoints | criteria | tests | verdict |
 |---|---|---|---|---|---|---|---|---|
 | itsdangerous-leeway-001 | itsdangerous-decompress-limit-002 | 0.061 | 0.0 | 0.0 | 0.08 | 0.086 | 0.14 | DISTINCT |
+| itsdangerous-leeway-001 | itsdangerous-needs-resign-003 | 0.068 | 0.0 | 0.0 | 0.16 | 0.091 | 0.088 | DISTINCT |
+| itsdangerous-decompress-limit-002 | itsdangerous-needs-resign-003 | 0.049 | 0.0 | 0.0 | 0.1 | 0.067 | 0.078 | DISTINCT |

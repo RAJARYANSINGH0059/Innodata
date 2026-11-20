@@ -20,13 +20,14 @@ cd Innodata
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1          # if blocked: Set-ExecutionPolicy -Scope Process Bypass, then retry
 python -m pip install -e ".[dev]"
-python -m pytest -q tests             # ~1 min; expect: 49 passed
-python scripts/demo.py                # ~2-4 min; clones itsdangerous itself; expect: OVERALL: PASS
+python -m pytest -q tests             # ~1 min; expect: 50 passed
+python scripts/demo.py                # ~4-6 min; clones itsdangerous itself; expect: OVERALL: PASS
 ```
 Expected last lines of the demo:
 ```
 itsdangerous-decompress-limit-002   PASS  8 killed / 0 survived / 5 equiv   2 accepted / 0 rejected   PASS
 itsdangerous-leeway-001             PASS  12 killed / 0 survived / 0 equiv  2 accepted / 0 rejected   PASS
+itsdangerous-needs-resign-003       PASS  10 killed / 0 survived / 1 equiv  2 accepted / 0 rejected   PASS
 OVERALL: PASS   evidence in ...\demo_out
 ```
 

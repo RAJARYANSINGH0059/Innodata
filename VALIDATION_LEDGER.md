@@ -51,3 +51,13 @@
 | V-028 | Discovery quality | — | Heuristics were written AFTER tasks 001/002 were authored; the hit on both is a recall sanity check, NOT an evaluation. Precision judged by the author: ~3 of 13 strong. Only Python; not run on a second repo | INSPECTED_ONLY |
 | V-029 | CRLF robustness | test sets HOME/.gitconfig autocrlf=true; red without fix, green with fix | PASSED (simulated) | Real Windows run: NOT_RUN |
 | V-030 | CI on discovery commit | run 44672888536 on 02b2be5 | test 3.11/3.12/3.13 + demo: success | PASSED |
+## Task 003 (2026-11-20)
+| ID | Claim | Method | Result | Status |
+|---|---|---|---|---|
+| V-031 | Task `itsdangerous-needs-resign-003` State A/B/C | `taskfactory validate`, pinned 672971d, 3 repeats/state | PASS: A fails 12 feature tests (AttributeError: method absent), 3 regression pass, 297 baseline pass; B all pass; C tree == A | PASSED |
+| V-032 | Task 003 oracle adequacy | `taskfactory mutate`, 13 variants | 10 wrong KILLED, 0 survived; 1 EQUIVALENT (always-True by construction; relabelled AFTER it survived — poor mutant design); 2 alt-valid ACCEPTED (single indexed loop; Signer.validate) | PASSED w/ limitations (L-1, L-3, L-9) |
+| V-033 | Task 003 reconstruction | `taskfactory reconstruct` | PASS (5/5 comparisons) | PASSED |
+| V-034 | 3-task variation | `taskfactory variation` | 0.061 / 0.068 / 0.049, all DISTINCT, 0 shared files/symbols; test asserts all pairs distinct | PASSED (lexical metric; manual adjudication in docs) |
+| V-035 | Discovery → task link | task.toml `[discovery] candidate=C004`; candidate produced by `taskfactory discover` on the pinned commit | idea sourced from an anchored candidate; requirement/tests/patch still authored by assistant in-session | INSPECTED_ONLY |
+- L-9 Task 003 feature tests fail in A/C with `AttributeError` (new method absent) — a symbol-level failure reason like 001; 002 is the only task whose A-state failures are behavioural assertions. One AC5 test bug (latin-1 re-encoding) was caught by me on re-reading BEFORE running, so it is not evidence of the gate catching it.
+| V-036 | Full demo, 3 tasks | python scripts/demo.py from fresh upstream clone (Linux, py3.13) | OVERALL PASS, 4m13s; 50 factory tests pass | PASSED |

@@ -45,3 +45,11 @@ class VariationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ThreeTaskVariation(unittest.TestCase):
+    def test_all_pairs_of_current_tasks_are_distinct(self):
+        dirs = sorted(p.parent for p in TASKS.glob("*/task.toml"))
+        self.assertGreaterEqual(len(dirs), 3)
+        for pair in variation_report(dirs)["pairs"]:
+            self.assertEqual(pair["verdict"], "DISTINCT", pair)

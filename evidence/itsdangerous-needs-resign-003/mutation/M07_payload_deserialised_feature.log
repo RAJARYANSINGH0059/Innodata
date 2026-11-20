@@ -1,0 +1,85 @@
+....F.......                                                             [100%]
+=================================== FAILURES ===================================
+_______________________ test_payload_never_deserialised ________________________
+
+self = <itsdangerous.serializer.Serializer object at 0x7ff0897ee850>
+payload = b'\xff\xfe not json', serializer = None
+
+    def load_payload(
+        self, payload: bytes, serializer: _PDataSerializer[t.Any] | None = None
+    ) -> t.Any:
+        """Loads the encoded object. This function raises
+        :class:`.BadPayload` if the payload is not valid. The
+        ``serializer`` parameter can be used to override the serializer
+        stored on the class. The encoded ``payload`` should always be
+        bytes.
+        """
+        if serializer is None:
+            use_serializer = self.serializer
+            is_text = self.is_text_serializer
+        else:
+            use_serializer = serializer
+            is_text = is_text_serializer(serializer)
+    
+        try:
+            if is_text:
+>               return use_serializer.loads(payload.decode("utf-8"))  # type: ignore[arg-type]
+                                            ^^^^^^^^^^^^^^^^^^^^^^^
+E               UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 0: invalid start byte
+
+src/itsdangerous/serializer.py:261: UnicodeDecodeError
+
+The above exception was the direct cause of the following exception:
+
+    def test_payload_never_deserialised():  # AC5
+        s = Serializer(["k1", "k2"])
+        garbage = s.make_signer().sign(b"\xff\xfe not json")  # bytes: str would be re-encoded as UTF-8
+        with pytest.raises(BadPayload):
+            s.loads(garbage)  # precondition: the payload really is undecodable
+>       assert s.needs_resign(garbage) is False
+               ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_needs_resign.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:365: in needs_resign
+    self.load_payload(current.unsign(s))
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <itsdangerous.serializer.Serializer object at 0x7ff0897ee850>
+payload = b'\xff\xfe not json', serializer = None
+
+    def load_payload(
+        self, payload: bytes, serializer: _PDataSerializer[t.Any] | None = None
+    ) -> t.Any:
+        """Loads the encoded object. This function raises
+        :class:`.BadPayload` if the payload is not valid. The
+        ``serializer`` parameter can be used to override the serializer
+        stored on the class. The encoded ``payload`` should always be
+        bytes.
+        """
+        if serializer is None:
+            use_serializer = self.serializer
+            is_text = self.is_text_serializer
+        else:
+            use_serializer = serializer
+            is_text = is_text_serializer(serializer)
+    
+        try:
+            if is_text:
+                return use_serializer.loads(payload.decode("utf-8"))  # type: ignore[arg-type]
+    
+            return use_serializer.loads(payload)  # type: ignore[arg-type]
+        except Exception as e:
+>           raise BadPayload(
+                "Could not load the payload because an exception"
+                " occurred on unserializing the data.",
+                original_error=e,
+            ) from e
+E           itsdangerous.exc.BadPayload: Could not load the payload because an exception occurred on unserializing the data.
+
+src/itsdangerous/serializer.py:265: BadPayload
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_needs_resign.py::test_payload_never_deserialised
+1 failed, 11 passed in 0.14s
+
+--- stderr ---

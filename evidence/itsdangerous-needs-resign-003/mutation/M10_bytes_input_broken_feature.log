@@ -1,0 +1,82 @@
+....F..F....                                                             [100%]
+=================================== FAILURES ===================================
+_______________________ test_payload_never_deserialised ________________________
+
+    def test_payload_never_deserialised():  # AC5
+        s = Serializer(["k1", "k2"])
+        garbage = s.make_signer().sign(b"\xff\xfe not json")  # bytes: str would be re-encoded as UTF-8
+        with pytest.raises(BadPayload):
+            s.loads(garbage)  # precondition: the payload really is undecodable
+>       assert s.needs_resign(garbage) is False
+               ^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_needs_resign.py:46: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:381: in needs_resign
+    raise t.cast(BadSignature, last_exception)
+src/itsdangerous/serializer.py:375: in needs_resign
+    signer.unsign(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <itsdangerous.signer.Signer object at 0x7f49b80dd350>
+signed_value = b"b'\\xff\\xfe not json.QVNBS6PrBIcoC-UrL_M13b2fATY'"
+
+    def unsign(self, signed_value: str | bytes) -> bytes:
+        """Unsigns the given string."""
+        signed_value = want_bytes(signed_value)
+    
+        if self.sep not in signed_value:
+            raise BadSignature(f"No {self.sep!r} found in value")
+    
+        value, sig = signed_value.rsplit(self.sep, 1)
+    
+        if self.verify_signature(value, sig):
+            return value
+    
+>       raise BadSignature(f"Signature {sig!r} does not match", payload=value)
+E       itsdangerous.exc.BadSignature: Signature b"QVNBS6PrBIcoC-UrL_M13b2fATY'" does not match
+
+src/itsdangerous/signer.py:256: BadSignature
+________________ test_str_bytes_idempotent_and_side_effect_free ________________
+
+    def test_str_bytes_idempotent_and_side_effect_free():  # AC8
+        s = Serializer(["k1", "k2"])
+        tok = Serializer(["k1"]).dumps([1, 2])
+        keys_before = list(s.secret_keys)
+        assert s.needs_resign(tok) is True
+>       assert s.needs_resign(tok.encode()) is True
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_needs_resign.py:78: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:381: in needs_resign
+    raise t.cast(BadSignature, last_exception)
+src/itsdangerous/serializer.py:375: in needs_resign
+    signer.unsign(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <itsdangerous.signer.Signer object at 0x7f49b7f1ced0>
+signed_value = b"b'[1, 2].sM9oOOptE7yMZgGRLC-nrhIpNEk'"
+
+    def unsign(self, signed_value: str | bytes) -> bytes:
+        """Unsigns the given string."""
+        signed_value = want_bytes(signed_value)
+    
+        if self.sep not in signed_value:
+            raise BadSignature(f"No {self.sep!r} found in value")
+    
+        value, sig = signed_value.rsplit(self.sep, 1)
+    
+        if self.verify_signature(value, sig):
+            return value
+    
+>       raise BadSignature(f"Signature {sig!r} does not match", payload=value)
+E       itsdangerous.exc.BadSignature: Signature b"sM9oOOptE7yMZgGRLC-nrhIpNEk'" does not match
+
+src/itsdangerous/signer.py:256: BadSignature
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_needs_resign.py::test_payload_never_deserialised
+FAILED tests/task_feature/test_needs_resign.py::test_str_bytes_idempotent_and_side_effect_free
+2 failed, 10 passed in 0.16s
+
+--- stderr ---

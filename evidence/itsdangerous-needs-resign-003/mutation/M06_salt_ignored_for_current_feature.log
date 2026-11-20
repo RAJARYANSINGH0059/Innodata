@@ -1,0 +1,18 @@
+.....F......                                                             [100%]
+=================================== FAILURES ===================================
+____________________________ test_salt_is_honoured _____________________________
+
+    def test_salt_is_honoured():  # AC6
+        s = Serializer(["k1", "k2"])
+        tok = s.dumps(1, salt="ctx")
+>       assert s.needs_resign(tok, salt="ctx") is False
+E       AssertionError: assert True is False
+E        +  where True = needs_resign('1.cARIKTi-gYd66dKhQWsEbeCPv-4', salt='ctx')
+E        +    where needs_resign = <itsdangerous.serializer.Serializer object at 0x7f55038509b0>.needs_resign
+
+tests/task_feature/test_needs_resign.py:54: AssertionError
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_needs_resign.py::test_salt_is_honoured - Asser...
+1 failed, 11 passed in 0.12s
+
+--- stderr ---

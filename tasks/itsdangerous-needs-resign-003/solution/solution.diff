@@ -1,0 +1,49 @@
+diff --git a/src/itsdangerous/serializer.py b/src/itsdangerous/serializer.py
+index 5ed949c..553f5cd 100644
+--- a/src/itsdangerous/serializer.py
++++ b/src/itsdangerous/serializer.py
+@@ -342,6 +342,44 @@ class Serializer(t.Generic[_TSerialized]):
+ 
+         raise t.cast(BadSignature, last_exception)
+ 
++    def needs_resign(self, s: str | bytes, salt: str | bytes | None = None) -> bool:
++        """Check whether a validly signed value should be signed again.
++
++        Returns ``False`` if the signature verifies with the current
++        signer (the newest secret key and the configured signer), and
++        ``True`` if it only verifies with an older key in
++        :attr:`secret_keys` or with one of the :attr:`fallback_signers`.
++        Raises :exc:`.BadSignature` if it verifies with none of them.
++
++        Only the signature is checked. The payload is not loaded and no
++        timestamp or age is validated.
++        """
++        s = want_bytes(s)
++        current = self.signer(
++            self.secret_key,
++            salt=self.salt if salt is None else salt,
++            **self.signer_kwargs,
++        )
++
++        try:
++            current.unsign(s)
++        except BadSignature:
++            pass
++        else:
++            return False
++
++        last_exception = None
++
++        for signer in self.iter_unsigners(salt):
++            try:
++                signer.unsign(s)
++            except BadSignature as err:
++                last_exception = err
++            else:
++                return True
++
++        raise t.cast(BadSignature, last_exception)
++
+     def load(self, f: t.IO[t.Any], salt: str | bytes | None = None) -> t.Any:
+         """Like :meth:`loads` but loads from a file."""
+         return self.loads(f.read(), salt)

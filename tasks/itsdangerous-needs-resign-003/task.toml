@@ -1,0 +1,31 @@
+[task]
+id = "itsdangerous-needs-resign-003"
+kind = "feature"
+title = "Serializer.needs_resign: detect valid tokens that rely on an old key or fallback signer"
+
+[repo]
+url = "https://github.com/pallets/itsdangerous"
+commit = "672971d66a2ef9f85151e53283113f33d642dabd"
+license = "BSD-3-Clause"
+
+[discovery]
+candidate = "C004 option-threading / iter_unsigners (src/itsdangerous/serializer.py), taskfactory discover on the pinned commit"
+
+[solution]
+patch = "solution/solution.diff"
+
+[tests]
+feature = "tests/feature"
+regression = "tests/regression"
+inject_dir = "tests"
+
+[run]
+baseline_targets = ["tests/test_itsdangerous"]
+pythonpath = ["src"]
+import_probe = "itsdangerous"
+timeout = 300
+repeats = 3
+
+[variation]
+dimensions = ["key-rotation", "signature-verification-state", "new-public-method", "fallback-compatibility"]
+summary = "Operational key-rotation introspection: classify valid tokens by which signer verified them, without touching payload or timestamp."

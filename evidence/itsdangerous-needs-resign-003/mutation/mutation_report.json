@@ -1,0 +1,157 @@
+{
+  "results": [
+    {
+      "description": "old key / fallback reported as not needing resign",
+      "failed_tests": [
+        "test_fallback_signer_needs_resign_current_does_not",
+        "test_older_keys_need_resign_three_key_rotation",
+        "test_payload_never_deserialised",
+        "test_salt_is_honoured",
+        "test_str_bytes_idempotent_and_side_effect_free",
+        "test_timed_serializer_ignores_age"
+      ],
+      "id": "M01_resign_always_false_for_old",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "current-key token reported as needing resign",
+      "failed_tests": [
+        "test_current_key_does_not_need_resign",
+        "test_fallback_signer_needs_resign_current_does_not",
+        "test_older_keys_need_resign_three_key_rotation",
+        "test_payload_never_deserialised",
+        "test_salt_is_honoured",
+        "test_timed_serializer_ignores_age"
+      ],
+      "id": "M02_current_reports_true",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "fallback signers ignored",
+      "failed_tests": [
+        "test_fallback_signer_needs_resign_current_does_not"
+      ],
+      "id": "M03_fallbacks_not_consulted",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "bad signature silently reported as needing resign",
+      "failed_tests": [
+        "test_garbage_input_is_bad_signature[0]",
+        "test_garbage_input_is_bad_signature[1]",
+        "test_garbage_input_is_bad_signature[a.b.c]",
+        "test_garbage_input_is_bad_signature[no-signature-here]",
+        "test_salt_is_honoured",
+        "test_tampered_or_unknown_key_rejected"
+      ],
+      "id": "M04_invalid_returns_true",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "oldest key considered current",
+      "failed_tests": [
+        "test_current_key_does_not_need_resign",
+        "test_older_keys_need_resign_three_key_rotation",
+        "test_payload_never_deserialised",
+        "test_salt_is_honoured",
+        "test_str_bytes_idempotent_and_side_effect_free",
+        "test_timed_serializer_ignores_age"
+      ],
+      "id": "M05_oldest_key_treated_as_current",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "explicit salt not applied to the current-signer check",
+      "failed_tests": [
+        "test_salt_is_honoured"
+      ],
+      "id": "M06_salt_ignored_for_current",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "payload is loaded (violates signature-only)",
+      "failed_tests": [
+        "test_payload_never_deserialised"
+      ],
+      "id": "M07_payload_deserialised",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "bad signature silently reported as fine",
+      "failed_tests": [
+        "test_garbage_input_is_bad_signature[0]",
+        "test_garbage_input_is_bad_signature[1]",
+        "test_garbage_input_is_bad_signature[a.b.c]",
+        "test_garbage_input_is_bad_signature[no-signature-here]",
+        "test_salt_is_honoured",
+        "test_tampered_or_unknown_key_rejected"
+      ],
+      "id": "M08_invalid_returns_false",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "mutates serializer state",
+      "failed_tests": [
+        "test_current_key_does_not_need_resign",
+        "test_older_keys_need_resign_three_key_rotation",
+        "test_payload_never_deserialised",
+        "test_salt_is_honoured",
+        "test_str_bytes_idempotent_and_side_effect_free",
+        "test_timed_serializer_ignores_age"
+      ],
+      "id": "M09_side_effect_reverses_keys",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "bytes tokens stringified",
+      "failed_tests": [
+        "test_payload_never_deserialised",
+        "test_str_bytes_idempotent_and_side_effect_free"
+      ],
+      "id": "M10_bytes_input_broken",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "returns `not isinstance(...) or signer is not current`; `signer` is never the `current` object (iter_unsigners builds new ones), so this is always True == original. Classified equivalent AFTER observing it survive; poorly designed mutant.",
+      "failed_tests": [],
+      "id": "M11_always_true_by_construction",
+      "kind": "equivalent",
+      "outcome": "EQUIVALENT"
+    },
+    {
+      "description": "one loop over [current, *unsigners]; index 0 means current",
+      "failed_tests": [],
+      "id": "A01_alt_single_loop_with_index",
+      "kind": "alt_valid",
+      "outcome": "ACCEPTED"
+    },
+    {
+      "description": "Signer.validate instead of try/except",
+      "failed_tests": [],
+      "id": "A02_alt_uses_validate",
+      "kind": "alt_valid",
+      "outcome": "ACCEPTED"
+    }
+  ],
+  "summary": {
+    "ACCEPTED": 2,
+    "EQUIVALENT": 1,
+    "INVALID": 0,
+    "KILLED": 10,
+    "MISLABELLED_EQUIVALENT": 0,
+    "REJECTED_VALID_ALTERNATIVE": 0,
+    "SURVIVED": 0,
+    "TIMEOUT": 0
+  },
+  "task_id": "itsdangerous-needs-resign-003"
+}

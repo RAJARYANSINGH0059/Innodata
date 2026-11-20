@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="6" skipped="0" tests="12" time="0.131" timestamp="2026-11-20T08:53:44.308217+00:00" hostname="vm"><testcase classname="tests.task_feature.test_needs_resign" name="test_current_key_does_not_need_resign" time="0.001"><failure message="assert True is False&#10; +  where True = needs_resign('{&quot;a&quot;: 1}.D9WeFw_Ufw_NqQjrixhZHEf92hA')&#10; +    where needs_resign = &lt;itsdangerous.serializer.Serializer object at 0x7f50c0dc01a0&gt;.needs_resign&#10; +    and   '{&quot;a&quot;: 1}.D9WeFw_Ufw_NqQjrixhZHEf92hA' = dumps({'a': 1})&#10; +      where dumps = &lt;itsdangerous.serializer.Serializer object at 0x7f50c0dc01a0&gt;.dumps">def test_current_key_does_not_need_resign():  # AC1
+        s = Serializer(["k1", "k2"])
+&gt;       assert s.needs_resign(s.dumps({"a": 1})) is False
+E       assert True is False
+E        +  where True = needs_resign('{"a": 1}.D9WeFw_Ufw_NqQjrixhZHEf92hA')
+E        +    where needs_resign = &lt;itsdangerous.serializer.Serializer object at 0x7f50c0dc01a0&gt;.needs_resign
+E        +    and   '{"a": 1}.D9WeFw_Ufw_NqQjrixhZHEf92hA' = dumps({'a': 1})
+E        +      where dumps = &lt;itsdangerous.serializer.Serializer object at 0x7f50c0dc01a0&gt;.dumps
+
+tests/task_feature/test_needs_resign.py:12: AssertionError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_older_keys_need_resign_three_key_rotation" time="0.001"><failure message="AssertionError: assert True is False&#10; +  where True = needs_resign('1.aJRdPMl_ky97F3KpvTizna_Y93Y')&#10; +    where needs_resign = &lt;itsdangerous.serializer.Serializer object at 0x7f50c0d320d0&gt;.needs_resign">def test_older_keys_need_resign_three_key_rotation():  # AC2
+        keys = ["k1", "k2", "k3"]
+        s = Serializer(keys)
+        tokens = {k: Serializer([k]).dumps(1) for k in keys}
+&gt;       assert s.needs_resign(tokens["k3"]) is False
+E       AssertionError: assert True is False
+E        +  where True = needs_resign('1.aJRdPMl_ky97F3KpvTizna_Y93Y')
+E        +    where needs_resign = &lt;itsdangerous.serializer.Serializer object at 0x7f50c0d320d0&gt;.needs_resign
+
+tests/task_feature/test_needs_resign.py:19: AssertionError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_fallback_signer_needs_resign_current_does_not" time="0.001"><failure message="AssertionError: assert True is False&#10; +  where True = needs_resign('7.4NP0ZJkt8KA5oPN43rlu5yX3z7U')&#10; +    where needs_resign = &lt;itsdangerous.serializer.Serializer object at 0x7f50c0d43460&gt;.needs_resign&#10; +    and   '7.4NP0ZJkt8KA5oPN43rlu5yX3z7U' = dumps(7)&#10; +      where dumps = &lt;itsdangerous.serializer.Serializer object at 0x7f50c0d43460&gt;.dumps">def test_fallback_signer_needs_resign_current_does_not():  # AC3
+        old = Serializer("k", signer_kwargs={"digest_method": hashlib.sha256})
+        cur = Serializer("k", fallback_signers=[{"digest_method": hashlib.sha256}])
+        assert cur.needs_resign(old.dumps(7)) is True
+&gt;       assert cur.needs_resign(cur.dumps(7)) is False
+E       AssertionError: assert True is False
+E        +  where True = needs_resign('7.4NP0ZJkt8KA5oPN43rlu5yX3z7U')
+E        +    where needs_resign = &lt;itsdangerous.serializer.Serializer object at 0x7f50c0d43460&gt;.needs_resign
+E        +    and   '7.4NP0ZJkt8KA5oPN43rlu5yX3z7U' = dumps(7)
+E        +      where dumps = &lt;itsdangerous.serializer.Serializer object at 0x7f50c0d43460&gt;.dumps
+
+tests/task_feature/test_needs_resign.py:28: AssertionError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_tampered_or_unknown_key_rejected" time="0.001" /><testcase classname="tests.task_feature.test_needs_resign" name="test_payload_never_deserialised" time="0.001"><failure message="AssertionError: assert True is False&#10; +  where True = needs_resign(b'\xff\xfe not json.QVNBS6PrBIcoC-UrL_M13b2fATY')&#10; +    where needs_resign = &lt;itsdangerous.serializer.Serializer object at 0x7f50c0d03350&gt;.needs_resign">def test_payload_never_deserialised():  # AC5
+        s = Serializer(["k1", "k2"])
+        garbage = s.make_signer().sign(b"\xff\xfe not json")  # bytes: str would be re-encoded as UTF-8
+        with pytest.raises(BadPayload):
+            s.loads(garbage)  # precondition: the payload really is undecodable
+&gt;       assert s.needs_resign(garbage) is False
+E       AssertionError: assert True is False
+E        +  where True = needs_resign(b'\xff\xfe not json.QVNBS6PrBIcoC-UrL_M13b2fATY')
+E        +    where needs_resign = &lt;itsdangerous.serializer.Serializer object at 0x7f50c0d03350&gt;.needs_resign
+
+tests/task_feature/test_needs_resign.py:46: AssertionError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_salt_is_honoured" time="0.001"><failure message="AssertionError: assert True is False&#10; +  where True = needs_resign('1.cARIKTi-gYd66dKhQWsEbeCPv-4', salt='ctx')&#10; +    where needs_resign = &lt;itsdangerous.serializer.Serializer object at 0x7f50c0faf890&gt;.needs_resign">def test_salt_is_honoured():  # AC6
+        s = Serializer(["k1", "k2"])
+        tok = s.dumps(1, salt="ctx")
+&gt;       assert s.needs_resign(tok, salt="ctx") is False
+E       AssertionError: assert True is False
+E        +  where True = needs_resign('1.cARIKTi-gYd66dKhQWsEbeCPv-4', salt='ctx')
+E        +    where needs_resign = &lt;itsdangerous.serializer.Serializer object at 0x7f50c0faf890&gt;.needs_resign
+
+tests/task_feature/test_needs_resign.py:54: AssertionError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_timed_serializer_ignores_age" time="0.040"><failure message="AssertionError: assert True is False&#10; +  where True = needs_resign('1.XgvhAA.F83wDz_SSyPXBFIQSEV-m0DgzUs')&#10; +    where needs_resign = &lt;itsdangerous.timed.TimedSerializer object at 0x7f50c0dc0440&gt;.needs_resign">def test_timed_serializer_ignores_age():  # AC7
+        cur = TimedSerializer(["k1", "k2"])
+        with freeze_time("2020-01-01"):
+            old_tok = TimedSerializer(["k1"]).dumps(1)
+            new_tok = cur.dumps(1)
+        with freeze_time("2035-01-01"):
+            assert cur.needs_resign(old_tok) is True
+&gt;           assert cur.needs_resign(new_tok) is False
+E           AssertionError: assert True is False
+E            +  where True = needs_resign('1.XgvhAA.F83wDz_SSyPXBFIQSEV-m0DgzUs')
+E            +    where needs_resign = &lt;itsdangerous.timed.TimedSerializer object at 0x7f50c0dc0440&gt;.needs_resign
+
+tests/task_feature/test_needs_resign.py:70: AssertionError</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_str_bytes_idempotent_and_side_effect_free" time="0.000" /><testcase classname="tests.task_feature.test_needs_resign" name="test_garbage_input_is_bad_signature[0]" time="0.000" /><testcase classname="tests.task_feature.test_needs_resign" name="test_garbage_input_is_bad_signature[no-signature-here]" time="0.000" /><testcase classname="tests.task_feature.test_needs_resign" name="test_garbage_input_is_bad_signature[1]" time="0.000" /><testcase classname="tests.task_feature.test_needs_resign" name="test_garbage_input_is_bad_signature[a.b.c]" time="0.001" /></testsuite></testsuites>

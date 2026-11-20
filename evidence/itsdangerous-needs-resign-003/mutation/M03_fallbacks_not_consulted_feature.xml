@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="12" time="0.117" timestamp="2026-11-20T08:53:46.498014+00:00" hostname="vm"><testcase classname="tests.task_feature.test_needs_resign" name="test_current_key_does_not_need_resign" time="0.001" /><testcase classname="tests.task_feature.test_needs_resign" name="test_older_keys_need_resign_three_key_rotation" time="0.000" /><testcase classname="tests.task_feature.test_needs_resign" name="test_fallback_signer_needs_resign_current_does_not" time="0.001"><failure message="itsdangerous.exc.BadSignature: Signature b'vBbe7_h6BnYKg7t8mDwMwABZBimgqzC77YVxX0h2lLo' does not match">def test_fallback_signer_needs_resign_current_does_not():  # AC3
+        old = Serializer("k", signer_kwargs={"digest_method": hashlib.sha256})
+        cur = Serializer("k", fallback_signers=[{"digest_method": hashlib.sha256}])
+&gt;       assert cur.needs_resign(old.dumps(7)) is True
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/task_feature/test_needs_resign.py:27: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/itsdangerous/serializer.py:381: in needs_resign
+    raise t.cast(BadSignature, last_exception)
+src/itsdangerous/serializer.py:375: in needs_resign
+    signer.unsign(s)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;itsdangerous.signer.Signer object at 0x7f1b951242f0&gt;
+signed_value = b'7.vBbe7_h6BnYKg7t8mDwMwABZBimgqzC77YVxX0h2lLo'
+
+    def unsign(self, signed_value: str | bytes) -&gt; bytes:
+        """Unsigns the given string."""
+        signed_value = want_bytes(signed_value)
+    
+        if self.sep not in signed_value:
+            raise BadSignature(f"No {self.sep!r} found in value")
+    
+        value, sig = signed_value.rsplit(self.sep, 1)
+    
+        if self.verify_signature(value, sig):
+            return value
+    
+&gt;       raise BadSignature(f"Signature {sig!r} does not match", payload=value)
+E       itsdangerous.exc.BadSignature: Signature b'vBbe7_h6BnYKg7t8mDwMwABZBimgqzC77YVxX0h2lLo' does not match
+
+src/itsdangerous/signer.py:256: BadSignature</failure></testcase><testcase classname="tests.task_feature.test_needs_resign" name="test_tampered_or_unknown_key_rejected" time="0.001" /><testcase classname="tests.task_feature.test_needs_resign" name="test_payload_never_deserialised" time="0.000" /><testcase classname="tests.task_feature.test_needs_resign" name="test_salt_is_honoured" time="0.000" /><testcase classname="tests.task_feature.test_needs_resign" name="test_timed_serializer_ignores_age" time="0.038" /><testcase classname="tests.task_feature.test_needs_resign" name="test_str_bytes_idempotent_and_side_effect_free" time="0.000" /><testcase classname="tests.task_feature.test_needs_resign" name="test_garbage_input_is_bad_signature[0]" time="0.001" /><testcase classname="tests.task_feature.test_needs_resign" name="test_garbage_input_is_bad_signature[no-signature-here]" time="0.001" /><testcase classname="tests.task_feature.test_needs_resign" name="test_garbage_input_is_bad_signature[1]" time="0.001" /><testcase classname="tests.task_feature.test_needs_resign" name="test_garbage_input_is_bad_signature[a.b.c]" time="0.000" /></testsuite></testsuites>

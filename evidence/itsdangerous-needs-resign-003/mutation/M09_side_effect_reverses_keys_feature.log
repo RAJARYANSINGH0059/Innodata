@@ -1,0 +1,86 @@
+FF..FFFF....                                                             [100%]
+=================================== FAILURES ===================================
+____________________ test_current_key_does_not_need_resign _____________________
+
+    def test_current_key_does_not_need_resign():  # AC1
+        s = Serializer(["k1", "k2"])
+>       assert s.needs_resign(s.dumps({"a": 1})) is False
+E       assert True is False
+E        +  where True = needs_resign('{"a": 1}.D9WeFw_Ufw_NqQjrixhZHEf92hA')
+E        +    where needs_resign = <itsdangerous.serializer.Serializer object at 0x7fb42217c1a0>.needs_resign
+E        +    and   '{"a": 1}.D9WeFw_Ufw_NqQjrixhZHEf92hA' = dumps({'a': 1})
+E        +      where dumps = <itsdangerous.serializer.Serializer object at 0x7fb42217c1a0>.dumps
+
+tests/task_feature/test_needs_resign.py:12: AssertionError
+________________ test_older_keys_need_resign_three_key_rotation ________________
+
+    def test_older_keys_need_resign_three_key_rotation():  # AC2
+        keys = ["k1", "k2", "k3"]
+        s = Serializer(keys)
+        tokens = {k: Serializer([k]).dumps(1) for k in keys}
+>       assert s.needs_resign(tokens["k3"]) is False
+E       AssertionError: assert True is False
+E        +  where True = needs_resign('1.aJRdPMl_ky97F3KpvTizna_Y93Y')
+E        +    where needs_resign = <itsdangerous.serializer.Serializer object at 0x7fb4220ce0d0>.needs_resign
+
+tests/task_feature/test_needs_resign.py:19: AssertionError
+_______________________ test_payload_never_deserialised ________________________
+
+    def test_payload_never_deserialised():  # AC5
+        s = Serializer(["k1", "k2"])
+        garbage = s.make_signer().sign(b"\xff\xfe not json")  # bytes: str would be re-encoded as UTF-8
+        with pytest.raises(BadPayload):
+            s.loads(garbage)  # precondition: the payload really is undecodable
+>       assert s.needs_resign(garbage) is False
+E       AssertionError: assert True is False
+E        +  where True = needs_resign(b'\xff\xfe not json.QVNBS6PrBIcoC-UrL_M13b2fATY')
+E        +    where needs_resign = <itsdangerous.serializer.Serializer object at 0x7fb4220db150>.needs_resign
+
+tests/task_feature/test_needs_resign.py:46: AssertionError
+____________________________ test_salt_is_honoured _____________________________
+
+    def test_salt_is_honoured():  # AC6
+        s = Serializer(["k1", "k2"])
+        tok = s.dumps(1, salt="ctx")
+>       assert s.needs_resign(tok, salt="ctx") is False
+E       AssertionError: assert True is False
+E        +  where True = needs_resign('1.cARIKTi-gYd66dKhQWsEbeCPv-4', salt='ctx')
+E        +    where needs_resign = <itsdangerous.serializer.Serializer object at 0x7fb422367890>.needs_resign
+
+tests/task_feature/test_needs_resign.py:54: AssertionError
+______________________ test_timed_serializer_ignores_age _______________________
+
+    def test_timed_serializer_ignores_age():  # AC7
+        cur = TimedSerializer(["k1", "k2"])
+        with freeze_time("2020-01-01"):
+            old_tok = TimedSerializer(["k1"]).dumps(1)
+            new_tok = cur.dumps(1)
+        with freeze_time("2035-01-01"):
+>           assert cur.needs_resign(old_tok) is True
+E           AssertionError: assert False is True
+E            +  where False = needs_resign('1.XgvhAA.T9eIwVLQlHIkh0f6jNA0bznYczg')
+E            +    where needs_resign = <itsdangerous.timed.TimedSerializer object at 0x7fb42217c440>.needs_resign
+
+tests/task_feature/test_needs_resign.py:69: AssertionError
+________________ test_str_bytes_idempotent_and_side_effect_free ________________
+
+    def test_str_bytes_idempotent_and_side_effect_free():  # AC8
+        s = Serializer(["k1", "k2"])
+        tok = Serializer(["k1"]).dumps([1, 2])
+        keys_before = list(s.secret_keys)
+>       assert s.needs_resign(tok) is True
+E       AssertionError: assert False is True
+E        +  where False = needs_resign('[1, 2].sM9oOOptE7yMZgGRLC-nrhIpNEk')
+E        +    where needs_resign = <itsdangerous.serializer.Serializer object at 0x7fb421ffd310>.needs_resign
+
+tests/task_feature/test_needs_resign.py:77: AssertionError
+=========================== short test summary info ============================
+FAILED tests/task_feature/test_needs_resign.py::test_current_key_does_not_need_resign
+FAILED tests/task_feature/test_needs_resign.py::test_older_keys_need_resign_three_key_rotation
+FAILED tests/task_feature/test_needs_resign.py::test_payload_never_deserialised
+FAILED tests/task_feature/test_needs_resign.py::test_salt_is_honoured - Asser...
+FAILED tests/task_feature/test_needs_resign.py::test_timed_serializer_ignores_age
+FAILED tests/task_feature/test_needs_resign.py::test_str_bytes_idempotent_and_side_effect_free
+6 failed, 6 passed in 0.12s
+
+--- stderr ---
