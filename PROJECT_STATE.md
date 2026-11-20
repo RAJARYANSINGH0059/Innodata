@@ -41,5 +41,6 @@ Key deltas: team size 1–4; bug-fix mentioned by speaker (unwritten); 3 organis
 
 ## M5 status (2026-11-20)
 - Authored: .github/workflows/ci.yml (actions pinned to SHAs resolved via git ls-remote; least-privilege), scripts/demo.py (RUN: PASS), README, SECURITY, CONTRIBUTING, REPRODUCIBILITY, THIRD_PARTY_NOTICES, GITHUB_PUBLISH_GUIDE, .gitignore, pyproject dev extras. 43 tests pass on py3.11/3.12/3.13.
-- BLOCKED on user: licence decision; GitHub publish (web UI steps in guide); PPT template; demo video.
+- PUBLISHED: https://github.com/RAJARYANSINGH0059/Innodata (public) main@d7ea0bd; CI run 44672232036 all green (test 3.11/3.12/3.13 + demo).
+- Still on user: licence decision (public repo currently has none); PPT template; demo video; Windows run.
 - Next: M4 portability (second repo/stack) OR automate discovery/generation (biggest gap vs 'factory' claim) — recommend generation/discovery first since judges weigh a *factory*.

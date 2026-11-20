@@ -41,4 +41,6 @@
 | V-021 | Python matrix | venvs `pip install -e .[dev]`; ruff + `pytest -q tests` | 3.11: 43 passed; 3.12: 43 passed; 3.13: 43 passed (see V-022) | PASSED local; GitHub Actions NOT_RUN |
 | V-022 | Static scan | bandit -r (high/medium gate `-ll`), ruff E9,F, secret grep | bandit: 0 high, 0 medium after fixing JUnit XML (size cap + entity-bomb test), 17 low (subprocess). ruff clean (3 unused imports fixed). No secrets | PASSED; pip-audit/CodeQL NOT_RUN |
 | V-023 | Windows/macOS | — | os.pathsep fix applied but never executed | NOT_RUN |
-| V-024 | GitHub publish / CI / release | no write access | — | BLOCKED |
+| V-024 | GitHub publish | user created empty repo; session attached with push access; `git push -u origin main` | https://github.com/RAJARYANSINGH0059/Innodata (public), `main` @ d7ea0bd; `git ls-remote` head == local HEAD | PASSED |
+| V-025 | GitHub Actions CI | workflow `ci` run 44672232036 on d7ea0bd | test (3.11), test (3.12), test (3.13), demo: all `success` (demo re-validated both tasks from a fresh upstream clone on the runner) | PASSED |
+| V-026 | Release / tag | not created | — | NOT_RUN |

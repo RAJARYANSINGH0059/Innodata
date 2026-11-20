@@ -35,4 +35,4 @@ Variation composite 0.061 → DISTINCT.
 - Full ledger: `VALIDATION_LEDGER.md`; defects found and fixed: `DEFECTS.md`; limits of each claim are listed beside the claim.
 
 ## Safety
-Executes repository code on the host — use a disposable VM/container or CI. See `SECURITY.md`. Licence: **not yet assigned** (see `GITHUB_PUBLISH_GUIDE.md`); upstream notices in `THIRD_PARTY_NOTICES.md`.
+Executes repository code on the host — use a disposable VM/container or CI. See `SECURITY.md`. Licence: **not yet assigned** (until one is added, all rights are reserved by default) (see `GITHUB_PUBLISH_GUIDE.md`); upstream notices in `THIRD_PARTY_NOTICES.md`.

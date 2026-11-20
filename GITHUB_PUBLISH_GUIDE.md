@@ -1,5 +1,5 @@
 # GITHUB_PUBLISH_GUIDE
-Status: this session had **no GitHub write access** (`gh` unauthenticated; no write tool). Nothing has been pushed. CI is authored, not executed on GitHub.
+Status: PUBLISHED to https://github.com/RAJARYANSINGH0059/Innodata (public) at d7ea0bd; CI green. The rest of this guide is the manual route / for future re-publishing. Note: the assistant session could not create repositories itself — the user created the empty repo, then the assistant pushed.
 
 ## Licence decision (needed before publishing)
 No `LICENSE` file exists on purpose. Decide, then add it:
