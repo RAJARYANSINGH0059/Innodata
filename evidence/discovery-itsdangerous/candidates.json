@@ -1,0 +1,163 @@
+{
+  "counts_by_kind": {
+    "documented-todo": 1,
+    "option-threading": 6,
+    "resource-limit-guard": 1,
+    "tolerance-or-rule-parameter": 1,
+    "untested-public-api": 5
+  },
+  "files_scanned": 9,
+  "language_adapter": "python (EXPERIMENTAL)",
+  "limitations": [
+    "heuristic, Python only",
+    "ranking is a weak prior, not a quality judgement",
+    "does not check feasibility, testability or contamination"
+  ],
+  "repo": "/tmp/d_ws",
+  "selected": [
+    {
+      "candidate_id": "C001",
+      "file": "src/itsdangerous/timed.py",
+      "intent": "A hard-coded validation rule guards a raise; expose it as an optional, validated parameter.",
+      "kind": "tolerance-or-rule-parameter",
+      "line": 148,
+      "snippet": "if age < 0:",
+      "symbol": "TimestampSigner.unsign",
+      "weight": 3.0,
+      "why": "comparison against a hard-coded numeric literal guards a raise"
+    },
+    {
+      "candidate_id": "C002",
+      "file": "src/itsdangerous/url_safe.py",
+      "intent": "An unbounded call on external data; add an optional bound with defined failure semantics.",
+      "kind": "resource-limit-guard",
+      "line": 46,
+      "snippet": "json = zlib.decompress(json)",
+      "symbol": "URLSafeSerializerMixin.load_payload",
+      "weight": 3.0,
+      "why": "`zlib.decompress` (decompression) has no size bound"
+    },
+    {
+      "candidate_id": "C003",
+      "file": "src/itsdangerous/serializer.py",
+      "intent": "A keyword option is forwarded through call sites; add a sibling option through the same path.",
+      "kind": "option-threading",
+      "line": 285,
+      "snippet": "return self.signer(self.secret_keys, salt=salt, **self.signer_kwargs)",
+      "symbol": "Serializer.make_signer",
+      "weight": 1.0,
+      "why": "option `salt` is forwarded unchanged at this call site"
+    },
+    {
+      "candidate_id": "C004",
+      "file": "src/itsdangerous/serializer.py",
+      "intent": "A keyword option is forwarded through call sites; add a sibling option through the same path.",
+      "kind": "option-threading",
+      "line": 307,
+      "snippet": "yield fallback(secret_key, salt=salt, **kwargs)",
+      "symbol": "Serializer.iter_unsigners",
+      "weight": 1.0,
+      "why": "option `salt` is forwarded unchanged at this call site"
+    },
+    {
+      "candidate_id": "C005",
+      "file": "src/itsdangerous/serializer.py",
+      "intent": "A keyword option is forwarded through call sites; add a sibling option through the same path.",
+      "kind": "option-threading",
+      "line": 381,
+      "snippet": "return True, self.loads(s, salt=salt, **load_kwargs)",
+      "symbol": "Serializer._loads_unsafe_impl",
+      "weight": 1.0,
+      "why": "option `salt` is forwarded unchanged at this call site"
+    },
+    {
+      "candidate_id": "C006",
+      "file": "src/itsdangerous/serializer.py",
+      "intent": "A keyword option is forwarded through call sites; add a sibling option through the same path.",
+      "kind": "option-threading",
+      "line": 404,
+      "snippet": "return self.loads_unsafe(f.read(), salt=salt)",
+      "symbol": "Serializer.load_unsafe",
+      "weight": 1.0,
+      "why": "option `salt` is forwarded unchanged at this call site"
+    },
+    {
+      "candidate_id": "C007",
+      "file": "src/itsdangerous/timed.py",
+      "intent": "A keyword option is forwarded through call sites; add a sibling option through the same path.",
+      "kind": "option-threading",
+      "line": 164,
+      "snippet": "self.unsign(signed_value, max_age=max_age)",
+      "symbol": "TimestampSigner.validate",
+      "weight": 1.0,
+      "why": "option `max_age` is forwarded unchanged at this call site"
+    },
+    {
+      "candidate_id": "C008",
+      "file": "src/itsdangerous/timed.py",
+      "intent": "The maintainers left a TODO/FIXME/XXX at this point.",
+      "kind": "documented-todo",
+      "line": 182,
+      "snippet": "# TODO: Signature is incompatible because parameters were added",
+      "symbol": "<comment>",
+      "weight": 2.0,
+      "why": "maintainer-flagged work"
+    },
+    {
+      "candidate_id": "C009",
+      "file": "src/itsdangerous/serializer.py",
+      "intent": "A public function/method is not referenced by any test.",
+      "kind": "untested-public-api",
+      "line": 33,
+      "snippet": "def is_text_serializer",
+      "symbol": "is_text_serializer",
+      "weight": 1.5,
+      "why": "name never appears in the test suite"
+    },
+    {
+      "candidate_id": "C010",
+      "file": "src/itsdangerous/serializer.py",
+      "intent": "A public function/method is not referenced by any test.",
+      "kind": "untested-public-api",
+      "line": 271,
+      "snippet": "def dump_payload",
+      "symbol": "Serializer.dump_payload",
+      "weight": 1.5,
+      "why": "name never appears in the test suite"
+    },
+    {
+      "candidate_id": "C011",
+      "file": "src/itsdangerous/timed.py",
+      "intent": "A public function/method is not referenced by any test.",
+      "kind": "untested-public-api",
+      "line": 29,
+      "snippet": "def get_timestamp",
+      "symbol": "TimestampSigner.get_timestamp",
+      "weight": 1.5,
+      "why": "name never appears in the test suite"
+    },
+    {
+      "candidate_id": "C012",
+      "file": "src/itsdangerous/timed.py",
+      "intent": "A public function/method is not referenced by any test.",
+      "kind": "untested-public-api",
+      "line": 35,
+      "snippet": "def timestamp_to_datetime",
+      "symbol": "TimestampSigner.timestamp_to_datetime",
+      "weight": 1.5,
+      "why": "name never appears in the test suite"
+    },
+    {
+      "candidate_id": "C013",
+      "file": "src/itsdangerous/url_safe.py",
+      "intent": "A public function/method is not referenced by any test.",
+      "kind": "untested-public-api",
+      "line": 55,
+      "snippet": "def dump_payload",
+      "symbol": "URLSafeSerializerMixin.dump_payload",
+      "weight": 1.5,
+      "why": "name never appears in the test suite"
+    }
+  ],
+  "total_candidates": 14
+}

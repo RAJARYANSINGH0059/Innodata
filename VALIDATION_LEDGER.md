@@ -44,3 +44,8 @@
 | V-024 | GitHub publish | user created empty repo; session attached with push access; `git push -u origin main` | https://github.com/RAJARYANSINGH0059/Innodata (public), `main` @ d7ea0bd; `git ls-remote` head == local HEAD | PASSED |
 | V-025 | GitHub Actions CI | workflow `ci` run 44672232036 on d7ea0bd | test (3.11), test (3.12), test (3.13), demo: all `success` (demo re-validated both tasks from a fresh upstream clone on the runner) | PASSED |
 | V-026 | Release / tag | not created | — | NOT_RUN |
+## Discovery (2026-11-20)
+| ID | Claim | Method | Result | Status |
+|---|---|---|---|---|
+| V-027 | `taskfactory discover` finds evidence-anchored candidates | AST heuristics (5 kinds) run on pinned itsdangerous@672971d; evidence/discovery-itsdangerous/ | 14 raw / 13 selected. C001 `timed.py:148 if age < 0` and C002 `url_safe.py:46 zlib.decompress` rank first in their kinds = the anchors of tasks 001/002; C007 `validate` option-threading = leeway call site. 5 `untested-public-api` and C003–C006 `option-threading` are weak/noisy | PASSED (unit tests: 5 tests incl. negatives + determinism) |
+| V-028 | Discovery quality | — | Heuristics were written AFTER tasks 001/002 were authored; the hit on both is a recall sanity check, NOT an evaluation. Precision judged by the author: ~3 of 13 strong. Only Python; not run on a second repo | INSPECTED_ONLY |

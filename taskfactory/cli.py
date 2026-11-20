@@ -34,6 +34,10 @@ def main() -> None:
     rec.add_argument("--out", type=Path, required=True)
     man = sub.add_parser("manifest", help="Write MANIFEST.sha256 for a task directory")
     man.add_argument("task_dir", type=Path)
+    dis = sub.add_parser("discover", help="Find evidence-anchored feature candidates in a Python repository")
+    dis.add_argument("repo", type=Path)
+    dis.add_argument("--out", type=Path, required=True)
+    dis.add_argument("--top-per-kind", type=int, default=5)
     args = parser.parse_args()
 
     if args.command == "inspect":
@@ -64,6 +68,10 @@ def main() -> None:
         res = reconstruct(args.task_dir, args.repo, args.recorded, args.out)
         print(json.dumps(res, indent=2))
         raise SystemExit(0 if res["status"] == "PASS" else 1)
+    elif args.command == "discover":
+        from .discovery import write_report as write_candidates
+        rep = write_candidates(args.repo, args.out, args.top_per_kind)
+        print(f"{rep['total_candidates']} candidates, {len(rep['selected'])} selected: {rep['counts_by_kind']}")
     elif args.command == "mutate":
         from .mutation import run_mutants
         rep = run_mutants(args.task_dir, args.repo, args.mutants, args.out)

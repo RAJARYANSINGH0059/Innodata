@@ -26,11 +26,11 @@ python scripts/demo.py            # ~2 min: clones itsdangerous at a pinned comm
 Variation composite 0.061 → DISTINCT.
 
 ## CLI
-`taskfactory validate | mutate | variation | manifest | reconstruct | inspect …` (see `--help`). Task folder layout: `task.toml`, `instruction.md`, `solution/solution.diff`, `tests/feature`, `tests/regression`, `mutants.json`, `MANIFEST.sha256`.
+`taskfactory discover | validate | mutate | variation | manifest | reconstruct | inspect …` (see `--help`). Task folder layout: `task.toml`, `instruction.md`, `solution/solution.diff`, `tests/feature`, `tests/regression`, `mutants.json`, `MANIFEST.sha256`.
 
 ## Honest status
-- **Works & tested:** the validation machinery (43 tests on Python 3.11/3.12/3.13) and two validated tasks.
-- **Not automated yet:** feature *discovery* and requirement/patch/test *generation* — tasks here were authored interactively with an AI assistant (tests written before the patch, from the requirement only, but by the same author). The factory validates; it does not yet generate.
+- **Works & tested:** the validation machinery (48 tests on Python 3.11/3.12/3.13) and two validated tasks.
+- **Partly automated:** feature *discovery* (`taskfactory discover`: deterministic, evidence-anchored candidates; Python only; noisy). **Not automated yet:** requirement/patch/test *generation* — tasks here were authored interactively with an AI assistant (tests written before the patch, from the requirement only, but by the same author). The factory validates; it does not yet generate.
 - **Not done:** second repository / non-Python stack, container sandbox, independent test author, organiser-specific schema (provisional layout follows the explainer's description), GitHub CI run, Windows/macOS runs.
 - Full ledger: `VALIDATION_LEDGER.md`; defects found and fixed: `DEFECTS.md`; limits of each claim are listed beside the claim.
 

@@ -11,3 +11,7 @@
 - Limits: n=3 comparisons, lexical metric; no embedding/semantic check; a clone that changes structure but not behaviour would not be caught. Manual adjudication required.
 ## EXP-003 Reconstruction
 - Both tasks rebuilt from manifest + fresh clone reproduce recorded status, tree digests, patch hash and failing-test set (5/5 comparisons each).
+## EXP-004 Can deterministic discovery surface the extension points we hand-picked?
+- Hypothesis: AST heuristics (rule-literal raise, unbounded call, option forwarding, TODO, untested API) surface tasks 001/002 anchors.
+- Result: yes for both (C001, C002 top-ranked in kind), plus C007 for the leeway call site. Noise: 9/13 candidates weak.
+- Limits: circular (heuristics written after seeing the tasks); n=1 repo; precision self-judged. Needs a held-out repo to test.
