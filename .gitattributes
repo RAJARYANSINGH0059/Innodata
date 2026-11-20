@@ -1,0 +1,4 @@
+# Task files are hashed (MANIFEST.sha256) and applied as patches: line endings must be identical on every OS.
+* text=auto eol=lf
+*.zip binary
+*.png binary

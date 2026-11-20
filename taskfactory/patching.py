@@ -56,9 +56,10 @@ def make_workspace(repo: str | Path, commit: str, dest: str | Path) -> str:
     dest = Path(dest)
     if dest.exists():
         raise PatchError(f"workspace already exists: {dest}")
-    r = _git(["clone", "-q", "--no-checkout", "--no-hardlinks", str(repo), str(dest)], None)
+    r = _git(["-c", "core.autocrlf=false", "-c", "core.eol=lf", "clone", "-q", "--no-checkout", "--no-hardlinks", str(repo), str(dest)], None)
     if r.returncode:
         raise PatchError(f"clone failed: {r.stderr.strip()}")
+    _git(["config", "core.autocrlf", "false"], dest)  # keep LF so patches/hashes are identical on every OS
     r = _git(["checkout", "-q", "--detach", commit], dest)
     if r.returncode:
         raise PatchError(f"checkout {commit} failed: {r.stderr.strip()}")

@@ -11,3 +11,4 @@
 - D-010 (fixed) Runner trusted "equivalent" labels; now reports MISLABELLED_EQUIVALENT if tests catch the variant.
 - D-011 (fixed) PYTHONPATH joined with ':' (breaks Windows) → os.pathsep (unverified on Windows).
 - D-012 (fixed) JUnit XML parsed without size cap → 50 MiB cap + entity-bomb test.
+- D-013 (fixed) Windows line endings: Git for Windows default autocrlf=true would convert clones to CRLF and break patch apply / manifest hashes. Fix: clones forced core.autocrlf=false, .gitattributes eol=lf; regression test simulates autocrlf=true (first draft of the test was vacuous because the git env whitelist dropped GIT_CONFIG_GLOBAL; rewritten via HOME and shown red-without-fix / green-with-fix).

@@ -34,5 +34,8 @@ Variation composite 0.061 → DISTINCT.
 - **Not done:** second repository / non-Python stack, container sandbox, independent test author, organiser-specific schema (provisional layout follows the explainer's description), GitHub CI run, Windows/macOS runs.
 - Full ledger: `VALIDATION_LEDGER.md`; defects found and fixed: `DEFECTS.md`; limits of each claim are listed beside the claim.
 
+## Windows
+See `docs/WINDOWS.md` (untested on Windows; LF line endings enforced).
+
 ## Safety
 Executes repository code on the host — use a disposable VM/container or CI. See `SECURITY.md`. Licence: **not yet assigned** (until one is added, all rights are reserved by default) (see `GITHUB_PUBLISH_GUIDE.md`); upstream notices in `THIRD_PARTY_NOTICES.md`.

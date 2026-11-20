@@ -49,3 +49,5 @@
 |---|---|---|---|---|
 | V-027 | `taskfactory discover` finds evidence-anchored candidates | AST heuristics (5 kinds) run on pinned itsdangerous@672971d; evidence/discovery-itsdangerous/ | 14 raw / 13 selected. C001 `timed.py:148 if age < 0` and C002 `url_safe.py:46 zlib.decompress` rank first in their kinds = the anchors of tasks 001/002; C007 `validate` option-threading = leeway call site. 5 `untested-public-api` and C003–C006 `option-threading` are weak/noisy | PASSED (unit tests: 5 tests incl. negatives + determinism) |
 | V-028 | Discovery quality | — | Heuristics were written AFTER tasks 001/002 were authored; the hit on both is a recall sanity check, NOT an evaluation. Precision judged by the author: ~3 of 13 strong. Only Python; not run on a second repo | INSPECTED_ONLY |
+| V-029 | CRLF robustness | test sets HOME/.gitconfig autocrlf=true; red without fix, green with fix | PASSED (simulated) | Real Windows run: NOT_RUN |
+| V-030 | CI on discovery commit | run 44672888536 on 02b2be5 | test 3.11/3.12/3.13 + demo: success | PASSED |

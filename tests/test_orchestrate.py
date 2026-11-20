@@ -8,7 +8,7 @@ import os
 
 from taskfactory.mutation import run_mutants
 from taskfactory.orchestrate import validate_task
-from taskfactory.patching import PatchError, install_files, make_workspace, validate_patch_text
+from taskfactory.patching import PatchError, apply_patch, install_files, make_workspace, validate_patch_text
 
 PKG_V1 = 'def greet(name):\n    return "hi " + name\n'
 PKG_V2 = 'def greet(name, shout=False):\n    out = "hi " + name\n    return out.upper() if shout else out\n'
@@ -237,3 +237,23 @@ class JunitSafetyTests(unittest.TestCase):
             p.write_text(bomb)
             outcome, _ = classify_junit_xml(p)
         self.assertEqual(outcome, "invalid_test_report")
+
+
+class LineEndingTests(unittest.TestCase):
+    def test_workspace_stays_lf_even_when_user_git_config_says_crlf(self):
+        import os
+        with tempfile.TemporaryDirectory() as td:
+            td = Path(td)
+            repo, commit, patch = build_repo(td)
+            home = td / "home"
+            home.mkdir()
+            (home / ".gitconfig").write_text("[core]\n\tautocrlf = true\n")  # Git for Windows default
+            old = os.environ.get("HOME")
+            os.environ["HOME"] = str(home)
+            try:
+                make_workspace(repo, commit, td / "ws")
+                self.assertNotIn(b"\r\n", (td / "ws/pkg/__init__.py").read_bytes())
+                (td / "p.diff").write_text(patch)
+                apply_patch(td / "ws", td / "p.diff")
+            finally:
+                os.environ["HOME"] = old if old is not None else ""

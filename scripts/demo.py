@@ -42,7 +42,7 @@ def main() -> int:
     a.workdir.mkdir(parents=True, exist_ok=True)
     if not repo.exists():
         print(f"cloning {UPSTREAM} ...")
-        r = subprocess.run(["git", "clone", "-q", UPSTREAM, str(repo)], text=True, capture_output=True)
+        r = subprocess.run(["git", "-c", "core.autocrlf=false", "clone", "-q", UPSTREAM, str(repo)], text=True, capture_output=True)
         if r.returncode:
             print(r.stderr)
             return 2
