@@ -8,5 +8,5 @@
 - Windows hardening: LF forced in clones, .gitattributes, docs/WINDOWS.md, CRLF regression test.
 - Task 003 needs_resign (validated), 3-task variation, docs.
 
-## Unreleased
+## v0.1.0 (2026-11-21)
 - node-test runner, `--deps-dir`, file-level load failure classification, task is-ascii-string-001, tests/test_node_runner.py.

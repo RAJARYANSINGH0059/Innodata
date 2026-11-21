@@ -39,3 +39,12 @@ PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
 NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+## sindresorhus/is (task is-ascii-string-001)
+Task 004 references https://github.com/sindresorhus/is at commit e9c026c611c1160eaad50da00be4e676b626018f (MIT License,
+Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)). The upstream source is NOT vendored;
+`tasks/is-ascii-string-001/solution/solution.diff` contains short context lines from upstream `source/index.ts`.
+Permission notice: Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+associated documentation files, to deal in the Software without restriction, subject to the inclusion of the upstream
+copyright and permission notice (see the `license` file in the upstream repository). THE SOFTWARE IS PROVIDED "AS IS",
+WITHOUT WARRANTY OF ANY KIND.
