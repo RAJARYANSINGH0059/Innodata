@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="is.asciiString exists on default is object" time="0.000874" classname="test"/>
+	<testcase name="AC1 / req 2: ASCII strings are true" time="0.000340" classname="test"/>
+	<testcase name="every single code unit 0..127 is ASCII, 128..255 is not" time="0.000307" classname="test"/>
+	<testcase name="AC2 / req 3: non-ASCII strings are false" time="0.000139" classname="test"/>
+	<testcase name="AC3 / req 1: non-strings are false" time="0.000102" classname="test"/>
+	<testcase name="is.asciiString returns strictly boolean" time="0.000089" classname="test"/>
+	<testcase name="AC7: named export isAsciiString behaves like is.asciiString" time="0.000231" classname="test"/>
+	<testcase name="AC4: assert.asciiString passes for ASCII" time="0.000217" classname="test"/>
+	<testcase name="AC4: assert.asciiString throws TypeError mentioning ASCII string" time="0.000990" classname="test"/>
+	<testcase name="AC4: default message names expected type like other assertions" time="0.001448" classname="test"/>
+	<testcase name="AC5: custom message is used verbatim" time="0.000319" classname="test"/>
+	<testcase name="AC7: named export assertAsciiString" time="0.000165" classname="test"/>
+	<testcase name="AC6: is.any with is.asciiString" time="0.000199" classname="test"/>
+	<testcase name="AC6: is.all with is.asciiString" time="0.000085" classname="test"/>
+	<testcase name="AC6: assert.any with is.asciiString passes and fails with ASCII string in message" time="0.000300" classname="test"/>
+	<testcase name="assert.any with array of predicates lists ASCII string" time="0.000101" classname="test"/>
+	<testcase name="assert.all with is.asciiString" time="0.000106" classname="test"/>
+	<!-- tests 17 -->
+	<!-- suites 0 -->
+	<!-- pass 17 -->
+	<!-- fail 0 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 235.086029 -->
+</testsuites>

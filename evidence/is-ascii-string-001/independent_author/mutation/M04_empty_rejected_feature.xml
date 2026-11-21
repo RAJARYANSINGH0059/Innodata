@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="is.asciiString exists on default is object" time="0.000877" classname="test"/>
+	<testcase name="AC1 / req 2: ASCII strings are true" time="0.001110" classname="test" failure="&amp;quot;&amp;quot;false !== true">
+		<failure type="testCodeFailure" message="&amp;quot;&amp;quot;false !== true">
+[Error [ERR_TEST_FAILURE]: ""
+
+false !== true
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: ""
+  
+  false !== true
+  
+      at TestContext.&lt;anonymous> (/tmp/mut_vg8ssfc9/ws/test/task_feature/feature.test.ts:19:2)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<testcase name="every single code unit 0..127 is ASCII, 128..255 is not" time="0.000377" classname="test"/>
+	<testcase name="AC2 / req 3: non-ASCII strings are false" time="0.000163" classname="test"/>
+	<testcase name="AC3 / req 1: non-strings are false" time="0.000112" classname="test"/>
+	<testcase name="is.asciiString returns strictly boolean" time="0.000088" classname="test"/>
+	<testcase name="AC7: named export isAsciiString behaves like is.asciiString" time="0.000247" classname="test"/>
+	<testcase name="AC4: assert.asciiString passes for ASCII" time="0.000377" classname="test" failure="Got unwanted exception.Actual message: &amp;quot;Expected value which is `ASCII string`, received value of type `string`.&amp;quot;">
+		<failure type="testCodeFailure" message="Got unwanted exception.Actual message: &amp;quot;Expected value which is `ASCII string`, received value of type `string`.&amp;quot;">
+[Error [ERR_TEST_FAILURE]: Got unwanted exception.
+Actual message: "Expected value which is `ASCII string`, received value of type `string`."] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Expected value which is `ASCII string`, received value of type `string`."
+      at TestContext.&lt;anonymous> (/tmp/mut_vg8ssfc9/ws/test/task_feature/feature.test.ts:69:6)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Expected value which is `ASCII string`, received value of type `string`.
+        at Object.assertAsciiString (/tmp/mut_vg8ssfc9/ws/source/index.ts:2017:9)
+        at &lt;anonymous> (/tmp/mut_vg8ssfc9/ws/test/task_feature/feature.test.ts:70:3)
+        at getActual (node:assert:609:5)
+        at Function.doesNotThrow (node:assert:777:32)
+        at TestContext.&lt;anonymous> (/tmp/mut_vg8ssfc9/ws/test/task_feature/feature.test.ts:69:6)
+        at Test.runInAsyncScope (node:async_hooks:214:14)
+        at Test.run (node:internal/test_runner/test:1047:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+        at Test.postRun (node:internal/test_runner/test:1173:19)
+        at Test.run (node:internal/test_runner/test:1101:12),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<testcase name="AC4: assert.asciiString throws TypeError mentioning ASCII string" time="0.001063" classname="test"/>
+	<testcase name="AC4: default message names expected type like other assertions" time="0.001231" classname="test"/>
+	<testcase name="AC5: custom message is used verbatim" time="0.000198" classname="test"/>
+	<testcase name="AC7: named export assertAsciiString" time="0.000235" classname="test" failure="Got unwanted exception.Actual message: &amp;quot;Expected value which is `ASCII string`, received value of type `string`.&amp;quot;">
+		<failure type="testCodeFailure" message="Got unwanted exception.Actual message: &amp;quot;Expected value which is `ASCII string`, received value of type `string`.&amp;quot;">
+[Error [ERR_TEST_FAILURE]: Got unwanted exception.
+Actual message: "Expected value which is `ASCII string`, received value of type `string`."] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Expected value which is `ASCII string`, received value of type `string`."
+      at TestContext.&lt;anonymous> (/tmp/mut_vg8ssfc9/ws/test/task_feature/feature.test.ts:123:6)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: Expected value which is `ASCII string`, received value of type `string`.
+        at assertAsciiString (/tmp/mut_vg8ssfc9/ws/source/index.ts:2017:9)
+        at &lt;anonymous> (/tmp/mut_vg8ssfc9/ws/test/task_feature/feature.test.ts:124:2)
+        at getActual (node:assert:609:5)
+        at Function.doesNotThrow (node:assert:777:32)
+        at TestContext.&lt;anonymous> (/tmp/mut_vg8ssfc9/ws/test/task_feature/feature.test.ts:123:6)
+        at Test.runInAsyncScope (node:async_hooks:214:14)
+        at Test.run (node:internal/test_runner/test:1047:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+        at Test.postRun (node:internal/test_runner/test:1173:19)
+        at Test.run (node:internal/test_runner/test:1101:12),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<testcase name="AC6: is.any with is.asciiString" time="0.000211" classname="test"/>
+	<testcase name="AC6: is.all with is.asciiString" time="0.000246" classname="test" failure="Expected values to be strictly equal:false !== true">
+		<failure type="testCodeFailure" message="Expected values to be strictly equal:false !== true">
+[Error [ERR_TEST_FAILURE]: Expected values to be strictly equal:
+
+false !== true
+] {
+  code: 'ERR_TEST_FAILURE',
+  failureType: 'testCodeFailure',
+  cause: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.&lt;anonymous> (/tmp/mut_vg8ssfc9/ws/test/task_feature/feature.test.ts:149:9)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+}
+		</failure>
+	</testcase>
+	<testcase name="AC6: assert.any with is.asciiString passes and fails with ASCII string in message" time="0.000267" classname="test"/>
+	<testcase name="assert.any with array of predicates lists ASCII string" time="0.000129" classname="test"/>
+	<testcase name="assert.all with is.asciiString" time="0.000115" classname="test"/>
+	<!-- tests 17 -->
+	<!-- suites 0 -->
+	<!-- pass 13 -->
+	<!-- fail 4 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 227.129295 -->
+</testsuites>

@@ -1,0 +1,231 @@
+{
+  "results": [
+    {
+      "description": "rejects NUL",
+      "failed_tests": [
+        "AC1 / req 2: ASCII strings are true",
+        "AC4: assert.asciiString passes for ASCII",
+        "AC6: is.all with is.asciiString",
+        "every single code unit 0..127 is ASCII, 128..255 is not"
+      ],
+      "id": "M01_range_off_by_one_low",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "rejects DEL (U+007F)",
+      "failed_tests": [
+        "AC1 / req 2: ASCII strings are true",
+        "AC4: assert.asciiString passes for ASCII",
+        "every single code unit 0..127 is ASCII, 128..255 is not"
+      ],
+      "id": "M02_range_off_by_one_high",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "accepts Latin-1",
+      "failed_tests": [
+        "AC2 / req 3: non-ASCII strings are false",
+        "AC4: assert.asciiString throws TypeError mentioning ASCII string",
+        "AC4: default message names expected type like other assertions",
+        "AC5: custom message is used verbatim",
+        "AC6: assert.any with is.asciiString passes and fails with ASCII string in message",
+        "AC6: is.all with is.asciiString",
+        "AC6: is.any with is.asciiString",
+        "AC7: named export assertAsciiString",
+        "AC7: named export isAsciiString behaves like is.asciiString",
+        "assert.all with is.asciiString",
+        "assert.any with array of predicates lists ASCII string",
+        "every single code unit 0..127 is ASCII, 128..255 is not"
+      ],
+      "id": "M03_latin1_accepted",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "empty string rejected",
+      "failed_tests": [
+        "AC1 / req 2: ASCII strings are true",
+        "AC4: assert.asciiString passes for ASCII",
+        "AC6: is.all with is.asciiString",
+        "AC7: named export assertAsciiString"
+      ],
+      "id": "M04_empty_rejected",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "only first char checked",
+      "failed_tests": [
+        "AC1 / req 2: ASCII strings are true",
+        "AC2 / req 3: non-ASCII strings are false",
+        "AC4: assert.asciiString passes for ASCII",
+        "AC4: assert.asciiString throws TypeError mentioning ASCII string",
+        "AC6: is.all with is.asciiString",
+        "AC7: named export assertAsciiString",
+        "every single code unit 0..127 is ASCII, 128..255 is not"
+      ],
+      "id": "M05_prefix_only",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "any ASCII char anywhere accepted",
+      "failed_tests": [
+        "AC1 / req 2: ASCII strings are true",
+        "AC2 / req 3: non-ASCII strings are false",
+        "AC4: assert.asciiString passes for ASCII",
+        "AC4: assert.asciiString throws TypeError mentioning ASCII string",
+        "AC6: is.all with is.asciiString",
+        "AC7: named export assertAsciiString",
+        "every single code unit 0..127 is ASCII, 128..255 is not"
+      ],
+      "id": "M06_any_ascii_char",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "coerces non-strings",
+      "failed_tests": [
+        "AC3 / req 1: non-strings are false",
+        "AC4: assert.asciiString throws TypeError mentioning ASCII string",
+        "AC5: custom message is used verbatim",
+        "AC6: assert.any with is.asciiString passes and fails with ASCII string in message",
+        "AC6: is.all with is.asciiString",
+        "AC6: is.any with is.asciiString",
+        "AC7: named export assertAsciiString",
+        "AC7: named export isAsciiString behaves like is.asciiString"
+      ],
+      "id": "M07_non_string_coerced",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "assertion never throws",
+      "failed_tests": [
+        "AC4: assert.asciiString throws TypeError mentioning ASCII string",
+        "AC4: default message names expected type like other assertions",
+        "AC5: custom message is used verbatim",
+        "AC7: named export assertAsciiString"
+      ],
+      "id": "M08_assert_never_throws",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "custom message ignored",
+      "failed_tests": [
+        "AC5: custom message is used verbatim",
+        "AC7: named export assertAsciiString"
+      ],
+      "id": "M09_assert_ignores_message",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "wrong description in assert",
+      "failed_tests": [
+        "AC4: assert.asciiString throws TypeError mentioning ASCII string",
+        "AC4: default message names expected type like other assertions",
+        "AC7: named export assertAsciiString"
+      ],
+      "id": "M10_assert_wrong_description",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "combinator message loses type name",
+      "failed_tests": [
+        "AC6: assert.any with is.asciiString passes and fails with ASCII string in message",
+        "assert.any with array of predicates lists ASCII string"
+      ],
+      "id": "M11_methodTypeMap_missing",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "assert.asciiString missing",
+      "failed_tests": [
+        "AC4: assert.asciiString passes for ASCII",
+        "AC4: assert.asciiString throws TypeError mentioning ASCII string",
+        "AC4: default message names expected type like other assertions",
+        "AC5: custom message is used verbatim"
+      ],
+      "id": "M12_assert_object_unwired",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "is.asciiString missing",
+      "failed_tests": [
+        "AC1 / req 2: ASCII strings are true",
+        "AC2 / req 3: non-ASCII strings are false",
+        "AC3 / req 1: non-strings are false",
+        "AC6: assert.any with is.asciiString passes and fails with ASCII string in message",
+        "AC6: is.all with is.asciiString",
+        "AC6: is.any with is.asciiString",
+        "AC7: named export isAsciiString behaves like is.asciiString",
+        "assert.all with is.asciiString",
+        "assert.any with array of predicates lists ASCII string",
+        "every single code unit 0..127 is ASCII, 128..255 is not",
+        "is.asciiString exists on default is object",
+        "is.asciiString returns strictly boolean"
+      ],
+      "id": "M13_is_object_unwired",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "assert only checks string",
+      "failed_tests": [
+        "AC4: assert.asciiString throws TypeError mentioning ASCII string",
+        "AC4: default message names expected type like other assertions",
+        "AC5: custom message is used verbatim",
+        "AC7: named export assertAsciiString"
+      ],
+      "id": "M14_assert_wrong_predicate",
+      "kind": "wrong",
+      "outcome": "KILLED"
+    },
+    {
+      "description": "u flag instead of v: identical for this class",
+      "failed_tests": [],
+      "id": "E01_equivalent_flag_u",
+      "kind": "equivalent",
+      "outcome": "EQUIVALENT"
+    },
+    {
+      "description": "only affects TS type-checking (runtime unused array)",
+      "failed_tests": [],
+      "id": "E02_description_array_unregistered",
+      "kind": "equivalent",
+      "outcome": "EQUIVALENT"
+    },
+    {
+      "description": "explicit range",
+      "failed_tests": [],
+      "id": "A01_alt_class_syntax",
+      "kind": "alt_valid",
+      "outcome": "ACCEPTED"
+    },
+    {
+      "description": "loop implementation",
+      "failed_tests": [],
+      "id": "A02_alt_charcode_loop",
+      "kind": "alt_valid",
+      "outcome": "ACCEPTED"
+    }
+  ],
+  "summary": {
+    "ACCEPTED": 2,
+    "EQUIVALENT": 2,
+    "INVALID": 0,
+    "KILLED": 14,
+    "MISLABELLED_EQUIVALENT": 0,
+    "REJECTED_VALID_ALTERNATIVE": 0,
+    "SURVIVED": 0,
+    "TIMEOUT": 0
+  },
+  "task_id": "is-ascii-string-001-indep"
+}

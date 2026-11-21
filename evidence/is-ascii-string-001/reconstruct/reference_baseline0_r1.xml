@@ -1,123 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <testsuites>
-	<testcase name="is.symbol" time="0.008072" classname="test"/>
-	<testcase name="is.array" time="0.003416" classname="test"/>
-	<testcase name="is.emptyArray" time="0.003025" classname="test"/>
-	<testcase name="is.function" time="0.004151" classname="test"/>
-	<testcase name="is.buffer" time="0.003804" classname="test"/>
-	<testcase name="is.blob" time="0.002965" classname="test"/>
+	<testcase name="is.symbol" time="0.006757" classname="test"/>
+	<testcase name="is.array" time="0.002666" classname="test"/>
+	<testcase name="is.emptyArray" time="0.002680" classname="test"/>
+	<testcase name="is.function" time="0.002235" classname="test"/>
+	<testcase name="is.buffer" time="0.002602" classname="test"/>
+	<testcase name="is.blob" time="0.002591" classname="test"/>
 	<testcase name="is.object" time="0.000532" classname="test"/>
-	<testcase name="is.regExp" time="0.002679" classname="test"/>
-	<testcase name="is.date" time="0.003648" classname="test"/>
-	<testcase name="is.error" time="0.005555" classname="test"/>
-	<testcase name="is.nativePromise" time="0.009477" classname="test"/>
-	<testcase name="is.promise" time="0.004322" classname="test"/>
-	<testcase name="is.generator" time="0.005186" classname="test"/>
-	<testcase name="is.asyncGenerator" time="0.003675" classname="test"/>
-	<testcase name="is.generatorFunction" time="0.003474" classname="test"/>
-	<testcase name="is.asyncGeneratorFunction" time="0.003755" classname="test"/>
-	<testcase name="is.asyncFunction" time="0.003580" classname="test"/>
-	<testcase name="is.boundFunction" time="0.003349" classname="test"/>
-	<testcase name="is.map" time="0.006267" classname="test"/>
-	<testcase name="is.emptyMap" time="0.004018" classname="test"/>
-	<testcase name="is.set" time="0.003927" classname="test"/>
-	<testcase name="is.emptySet" time="0.005666" classname="test"/>
-	<testcase name="is.weakSet" time="0.003574" classname="test"/>
-	<testcase name="is.weakRef" time="0.004023" classname="test"/>
-	<testcase name="is.weakMap" time="0.004167" classname="test"/>
-	<testcase name="is.int8Array" time="0.004699" classname="test"/>
-	<testcase name="is.uint8Array" time="0.008757" classname="test"/>
-	<testcase name="is.uint8ClampedArray" time="0.004255" classname="test"/>
-	<testcase name="is.int16Array" time="0.004650" classname="test"/>
-	<testcase name="is.uint16Array" time="0.003678" classname="test"/>
-	<testcase name="is.int32Array" time="0.006573" classname="test"/>
-	<testcase name="is.uint32Array" time="0.003823" classname="test"/>
-	<testcase name="is.float32Array" time="0.003632" classname="test"/>
-	<testcase name="is.float64Array" time="0.006566" classname="test"/>
-	<testcase name="is.bigInt64Array" time="0.007450" classname="test"/>
-	<testcase name="is.bigUint64Array" time="0.003273" classname="test"/>
-	<testcase name="is.arrayBuffer" time="0.003213" classname="test"/>
-	<testcase name="is.dataView" time="0.003669" classname="test"/>
-	<testcase name="is.plainObject" time="0.003935" classname="test"/>
-	<testcase name="is.htmlElement" time="0.003936" classname="test"/>
-	<testcase name="is.observable" time="0.003551" classname="test"/>
-	<testcase name="is.nodeStream" time="0.003144" classname="test"/>
-	<testcase name="is.formData" time="0.003180" classname="test"/>
-	<testcase name="is.undefined" time="0.003675" classname="test"/>
-	<testcase name="is.null" time="0.003184" classname="test"/>
-	<testcase name="is.string" time="0.003793" classname="test"/>
-	<testcase name="is.emptyString" time="0.003122" classname="test"/>
-	<testcase name="is.number" time="0.003769" classname="test"/>
-	<testcase name="is.bigint" time="0.005020" classname="test"/>
-	<testcase name="is.boolean" time="0.004261" classname="test"/>
-	<testcase name="is.numericString" time="0.004983" classname="test"/>
-	<testcase name="is.nan" time="0.005220" classname="test"/>
-	<testcase name="is.nullOrUndefined" time="0.005242" classname="test"/>
-	<testcase name="is.integer" time="0.004812" classname="test"/>
-	<testcase name="is.safeInteger" time="0.003264" classname="test"/>
-	<testcase name="is.infinite" time="0.003393" classname="test"/>
-	<testcase name="is.positiveNumber" time="0.000275" classname="test"/>
-	<testcase name="is.nan" time="0.000129" classname="test"/>
-	<testcase name="is.finiteNumber" time="0.000152" classname="test"/>
-	<testcase name="is.negativeNumber" time="0.000343" classname="test"/>
-	<testcase name="is.nonNegativeNumber" time="0.000128" classname="test"/>
-	<testcase name="is.positiveInteger" time="0.000129" classname="test"/>
-	<testcase name="is.negativeInteger" time="0.000137" classname="test"/>
-	<testcase name="is.nonNegativeInteger" time="0.000137" classname="test"/>
-	<testcase name="is.infinite" time="0.000098" classname="test"/>
-	<testcase name="is.numericString supplemental" time="0.000085" classname="test"/>
-	<testcase name="is.array supplemental" time="0.000236" classname="test"/>
-	<testcase name="is.arrayOf" time="0.000102" classname="test"/>
-	<testcase name="is.oneOf" time="0.004167" classname="test"/>
-	<testcase name="is.boundFunction supplemental" time="0.000169" classname="test"/>
-	<testcase name="is.asyncFunction supplemental" time="0.000182" classname="test"/>
-	<testcase name="is.asyncGenerator supplemental" time="0.000143" classname="test"/>
-	<testcase name="is.asyncGeneratorFunction supplemental" time="0.000093" classname="test"/>
-	<testcase name="is.enumCase" time="0.000361" classname="test"/>
-	<testcase name="is.directInstanceOf" time="0.000183" classname="test"/>
-	<testcase name="is.urlInstance" time="0.000433" classname="test"/>
-	<testcase name="is.urlString" time="0.000224" classname="test"/>
-	<testcase name="is.truthy" time="0.000236" classname="test"/>
-	<testcase name="is.falsy" time="0.000330" classname="test"/>
-	<testcase name="is.primitive" time="0.000141" classname="test"/>
-	<testcase name="is.integer supplemental" time="0.000079" classname="test"/>
-	<testcase name="is.safeInteger supplemental" time="0.000157" classname="test"/>
-	<testcase name="is.iterable" time="0.000242" classname="test"/>
-	<testcase name="is.asyncIterable" time="0.000188" classname="test"/>
-	<testcase name="is.class" time="0.000361" classname="test"/>
-	<testcase name="is.typedArray" time="0.000351" classname="test"/>
-	<testcase name="is.arrayLike" time="0.000437" classname="test"/>
-	<testcase name="is.tupleLike" time="0.000556" classname="test"/>
-	<testcase name="is.inRange" time="0.000499" classname="test"/>
-	<testcase name="is.htmlElement supplemental" time="0.003751" classname="test"/>
-	<testcase name="is.evenInteger" time="0.000227" classname="test"/>
-	<testcase name="is.oddInteger" time="0.000130" classname="test"/>
-	<testcase name="is.nonEmptyArray" time="0.000388" classname="test"/>
-	<testcase name="is.emptyString supplemental" time="0.000176" classname="test"/>
-	<testcase name="is.emptyStringOrWhitespace supplemental" time="0.000148" classname="test"/>
-	<testcase name="is.nonEmptyString" time="0.000131" classname="test"/>
-	<testcase name="is.nonEmptyStringAndNotWhitespace" time="0.000215" classname="test"/>
-	<testcase name="is.emptyObject" time="0.000258" classname="test"/>
-	<testcase name="is.nonEmptyObject" time="0.000227" classname="test"/>
-	<testcase name="is.nonEmptySet" time="0.000102" classname="test"/>
-	<testcase name="is.nonEmptyMap" time="0.000093" classname="test"/>
-	<testcase name="is.propertyKey" time="0.000334" classname="test"/>
-	<testcase name="is.any" time="0.000840" classname="test"/>
-	<testcase name="is.all" time="0.000672" classname="test"/>
-	<testcase name="is.any as predicate factory" time="0.000172" classname="test"/>
-	<testcase name="is.all as predicate factory" time="0.000482" classname="test"/>
-	<testcase name="is.formData supplemental" time="0.000229" classname="test"/>
-	<testcase name="is.urlSearchParams" time="0.000183" classname="test"/>
-	<testcase name="is.validDate" time="0.000116" classname="test"/>
-	<testcase name="is.validLength" time="0.000094" classname="test"/>
-	<testcase name="is.whitespaceString" time="0.000111" classname="test"/>
-	<testcase name="assert" time="0.000098" classname="test"/>
-	<testcase name="custom assertion message" time="0.001555" classname="test"/>
-	<testcase name="isAssert.not.undefined" time="0.000111" classname="test"/>
-	<testcase name="isAssert.not" time="0.000738" classname="test"/>
-	<testcase name="isAssert.not edge cases" time="0.000059" classname="test"/>
-	<testcase name="is.optional" time="0.000054" classname="test"/>
-	<testcase name="isAssert.optional" time="0.000097" classname="test"/>
+	<testcase name="is.regExp" time="0.002424" classname="test"/>
+	<testcase name="is.date" time="0.002657" classname="test"/>
+	<testcase name="is.error" time="0.003949" classname="test"/>
+	<testcase name="is.nativePromise" time="0.003766" classname="test"/>
+	<testcase name="is.promise" time="0.003342" classname="test"/>
+	<testcase name="is.generator" time="0.003286" classname="test"/>
+	<testcase name="is.asyncGenerator" time="0.003250" classname="test"/>
+	<testcase name="is.generatorFunction" time="0.007543" classname="test"/>
+	<testcase name="is.asyncGeneratorFunction" time="0.003210" classname="test"/>
+	<testcase name="is.asyncFunction" time="0.003131" classname="test"/>
+	<testcase name="is.boundFunction" time="0.003073" classname="test"/>
+	<testcase name="is.map" time="0.003181" classname="test"/>
+	<testcase name="is.emptyMap" time="0.005238" classname="test"/>
+	<testcase name="is.set" time="0.007210" classname="test"/>
+	<testcase name="is.emptySet" time="0.003947" classname="test"/>
+	<testcase name="is.weakSet" time="0.005633" classname="test"/>
+	<testcase name="is.weakRef" time="0.010067" classname="test"/>
+	<testcase name="is.weakMap" time="0.003625" classname="test"/>
+	<testcase name="is.int8Array" time="0.003164" classname="test"/>
+	<testcase name="is.uint8Array" time="0.003353" classname="test"/>
+	<testcase name="is.uint8ClampedArray" time="0.003313" classname="test"/>
+	<testcase name="is.int16Array" time="0.003479" classname="test"/>
+	<testcase name="is.uint16Array" time="0.003471" classname="test"/>
+	<testcase name="is.int32Array" time="0.007874" classname="test"/>
+	<testcase name="is.uint32Array" time="0.003253" classname="test"/>
+	<testcase name="is.float32Array" time="0.003080" classname="test"/>
+	<testcase name="is.float64Array" time="0.004880" classname="test"/>
+	<testcase name="is.bigInt64Array" time="0.003119" classname="test"/>
+	<testcase name="is.bigUint64Array" time="0.004554" classname="test"/>
+	<testcase name="is.arrayBuffer" time="0.003179" classname="test"/>
+	<testcase name="is.dataView" time="0.003085" classname="test"/>
+	<testcase name="is.plainObject" time="0.002687" classname="test"/>
+	<testcase name="is.htmlElement" time="0.002986" classname="test"/>
+	<testcase name="is.observable" time="0.003022" classname="test"/>
+	<testcase name="is.nodeStream" time="0.003431" classname="test"/>
+	<testcase name="is.formData" time="0.003171" classname="test"/>
+	<testcase name="is.undefined" time="0.003066" classname="test"/>
+	<testcase name="is.null" time="0.002912" classname="test"/>
+	<testcase name="is.string" time="0.002921" classname="test"/>
+	<testcase name="is.emptyString" time="0.003145" classname="test"/>
+	<testcase name="is.number" time="0.002872" classname="test"/>
+	<testcase name="is.bigint" time="0.002996" classname="test"/>
+	<testcase name="is.boolean" time="0.003020" classname="test"/>
+	<testcase name="is.numericString" time="0.003937" classname="test"/>
+	<testcase name="is.nan" time="0.003196" classname="test"/>
+	<testcase name="is.nullOrUndefined" time="0.003003" classname="test"/>
+	<testcase name="is.integer" time="0.002905" classname="test"/>
+	<testcase name="is.safeInteger" time="0.002797" classname="test"/>
+	<testcase name="is.infinite" time="0.003001" classname="test"/>
+	<testcase name="is.positiveNumber" time="0.000307" classname="test"/>
+	<testcase name="is.nan" time="0.000198" classname="test"/>
+	<testcase name="is.finiteNumber" time="0.000181" classname="test"/>
+	<testcase name="is.negativeNumber" time="0.000299" classname="test"/>
+	<testcase name="is.nonNegativeNumber" time="0.000131" classname="test"/>
+	<testcase name="is.positiveInteger" time="0.000137" classname="test"/>
+	<testcase name="is.negativeInteger" time="0.000142" classname="test"/>
+	<testcase name="is.nonNegativeInteger" time="0.000124" classname="test"/>
+	<testcase name="is.infinite" time="0.000131" classname="test"/>
+	<testcase name="is.numericString supplemental" time="0.000095" classname="test"/>
+	<testcase name="is.array supplemental" time="0.000240" classname="test"/>
+	<testcase name="is.arrayOf" time="0.000099" classname="test"/>
+	<testcase name="is.oneOf" time="0.000120" classname="test"/>
+	<testcase name="is.boundFunction supplemental" time="0.000084" classname="test"/>
+	<testcase name="is.asyncFunction supplemental" time="0.000096" classname="test"/>
+	<testcase name="is.asyncGenerator supplemental" time="0.000084" classname="test"/>
+	<testcase name="is.asyncGeneratorFunction supplemental" time="0.000108" classname="test"/>
+	<testcase name="is.enumCase" time="0.000323" classname="test"/>
+	<testcase name="is.directInstanceOf" time="0.000155" classname="test"/>
+	<testcase name="is.urlInstance" time="0.000149" classname="test"/>
+	<testcase name="is.urlString" time="0.000141" classname="test"/>
+	<testcase name="is.truthy" time="0.000213" classname="test"/>
+	<testcase name="is.falsy" time="0.000246" classname="test"/>
+	<testcase name="is.primitive" time="0.000127" classname="test"/>
+	<testcase name="is.integer supplemental" time="0.000068" classname="test"/>
+	<testcase name="is.safeInteger supplemental" time="0.000102" classname="test"/>
+	<testcase name="is.iterable" time="0.000202" classname="test"/>
+	<testcase name="is.asyncIterable" time="0.000226" classname="test"/>
+	<testcase name="is.class" time="0.000352" classname="test"/>
+	<testcase name="is.typedArray" time="0.000251" classname="test"/>
+	<testcase name="is.arrayLike" time="0.000233" classname="test"/>
+	<testcase name="is.tupleLike" time="0.000581" classname="test"/>
+	<testcase name="is.inRange" time="0.000421" classname="test"/>
+	<testcase name="is.htmlElement supplemental" time="0.002035" classname="test"/>
+	<testcase name="is.evenInteger" time="0.000202" classname="test"/>
+	<testcase name="is.oddInteger" time="0.000120" classname="test"/>
+	<testcase name="is.nonEmptyArray" time="0.000163" classname="test"/>
+	<testcase name="is.emptyString supplemental" time="0.000060" classname="test"/>
+	<testcase name="is.emptyStringOrWhitespace supplemental" time="0.000095" classname="test"/>
+	<testcase name="is.nonEmptyString" time="0.000132" classname="test"/>
+	<testcase name="is.nonEmptyStringAndNotWhitespace" time="0.000220" classname="test"/>
+	<testcase name="is.emptyObject" time="0.000196" classname="test"/>
+	<testcase name="is.nonEmptyObject" time="0.000144" classname="test"/>
+	<testcase name="is.nonEmptySet" time="0.000093" classname="test"/>
+	<testcase name="is.nonEmptyMap" time="0.000090" classname="test"/>
+	<testcase name="is.propertyKey" time="0.000299" classname="test"/>
+	<testcase name="is.any" time="0.000731" classname="test"/>
+	<testcase name="is.all" time="0.000628" classname="test"/>
+	<testcase name="is.any as predicate factory" time="0.000169" classname="test"/>
+	<testcase name="is.all as predicate factory" time="0.000110" classname="test"/>
+	<testcase name="is.formData supplemental" time="0.000164" classname="test"/>
+	<testcase name="is.urlSearchParams" time="0.000209" classname="test"/>
+	<testcase name="is.validDate" time="0.000123" classname="test"/>
+	<testcase name="is.validLength" time="0.000101" classname="test"/>
+	<testcase name="is.whitespaceString" time="0.000110" classname="test"/>
+	<testcase name="assert" time="0.000104" classname="test"/>
+	<testcase name="custom assertion message" time="0.001577" classname="test"/>
+	<testcase name="isAssert.not.undefined" time="0.000125" classname="test"/>
+	<testcase name="isAssert.not" time="0.000841" classname="test"/>
+	<testcase name="isAssert.not edge cases" time="0.000105" classname="test"/>
+	<testcase name="is.optional" time="0.000078" classname="test"/>
+	<testcase name="isAssert.optional" time="0.000104" classname="test"/>
 	<!-- tests 118 -->
 	<!-- suites 0 -->
 	<!-- pass 118 -->
@@ -125,5 +125,5 @@
 	<!-- cancelled 0 -->
 	<!-- skipped 0 -->
 	<!-- todo 0 -->
-	<!-- duration_ms 1666.673429 -->
+	<!-- duration_ms 1149.000313 -->
 </testsuites>

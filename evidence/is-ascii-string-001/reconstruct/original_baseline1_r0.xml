@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <testsuites>
-	<testcase name="existing string predicates unchanged" time="0.000901" classname="test"/>
-	<testcase name="existing assertion message format unchanged" time="0.000697" classname="test"/>
-	<testcase name="any/all combinators still work with existing predicates" time="0.000368" classname="test"/>
+	<testcase name="existing string predicates unchanged" time="0.000818" classname="test"/>
+	<testcase name="existing assertion message format unchanged" time="0.000674" classname="test"/>
+	<testcase name="any/all combinators still work with existing predicates" time="0.000218" classname="test"/>
 	<!-- tests 3 -->
 	<!-- suites 0 -->
 	<!-- pass 3 -->
@@ -10,5 +10,5 @@
 	<!-- cancelled 0 -->
 	<!-- skipped 0 -->
 	<!-- todo 0 -->
-	<!-- duration_ms 271.734758 -->
+	<!-- duration_ms 203.404376 -->
 </testsuites>

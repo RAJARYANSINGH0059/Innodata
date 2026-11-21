@@ -14,7 +14,8 @@ Add `is.asciiString(value)` and the matching assertion `assert.asciiString(value
 3. Any character above U+007F makes the result `false`, including Latin‑1 (`é`, U+00E9), U+0080, and astral characters (emoji).
 4. `assert.asciiString(value)` returns without throwing when the predicate is true and otherwise throws `TypeError`.
    The default message names the expected type as `ASCII string` (like the other assertions); a custom `message`
-   argument replaces it.
+   argument replaces it. Boxed primitives such as `new String('a')` keep the library's existing behaviour for every
+   assertion (a `TypeError` with its existing "object wrappers" message), so the `ASCII string` wording is not required for them.
 5. The predicate is exported as a named export `isAsciiString` and as `assertAsciiString`, is available on the default
    `is` object and on `assert`, and works when passed to the combinators `is.any(...)`, `is.all(...)` and to
    `assert.any(...)`, whose failure message lists `ASCII string` as the expected type.

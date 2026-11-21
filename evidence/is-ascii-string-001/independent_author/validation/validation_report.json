@@ -1,0 +1,235 @@
+{
+  "artifact_sha256": {
+    "patch": "a03fa076e34f7ac26ec7f1e117bd038be94cf7af51bd2805f29df3eb12e6ea8d"
+  },
+  "commit": "e9c026c611c1160eaad50da00be4e676b626018f",
+  "failing_feature_tests": {
+    "original": {
+      "test::AC1 / req 2: ASCII strings are true": "is.asciiString is not a function",
+      "test::AC2 / req 3: non-ASCII strings are false": "is.asciiString is not a function",
+      "test::AC3 / req 1: non-strings are false": "is.asciiString is not a function",
+      "test::AC4: assert.asciiString passes for ASCII": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC4: assert.asciiString throws TypeError mentioning ASCII string": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC4: default message names expected type like other assertions": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC5: custom message is used verbatim": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC6: assert.any with is.asciiString passes and fails with ASCII string in message": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC6: is.all with is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC6: is.any with is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC7: named export assertAsciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC7: named export isAsciiString behaves like is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::assert.all with is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::assert.any with array of predicates lists ASCII string": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::every single code unit 0..127 is ASCII, 128..255 is not": "is.asciiString is not a function",
+      "test::is.asciiString exists on default is object": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::is.asciiString returns strictly boolean": "is.asciiString is not a function"
+    },
+    "reference": {},
+    "removed": {
+      "test::AC1 / req 2: ASCII strings are true": "is.asciiString is not a function",
+      "test::AC2 / req 3: non-ASCII strings are false": "is.asciiString is not a function",
+      "test::AC3 / req 1: non-strings are false": "is.asciiString is not a function",
+      "test::AC4: assert.asciiString passes for ASCII": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC4: assert.asciiString throws TypeError mentioning ASCII string": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC4: default message names expected type like other assertions": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC5: custom message is used verbatim": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC6: assert.any with is.asciiString passes and fails with ASCII string in message": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC6: is.all with is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC6: is.any with is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC7: named export assertAsciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::AC7: named export isAsciiString behaves like is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::assert.all with is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::assert.any with array of predicates lists ASCII string": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::every single code unit 0..127 is ASCII, 128..255 is not": "is.asciiString is not a function",
+      "test::is.asciiString exists on default is object": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+      "test::is.asciiString returns strictly boolean": "is.asciiString is not a function"
+    }
+  },
+  "python": "3.13.18",
+  "repeatability": {
+    "original": {
+      "repeats": 3,
+      "stable": true
+    },
+    "reference": {
+      "repeats": 3,
+      "stable": true
+    },
+    "removed": {
+      "repeats": 3,
+      "stable": true
+    }
+  },
+  "report": {
+    "checks": [
+      {
+        "actual": "('original', 'reference', 'removed')",
+        "check_id": "three_state_order",
+        "evidence": {},
+        "expected": "('original', 'reference', 'removed')",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "vectors=[((0, 'tests_pass'), (0, 'tests_pass')), ((0, 'tests_pass'), (0, 'tests_pass')), ((0, 'tests_pass'), (0, 'tests_pass'))]; all_green=True",
+        "check_id": "baseline_regression_stability",
+        "evidence": {
+          "baseline_vectors": [
+            [
+              [
+                0,
+                "tests_pass"
+              ],
+              [
+                0,
+                "tests_pass"
+              ]
+            ],
+            [
+              [
+                0,
+                "tests_pass"
+              ],
+              [
+                0,
+                "tests_pass"
+              ]
+            ],
+            [
+              [
+                0,
+                "tests_pass"
+              ],
+              [
+                0,
+                "tests_pass"
+              ]
+            ]
+          ]
+        },
+        "expected": "Baseline test exit-code vector is unchanged across all three states; ideally all pass.",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "task_test_outcomes=((1, 'test_assertion_failure'),)",
+        "check_id": "original_detects_missing_behaviour",
+        "evidence": {},
+        "expected": "At least one task-specific test is classified as an assertion/behaviour failure on the original repository.",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "task_test_outcomes=((1, 'test_assertion_failure'),)",
+        "check_id": "removed_patch_reveals_missing_behaviour",
+        "evidence": {},
+        "expected": "At least one task-specific test is classified as an assertion/behaviour failure after patch removal.",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "task_test_outcomes=((0, 'tests_pass'),)",
+        "check_id": "reference_implements_requirement",
+        "evidence": {},
+        "expected": "All task-specific tests pass with the reference implementation.",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "vectors=[[(0, 'tests_pass'), (0, 'tests_pass'), (1, 'test_assertion_failure')], [(0, 'tests_pass'), (0, 'tests_pass'), (1, 'test_assertion_failure')], [(0, 'tests_pass'), (0, 'tests_pass'), (1, 'test_assertion_failure')]]",
+        "check_id": "original_repeat_stability",
+        "evidence": {},
+        "expected": "3 identical runs",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "vectors=[[(0, 'tests_pass'), (0, 'tests_pass'), (0, 'tests_pass')], [(0, 'tests_pass'), (0, 'tests_pass'), (0, 'tests_pass')], [(0, 'tests_pass'), (0, 'tests_pass'), (0, 'tests_pass')]]",
+        "check_id": "reference_repeat_stability",
+        "evidence": {},
+        "expected": "3 identical runs",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "vectors=[[(0, 'tests_pass'), (0, 'tests_pass'), (1, 'test_assertion_failure')], [(0, 'tests_pass'), (0, 'tests_pass'), (1, 'test_assertion_failure')], [(0, 'tests_pass'), (0, 'tests_pass'), (1, 'test_assertion_failure')]]",
+        "check_id": "removed_repeat_stability",
+        "evidence": {},
+        "expected": "3 identical runs",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "original=ac999fabba0ee7b6 removed=ac999fabba0ee7b6",
+        "check_id": "removed_tree_equals_original_tree",
+        "evidence": {},
+        "expected": "reverting the reference patch restores the exact original source tree",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "reference=e1194910ab68c08c",
+        "check_id": "reference_tree_differs",
+        "evidence": {},
+        "expected": "reference patch changes the source tree",
+        "limitation": null,
+        "status": "PASS"
+      },
+      {
+        "actual": "A=['test::AC1 / req 2: ASCII strings are true', 'test::AC2 / req 3: non-ASCII strings are false', 'test::AC3 / req 1: non-strings are false'].. (17) C=(17)",
+        "check_id": "failing_tests_consistent_A_vs_C",
+        "evidence": {
+          "A": {
+            "test::AC1 / req 2: ASCII strings are true": "is.asciiString is not a function",
+            "test::AC2 / req 3: non-ASCII strings are false": "is.asciiString is not a function",
+            "test::AC3 / req 1: non-strings are false": "is.asciiString is not a function",
+            "test::AC4: assert.asciiString passes for ASCII": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC4: assert.asciiString throws TypeError mentioning ASCII string": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC4: default message names expected type like other assertions": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC5: custom message is used verbatim": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC6: assert.any with is.asciiString passes and fails with ASCII string in message": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC6: is.all with is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC6: is.any with is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC7: named export assertAsciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC7: named export isAsciiString behaves like is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::assert.all with is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::assert.any with array of predicates lists ASCII string": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::every single code unit 0..127 is ASCII, 128..255 is not": "is.asciiString is not a function",
+            "test::is.asciiString exists on default is object": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::is.asciiString returns strictly boolean": "is.asciiString is not a function"
+          },
+          "C": {
+            "test::AC1 / req 2: ASCII strings are true": "is.asciiString is not a function",
+            "test::AC2 / req 3: non-ASCII strings are false": "is.asciiString is not a function",
+            "test::AC3 / req 1: non-strings are false": "is.asciiString is not a function",
+            "test::AC4: assert.asciiString passes for ASCII": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC4: assert.asciiString throws TypeError mentioning ASCII string": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC4: default message names expected type like other assertions": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC5: custom message is used verbatim": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC6: assert.any with is.asciiString passes and fails with ASCII string in message": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC6: is.all with is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC6: is.any with is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC7: named export assertAsciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::AC7: named export isAsciiString behaves like is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::assert.all with is.asciiString": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::assert.any with array of predicates lists ASCII string": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::every single code unit 0..127 is ASCII, 128..255 is not": "is.asciiString is not a function",
+            "test::is.asciiString exists on default is object": "Expected values to be strictly equal:+ actual - expected+ 'undefined'- 'function'",
+            "test::is.asciiString returns strictly boolean": "is.asciiString is not a function"
+          }
+        },
+        "expected": "same feature tests fail, for the same reason, in State A and State C",
+        "limitation": null,
+        "status": "PASS"
+      }
+    ],
+    "status": "PASS",
+    "summary": "Three-state pattern holds and the baseline remains green in all states.",
+    "task_kind": "feature"
+  },
+  "state_tree_digests": {
+    "original": "ac999fabba0ee7b6729b7ef7bfc9821d7360103d610af9383792508ce99bfa61",
+    "reference": "e1194910ab68c08c591f387dfaf8caee6f2ee85752de142c76e7e81cb12d1325",
+    "removed": "ac999fabba0ee7b6729b7ef7bfc9821d7360103d610af9383792508ce99bfa61"
+  },
+  "task_id": "is-ascii-string-001-indep"
+}
